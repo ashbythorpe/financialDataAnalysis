@@ -1,0 +1,70 @@
+Package: financialDataAnalysis
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ashby", "Thorpe", , "ashbythorpe@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3106-099X"))
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    DT,
+    glue,
+    magrittr,
+    purrr,
+    readr,
+    readxl,
+    rlang,
+    shinyWidgets,
+    stats,
+    stringr,
+    tibble,
+    tidyr,
+    tidyselect,
+    writexl
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Collate: 
+    'add_filter.R'
+    'app.R'
+    'apply_filters.R'
+    'apply_scores.R'
+    'create_score.R'
+    'create_scores_module.R'
+    'custom_plot.R'
+    'custom_score_module.R'
+    'data.R'
+    'data_input.R'
+    'data_input_module.R'
+    'default_plots.R'
+    'delete_scores.R'
+    'dependencies.R'
+    'download_df.R'
+    'editing_module.R'
+    'favourite_stock.R'
+    'get_scores.R'
+    'home_module.R'
+    'input_data.R'
+    'main_module.R'
+    'predict.R'
+    'score_final.R'
+    'score_input_modules.R'
+    'scores_table_module.R'
+    'search_stocks.R'
+    'server.R'
+    'sort_df.R'
+    'summary.R'
+    'summary_modules.R'
+    'types.R'
+    'utils.R'
+    'utils-pipe.R'
+    'ui.R'
+URL: https://github.com/ashbythorpe/financialDataAnalysis
+BugReports: https://github.com/ashbythorpe/financialDataAnalysis/issues
