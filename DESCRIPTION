@@ -73,7 +73,6 @@ Collate:
     'input_data.R'
     'predict.R'
     'predict_residuals.R'
-    'predict_trend.R'
     'score_final.R'
     'score_input_modules.R'
     'scores_table_module.R'
