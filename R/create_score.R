@@ -28,16 +28,16 @@ validate_score <- function(score_type, colname, score_name, weight, lb, ub,
                            centre, inverse, exponential, logarithmic,
                            magnitude, custom_args){
   validated_score_type <- validate_score_type(score_type)
-  universal_row = validate_universal_score(colname, score_name, weight)
-  exponential_row = validate_exponential_transformation(exponential, logarithmic, magnitude)
+  universal_row <- validate_universal_score(colname, score_name, weight)
+  exponential_row <- validate_exponential_transformation(exponential, logarithmic, magnitude)
   if(is.null(validated_score_type)){
     return(NULL)
   } else if(validated_score_type == "Linear"){
-    score_row = validate_linear_score(lb, ub)
+    score_row <- validate_linear_score(lb, ub)
   } else if(validated_score_type == "Peak"){
-    score_row = validate_peak_score(lb, ub, centre, inverse)
+    score_row <- validate_peak_score(lb, ub, centre, inverse)
   } else if(validated_score_type == "Custom coordinates"){
-    score_row = validate_custom_score(custom_args)
+    score_row <- validate_custom_score(custom_args)
   }
   bind_validated_columns(validated_score_type, universal_row,
                          score_row, exponential_row)
@@ -59,10 +59,12 @@ validate_universal_score <- function(colname, score_name, weight){
   if(colname_valid && score_name_valid && weight_valid){
     tibble::tibble_row(
       colname = colname,
-      score_name = dplyr::if_else(
-        stringr::str_to_lower(score_name) %in% c("", "default"), 
-        NA_character_, score_name
-      ),
+      score_name = 
+        if(stringr::str_to_lower(score_name) %in% c("", "default")) {
+          NA_character_
+        } else {
+          score_name
+        },
       weight = weight)
   } else{
     NULL
@@ -106,7 +108,8 @@ validate_peak_score <- function(lb, ub, centre, inverse){
 }
 
 validate_custom_score <- function(x){
-  if(!is.data.frame(x) || any(!colnames(x) %in% c("x", "y"))){
+  if(!is.data.frame(x) || any(!colnames(x) %in% c("x", "y")) || 
+     !all(c("x", "y") %in% colnames(x))){
     return(NULL)
   }
   unique_df <- dplyr::filter(x, is.numeric(x) & !is.na(x) & is.numeric(y) & !is.na(y)) %>%
@@ -114,8 +117,8 @@ validate_custom_score <- function(x){
   if(nrow(unique_df) < 2){
     return(NULL)
   }
-  dplyr::arrange(unique_df, x) %>%
-    tibble::tibble(custom_args = .)
+  arranged <- dplyr::arrange(unique_df, x)
+  tibble::tibble(custom_args = list(arranged))
 }
 
 bind_validated_columns <- function(score_type, ...){

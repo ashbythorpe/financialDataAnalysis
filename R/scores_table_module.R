@@ -1,21 +1,25 @@
 scores_table_ui <- function(id) {
   ns <- NS(id)
+  # Only show the table if there is at least one score
+  # Otherwise, show some placeholder text
   tabsetPanel(
     id = ns("wizard"), type = "hidden",
-    tabPanelBody("no_scores", p("Create a score below")),
+    tabPanelBody("no_scores", p("Create a score")),
     tabPanelBody(
       "scores",
-      fluidRow(
+      div(
+        class = "box_row",
         actionButton(ns("edit"), "Edit selected score"),
         actionButton(ns("delete"), "Delete selected score")
       ),
-      DT::DTOutput(ns("scores"))
+      reactable::reactableOutput(ns("scores"))
     )
   )
 }
 
 scores_table_server <- function(id, scores) {
   moduleServer(id, function(input, output, session) {
+    # Update the UI to show the table if there are scores and vice versa
     observe({
       if(nrow(scores()) == 0){
         updateTabsetPanel(session, "wizard", selected = "no_scores")
@@ -24,18 +28,36 @@ scores_table_server <- function(id, scores) {
       }
     })
     
-    output$scores <- DT::renderDT({
+    # Create the table
+    output$scores <- reactable::renderReactable({
       scores() %>%
         dplyr::select(score_name, score_type, colname) %>%
-        dplyr::rename(Column = "colname")
+        dplyr::rename(Column = "colname") %>%
+        reactable::reactable(sortable = FALSE, pagination = FALSE, 
+                             selection = "multiple", onClick = "select",
+                             highlight = TRUE)
     })
     
-    editing <- reactive(input$scores_rows_selected[1]) %>%
+    # Get the currently selected row indexes
+    selected <- reactive(reactable::getReactableState("scores", "selected"))
+    
+    # The first value of selected, updated when the edit button is clicked
+    editing <- reactive({
+      selected()[1]
+    }) %>%
       bindEvent(input$edit)
     
-    deleting <- reactive(input$scores_rows_selected) %>%
-      bindEvent(input$deleting)
+    # selected, updated when the delete button is clicked
+    deleting <- reactive(selected()) %>%
+      bindEvent(input$delete)
     
+    # Reset the row selection when the edit or delete buttons are clicked
+    observe({
+      reactable::updateReactable("scores", selected = NA)
+    }) %>%
+      bindEvent(input$edit, input$delete)
+    
+    # Return editing and deleting
     list(editing = editing,
          deleting = deleting)
   })

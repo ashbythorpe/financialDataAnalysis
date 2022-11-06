@@ -10,6 +10,9 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Suggests: 
+    covr,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
@@ -17,10 +20,12 @@ Imports:
     DT,
     glue,
     magrittr,
+    plotly,
     purrr,
     readr,
     readxl,
     rlang,
+    shinydashboard,
     shinyWidgets,
     stats,
     stringr,
@@ -40,8 +45,8 @@ Collate:
     'create_scores_module.R'
     'custom_plot.R'
     'custom_score_module.R'
+    'get_lightgbm_model.R'
     'data.R'
-    'data_input.R'
     'data_input_module.R'
     'default_plots.R'
     'delete_scores.R'
@@ -49,11 +54,15 @@ Collate:
     'download_df.R'
     'editing_module.R'
     'favourite_stock.R'
+    'financialDataAnalysis-package.R'
+    'fix_names.R'
+    'forecast_stock.R'
     'get_scores.R'
     'home_module.R'
     'input_data.R'
-    'main_module.R'
     'predict.R'
+    'predict_residuals.R'
+    'predict_trend.R'
     'score_final.R'
     'score_input_modules.R'
     'scores_table_module.R'
@@ -62,9 +71,13 @@ Collate:
     'sort_df.R'
     'summary.R'
     'summary_modules.R'
+    'test_module.R'
     'types.R'
     'utils.R'
     'utils-pipe.R'
     'ui.R'
-URL: https://github.com/ashbythorpe/financialDataAnalysis
+    'validated_inputs.R'
+URL: https://github.com/ashbythorpe/financialDataAnalysis,
+    https://ashbythorpe.github.io/financialDataAnalysis/
 BugReports: https://github.com/ashbythorpe/financialDataAnalysis/issues
+VignetteBuilder: knitr

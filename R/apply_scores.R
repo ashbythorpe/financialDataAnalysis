@@ -10,19 +10,19 @@ apply_scores <- function(df, scores){
 
 score_column <- function(x, score_type, lb, ub, centre, inverse, exponential,
                          logarithmic, magnitude, custom_args, ...){
-  tidyr::replace_na(score_type, "Linear") %>%
-    switch(
-      Peak = score_peak(x, lb, ub, centre, inverse),
-      "Custom coordinates" = score_custom(x, custom_args),
-      score_linear(x, lb, ub)
-    ) %>%
+  if(is.null(x)) {
+    return(NA)
+  }
+  switch(score_type,
+    Peak = score_peak(x, lb, ub, centre, inverse),
+    "Custom coordinates" = score_custom(x, custom_args),
+    score_linear(x, lb, ub)
+  ) %>%
     transform_exponential(exponential, logarithmic, magnitude)
 }
 
 score_linear <- function(x, lb, ub){
-  if(is.null(x)){
-    return(NA)
-  } else if(lb <= ub){
+  if(lb <= ub){
     dplyr::case_when(
       x <= lb ~ 0,
       x >= ub ~ 1,
@@ -38,9 +38,7 @@ score_linear <- function(x, lb, ub){
 }
 
 score_peak <- function(x, lb, ub, centre, inverse){
-  if(is.null(x)){
-    return(NA)
-  } else if(!inverse){
+  if(!inverse){
     dplyr::case_when(
       x <= lb | x >= ub ~ 0,
       x <= centre ~ (x-lb)/(centre-lb),
@@ -56,9 +54,6 @@ score_peak <- function(x, lb, ub, centre, inverse){
 }
 
 score_custom <- function(x, coords){
-  if(is.null(x)){
-    return(NA)
-  }
   format_coords(coords) %>%
     purrr::pmap(score_coord_section, column = x) %>%
     combine_score_sections()
@@ -75,9 +70,9 @@ format_coords <- function(df){
 score_coord_section <- function(column, x, y, next_x, next_y){
   dplyr::case_when(
     column < x | column > next_x ~ NA_real_,
-    x == next_x ~ next_y,
-    y <= next_y ~ (column-x)/(next_x-x) * (next_y-y) + y,
-    y > next_y ~ (next_x-column)/(next_x-x) * (y-next_y) + next_y,
+    x == next_x ~ as.double(next_y),
+    y <= next_y ~ as.double((column-x)/(next_x-x) * (next_y-y) + y),
+    y > next_y ~ as.double((next_x-column)/(next_x-x) * (y-next_y) + next_y),
   )
 }
 
@@ -87,9 +82,7 @@ combine_score_sections <- function(x){
 }
 
 transform_exponential <- function(x, exponential, logarithmic, magnitude){
-  if(is.null(x)){
-    return(NA)
-  } else if(!exponential || magnitude == 0){
+  if(!exponential || magnitude == 0){
     return(x)
   } else if(logarithmic){
     magnitude <- -magnitude

@@ -1,0 +1,66 @@
+---
+title: "Review of prototype 1"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Review of prototype 1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The 'financialDataAnalysis' project was split up into 4 prototypes. This is a demonstration of of prototype 1.
+
+```{r setup}
+library(financialDataAnalysis)
+```
+
+Prototype 1 includes the following features:
+* A large and rich dataset about a set of stocks, which can be freely used and analysed.
+* Two models, fit on a large dataset of historic stock prices, allowing you to predict the price of a variety of stocks.
+
+The stock data contains `r nrow(default_stock_data)` rows and `r ncol(default_stock_data)` columns. Each row represents a particular stock.
+
+The models can be used in the following way:
+
+Note that the shown method for generating predictions will no longer work as of prototype 4. Instead, use the [predict_price()] function.
+
+```{r setup2, echo = FALSE}
+library(generics)
+library(stats)
+library(tibble)
+library(bonsai)
+library(modeltime)
+library(lubridate)
+```
+
+First we need to create a data frame to predict on. Lets use make monthly predictions, going 6 months ahead.
+
+```{r data}
+data <- tibble(
+  ticker = "GOOGL",
+  ref_date = seq(
+    from = today(),
+    to = today() + months(6),
+    by = "month"
+  )
+)
+data
+```
+
+Now lets make predictions on the data using the monthly model.
+
+```{r predictions, eval = FALSE}
+predict(monthly_stock_model, data)
+```
+
+You can also add the predictions automatically to the data you have created.
+
+```{r augment, eval = FALSE}
+augment(monthly_stock_model, data)
+```

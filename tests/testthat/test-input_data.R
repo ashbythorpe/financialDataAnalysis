@@ -1,46 +1,67 @@
 test_that("input_data works", {
+  default_data <- tibble::tibble(
+    x = 1:5,
+    y = 10:6,
+    z = letters[1:5]
+  )
+  
   example_invalid_data_path <- tempfile("invalid", fileext = ".csv")
+  withr::local_file(example_invalid_data_path)
   example_invalid_data <- tibble::tibble(x = 1, y = 1)
   readr::write_csv(example_invalid_data, example_invalid_data_path)
 
   example_invalid_data2_path <- tempfile("invalid2", fileext = ".csv")
+  withr::local_file(example_invalid_data2_path)
   example_invalid_data2 <- tibble::tibble(x = c(1,2))
   readr::write_csv(example_invalid_data2, example_invalid_data2_path)
 
   example_valid_data_path <- tempfile("valid", fileext = ".csv")
+  withr::local_file(example_valid_data_path)
   example_valid_data <- tibble::tibble(x = c(1,2), y = c(2,1))
   readr::write_csv(example_valid_data, example_valid_data_path)
 
   example_excel_path <- tempfile("valid_excel", fileext = ".xlsx")
+  withr::local_file(example_excel_path)
   example_excel <- tibble::tibble(x = c(1,2), y = c(2,1))
   writexl::write_xlsx(example_excel, example_excel_path)
-
-  default_data <- tibble::tibble(x = 1:5, y = 2:6)
+  
   quietly_input_data <- purrr::quietly(input_data)
   input_data(NULL, default_data = default_data, combine = FALSE) %>%
     expect_equal(default_data)
+  
   result_1 <- quietly_input_data("aaa", default_data = default_data, combine = FALSE)
   expect_equal(result_1$result, default_data)
-  expect_equal(result_1$output, format_quietly_output("Files were not converted correctly."))
+  expect_match(result_1$output, "Files were not converted correctly\\.")
+  
   result_2 <- quietly_input_data(c("aaa", example_valid_data_path),
                                  default_data = default_data, combine = FALSE)
   expect_equal(result_2$result, example_valid_data)
-
   expect_match(result_2$output, "Not all files were converted correctly\\.")
+  
   result_3 <- quietly_input_data(example_invalid_data_path,
                                  default_data = default_data, combine = FALSE)
   expect_equal(result_3$result, default_data)
   expect_match(result_3$output, "The inputted data frame is not valid\\.")
-  input_data(example_valid_data_path, default_data = default_data, combine = FALSE) %>%
+  
+  input_data(example_valid_data_path, default_data = default_stock_data, combine = FALSE) %>%
     expect_equal(example_valid_data)
   input_data(example_excel_path, default_data = default_data, combine = FALSE) %>%
     expect_equal(example_excel)
+  input_data(c(example_valid_data_path, example_excel_path), default_data = default_data, combine = FALSE) %>%
+    expect_equal(example_valid_data)
+  
   input_data(example_valid_data_path, default_data = default_data, combine = TRUE) %>%
-    {nrow(.) > 5} %>%
-    expect_true()
+    expect_equal(tibble::tibble(
+      x = c(1,2,1:5),
+      y = c(2,1,10:6),
+      z = c(NA, NA, letters[1:5])
+    ))
   input_data(example_invalid_data_path, default_data = default_data, combine = TRUE) %>%
-    {nrow(.) > 5} %>%
-    expect_true()
+    expect_equal(tibble::tibble(
+      x = c(1,1:5),
+      y = c(1,10:6),
+      z = c(NA, letters[1:5])
+    ))
 })
 
 test_that("read_files works", {
@@ -106,6 +127,8 @@ test_that("file_format works", {
     expect_equal("not recognised")
   file_format("x.csv.") %>%
     expect_equal("not recognised")
+  file_format("x.csv.xls") %>%
+    expect_equal("Excel")
 })
 
 test_that("combine_if_multiple works", {

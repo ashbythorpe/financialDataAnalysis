@@ -1,7 +1,3 @@
-format_quietly_output <- function(x){
-  glue::glue("[1] \"{x}\"")
-}
-
 parent_ns <- function(id){
   id %>%
     stringr::str_remove(paste0("\\Q", ns.sep, "\\Erow_[:digit:]+$")) %>%
@@ -13,4 +9,17 @@ dedupe <- function(r) {
   makeReactiveBinding("val")
   observe(val <<- r(), priority = 10)
   reactive(val)
+}
+
+makeReactiveTrigger <- function() {
+  rv <- reactiveValues(a = 0)
+  list(
+    depend = function() {
+      rv$a
+      invisible()
+    },
+    trigger = function() {
+      rv$a <- isolate(rv$a + 1)
+    }
+  )
 }

@@ -4,3 +4,7 @@
 .httr-oauth
 .DS_Store
 Data Fetching and modelling
+inst/doc
+docs
+/doc/
+/Meta/

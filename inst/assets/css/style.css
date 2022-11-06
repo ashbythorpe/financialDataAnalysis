@@ -5,3 +5,15 @@
 .warning {
   color: yellow;
 }
+
+.box_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Override/reset default formatting for a file input */
+.formatted_file_input { 
+  width: auto !important;
+  margin-bottom: auto !important;
+}

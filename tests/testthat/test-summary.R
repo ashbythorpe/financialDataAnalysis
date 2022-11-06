@@ -14,8 +14,7 @@ test_that("score_summary works", {
     expect_null()
   score_summary(1:100, score_type = "Linear", lb = 0, ub = 100, centre = NULL, inverse = NULL,
                 exponential = F, logarithmic = NULL, magnitude = NULL, custom_args = NULL) %>%
-    ggplot2::is.ggplot() %>%
-    expect_true()
+    vdiffr::expect_doppelganger(title = "Score summary")
 })
 
 test_that("stock_summary works", {

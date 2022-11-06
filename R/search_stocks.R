@@ -23,6 +23,6 @@ search_results <- function(x){
   if(is.null(x)){
     return(x)
   }
-  dplyr::arrange(x, favourite) %>%
+  dplyr::arrange(x, dplyr::desc(favourite)) %>%
     dplyr::select(symbol, companyName)
 }

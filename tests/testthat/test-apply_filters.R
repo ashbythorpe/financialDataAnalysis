@@ -50,7 +50,6 @@ test_that("apply_filters works", {
     max = NA
   )) %>%
     expect_equal(
-      stats::na.omit(df) %>%
-        structure(na.action = NULL)
+      stats::na.omit(df), ignore_attr = T
     )
 })

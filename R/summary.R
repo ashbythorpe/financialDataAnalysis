@@ -1,15 +1,19 @@
-summary_funs <-
-  list(
-    Mean = mean,
-    Median = median,
-    Minimum = min,
-    Maximum = max,
-    `Standard deviation` = sd
-  )
-
 #' @export
-col_summary <- function(x, summary_fun = summary_funs){
-  purrr::imap_chr(summary_fun, .f = col_summary_val, x = x) %>%
+col_summary <- function(x){
+  # This list is defined inside the function so that they run the most updated
+  # version of the functions, since the functions are updated every time the
+  # function is run, rather than when it is defined (since the list is defined
+  # every time the function is run).
+  summary_funs <-
+    list(
+      "Mean" = mean, # "Mean" is the name, mean is the function
+      "Median" = median,
+      "Minimum" = min,
+      "Maximum" = max,
+      "Standard deviation" = sd
+    )
+  # imap means that the names of summary_funs are passed into col_summary_val()
+  purrr::imap_chr(summary_funs, .f = col_summary_val, x = x) %>%
     glue::glue_collapse(sep = ", ")
 }
 
@@ -18,14 +22,17 @@ col_summary_val <- function(x, fun, fun_name){
 }
 
 #' @export
-score_summary <- function(x, score_type = NULL, weight = NULL, lb = NULL, ub = NULL, centre = NULL,
+score_summary <- function(x, score_type = NULL, lb = NULL, ub = NULL, centre = NULL,
                           inverse = NULL, exponential = NULL, logarithmic = NULL,
                           magnitude = NULL, custom_args = NULL, ...){
-  score_spec <- validate_score(score_type = score_type, colname = "x", score_name = "aa",
-                               weight = 1, lb = lb, ub = ub, centre = centre,
-                               inverse = inverse, exponential = exponential,
-                               logarithmic = logarithmic, magnitude = magnitude,
-                               custom_args = custom_args)
+  score_spec <- validate_score(
+    score_type = score_type, colname = "a", score_name = "",
+    weight = 0, lb = lb, ub = ub, centre = centre,
+    inverse = inverse, exponential = exponential,
+    logarithmic = logarithmic, magnitude = magnitude,
+    custom_args = custom_args
+  )
+  
   if(is.null(score_spec)){
     return(NULL)
   }

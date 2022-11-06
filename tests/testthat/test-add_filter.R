@@ -1,16 +1,15 @@
 test_that("add_filter works", {
-  filters <- initial_filters()
   df <- tibble::tibble(x = c(1,2,3), y = c("a", "b", "c"))
-  add_filter(filters, colname = NULL, data = df) %>%
-    expect_equal(filters)
-  add_filter(filters, colname = "z", data = df) %>%
-    expect_equal(filters)
-  add_filter(filters, colname = "x", data = df) %>%
+  add_filter(filters_init, colname = NULL, data = df) %>%
+    expect_equal(filters_init)
+  add_filter(filters_init, colname = "z", data = df) %>%
+    expect_equal(filters_init)
+  add_filter(filters_init, colname = "x", data = df) %>%
     expect_equal(tibble::tibble(
       type = "numeric", colname = "x", pattern = NA_character_,
       min = 1, max = 3
     ))
-  add_filter(filters, colname = "y", data = df) %>%
+  add_filter(filters_init, colname = "y", data = df) %>%
     expect_equal(tibble::tibble(
       type = "character", colname = "y", pattern = "", min = NA_real_, 
       max = NA_real_
@@ -30,7 +29,7 @@ test_that("edit_character_filter works", {
     ))
 })
 
-test_that("edit_numeric_filter", {
+test_that("edit_numeric_filter works", {
   filters <- tibble::tibble(
     type = "numeric", colname = "x", pattern = NA_character_,
     min = 1, max = 3

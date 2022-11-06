@@ -1,6 +1,4 @@
 test_that("score_linear works", {
-  score_linear(NULL, lb = 0, ub = 1) %>%
-    expect_equal(NA)
   score_linear(1:100, lb = 20, ub = 80) %>%
     expect_equal(c(rep(0, 20), (21:79-20)/60, rep(1,21)))
   score_linear(1:100, lb = 80, ub = 20) %>%
@@ -17,8 +15,6 @@ test_that("score_linear works", {
 
 #lb <= centre <= ub
 test_that("score_peak works", {
-  score_peak(NULL, lb = 0, ub = 10, centre = 5, inverse = F) %>%
-    expect_equal(NA)
   score_peak(1:100, lb = 20, ub = 70, centre = 50, inverse = F) %>%
     expect_equal(c(rep(0, 20), 1:30/30, 1 - 1:20/20, rep(0, 30)))
   score_peak(1:100, lb = 20, ub = 70, centre = 50, inverse = T) %>%
@@ -68,8 +64,6 @@ test_that("combine_score_section works", {
 })
 
 test_that("score_custom works", {
-  score_custom(NULL, tibble::tibble(x = 1, y = 1)) %>%
-    expect_equal(NA)
   score_custom(
     1:100,
     tibble::tribble(
@@ -98,8 +92,6 @@ test_that("score_custom works", {
 })
 
 test_that("transform_exponential works", {
-  transform_exponential(NULL, exponential = F, logarithmic = F, magnitude = 1) %>%
-    expect_equal(NA)
   x <- 0:100/100
   transform_exponential(x, exponential = F, logarithmic = NA, magnitude = NA) %>%
     expect_equal(x)
@@ -119,6 +111,8 @@ test_that("transform_exponential works", {
 })
 
 test_that("score_column works", {
+  score_column(NULL) %>%
+    expect_equal(NA)
   score_column(1:100, score_type = NA_character_, lb = 0, ub = 100, centre = NA, 
                inverse = NA,
                exponential = F, logarithmic = NA, magnitude = NA, custom_args = NA) %>%
@@ -162,7 +156,7 @@ test_that("apply_scores works", {
       "Linear", "x", "x", 1, 20, 80, NA, NA, F, NA, NA, NA
     )
 
-  apply_scores(df, scores) %>%
+  apply_scores(df, scores_init) %>%
     expect_equal(df)
   apply_scores(df, scores_with_scores) %>%
     validate_results() %>%

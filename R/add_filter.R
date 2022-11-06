@@ -1,14 +1,3 @@
-initial_filters <- function(){
-  tibble::tibble(
-    type = character(),
-    colname = character(),
-    pattern = character(),
-    min = numeric(),
-    max = numeric(),
-    .rows = 0
-  )
-}
-
 #' @export
 add_filter <- function(filters, colname, data){
   if(is.null(colname) || !colname %in% colnames(data)){

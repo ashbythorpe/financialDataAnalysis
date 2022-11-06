@@ -26,11 +26,11 @@ test_that("validate_universal_score works", {
     expect_equal(tibble::tibble(colname = "x", score_name = NA_character_, weight = 1))
 })
 
-test_that("validate_exponential_transformation", {
+test_that("validate_exponential_transformation works", {
   validate_exponential_transformation(
     exponential = NULL, logarithmic = F, magnitude = 1
   ) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_exponential_transformation(
     exponential = F, logarithmic = F, magnitude = 1
   ) %>%
@@ -40,9 +40,13 @@ test_that("validate_exponential_transformation", {
   ) %>%
     expect_equal(tibble::tibble(exponential = F))
   validate_exponential_transformation(
+    exponential = T, logarithmic = NULL, magnitude = 1
+  ) %>%
+    expect_null()
+  validate_exponential_transformation(
     exponential = T, logarithmic = F, magnitude = NULL
   ) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_exponential_transformation(
     exponential = T, logarithmic = F, magnitude = 1
   ) %>%
@@ -51,26 +55,26 @@ test_that("validate_exponential_transformation", {
 
 test_that("validate_linear_score", {
   validate_linear_score(lb = NULL, ub = 1) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_linear_score(lb = 1, ub = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_linear_score(lb = 1, ub = 1) %>%
     expect_equal(tibble::tibble(lb = 1, ub = 1))
 })
 
 test_that("validate_peak_score works", {
   validate_peak_score(NULL, ub = 1, centre = 1, inverse = TRUE) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_peak_score(1, ub = NULL, centre = 1, inverse = TRUE) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_peak_score(1, ub = 1, centre = NULL, inverse = TRUE) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_peak_score(1, ub = 1, centre = 1, inverse = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_peak_score(1, ub = 2, centre = 3, inverse = TRUE) %>%
-    expect_equal(NULL)
-  validate_peak_score(1, ub = 1, centre = 3, inverse = TRUE) %>%
-    expect_equal(NULL)
+    expect_null()
+  validate_peak_score(2, ub = 1, centre = 3, inverse = TRUE) %>%
+    expect_null()
   validate_peak_score(1, ub = 3, centre = 2, inverse = T) %>%
     expect_equal(tibble::tibble(lb = 1, ub = 3, centre = 2, inverse = T))
   validate_peak_score(3, ub = 1, centre = 2, inverse = T) %>%
@@ -79,15 +83,17 @@ test_that("validate_peak_score works", {
 
 test_that("validate_custom_score works", {
   validate_custom_score(NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_custom_score(tibble::tibble(x = 1, z = 1)) %>%
-    expect_equal(NULL)
+    expect_null()
+  validate_custom_score(tibble::tibble(x = 1)) %>%
+    expect_null()
   validate_custom_score(tibble::tibble(x = c(NA, 1), y = c(2, NA))) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_custom_score(tibble::tibble(x = c(3, 1, 1), y = c(1, 2, 2))) %>%
-    expect_equal(tibble::tibble(custom_args = tibble::tibble(x = c(1, 3), y = c(2, 1))))
+    expect_equal(tibble::tibble(custom_args = list(tibble::tibble(x = c(1, 3), y = c(2, 1)))))
   validate_custom_score(tibble::tibble(x = c(1, 2), y = c(2, 1))) %>%
-    expect_equal(tibble::tibble(custom_args = tibble::tibble(x = c(1, 2), y = c(2, 1))))
+    expect_equal(tibble::tibble(custom_args = list(tibble::tibble(x = c(1, 2), y = c(2, 1)))))
   validate_custom_score(tibble::tibble(x = c(1, NA), y = c(2,3))) %>%
     expect_null()
 })
@@ -95,10 +101,10 @@ test_that("validate_custom_score works", {
 test_that("bind_validated_columns works", {
   bind_validated_columns(score_type = "Linear",
                          NULL, tibble::tibble(x = 1, y = 2)) %>%
-    expect_equal(NULL)
+    expect_null()
   bind_validated_columns(score_type = "Linear",
                          tibble::tibble(x = 1, y = 2), NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   bind_validated_columns(score_type = "Linear",
                          tibble::tibble(x = 1, y = 2),
                          tibble::tibble(z = 3)) %>%
@@ -113,29 +119,29 @@ test_that("validate_score works", {
   validate_score("aaa", colname = "x", score_name = "aaa", weight = 1, lb = NULL,
                  ub = NULL, centre = NULL, inverse = NULL, exponential = NULL,
                  logarithmic = NULL, magnitude = NULL, custom_args = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_score("Linear", colname = "", score_name = "aaa", weight = 1,
                  lb = NULL, ub = NULL, centre = NULL, inverse = NULL,
                  exponential = NULL, logarithmic = NULL, magnitude = NULL,
                  custom_args = NULL) %>%
-    expect_equal(NULL)
-  validate_score("Linear", colname = "x", score_name = "aaa", weight = 1, lb = NULL,
-                 ub = NULL, centre = NULL, inverse = NULL, exponential = TRUE,
+    expect_null()
+  validate_score("Linear", colname = "x", score_name = "aaa", weight = 1, lb = 1,
+                 ub = 2, centre = NULL, inverse = NULL, exponential = TRUE,
                  logarithmic = "a", magnitude = 1, custom_args = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_score("Linear", colname = "x", score_name = "aaa", weight = 1, lb = 4,
                  ub = "a", centre = NULL, inverse = NULL, exponential = FALSE,
                  logarithmic = NULL, magnitude = NULL, custom_args = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_score("Peak", colname = "x", score_name = "aaa", weight = 1, lb = 5,
                  ub = 4, centre = 6, inverse = TRUE, exponential = FALSE,
                  logarithmic = NULL, magnitude = NULL, custom_args = NULL) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_score("Custom coordinates", colname = "x", score_name = "aaa",
                  weight = 1, lb = NULL, ub = NULL, centre = NULL, inverse = NULL,
                  exponential = F, logarithmic = NULL, magnitude = NULL,
                  custom_args = tibble::tibble(x = 1, z = 2)) %>%
-    expect_equal(NULL)
+    expect_null()
   validate_score("Linear", colname = "x", score_name = "aaa", weight = 1, lb = 1,
                  ub = 2, centre = NULL, inverse = NULL, exponential = FALSE,
                  logarithmic = NULL, magnitude = NULL, custom_args = NULL) %>%
@@ -152,6 +158,9 @@ test_that("validate_score works", {
 })
 
 test_that("edit_row works", {
+  edit_row(tibble::tibble(x = 1, y = 1), tibble::tibble(x = 1),
+           NULL) %>%
+    expect_equal(tibble::tibble(x = 1, y = 1))
   edit_row(tibble::tibble(x = 1:5, y = 2:6, z = 3:7),
            row = tibble::tibble_row(x = 4, y = 3), editing = 3) %>%
     expect_equal(tibble::tibble(x = c(1,2,4,4,5), y = c(2,3,3,5,6), z = c(3,4,NA,6,7)))
@@ -180,7 +189,7 @@ test_that("replace_score_names works", {
 
 test_that("create_score works", {
   scores_with_scores <-
-    scores %>%
+    scores_init %>%
     tibble::add_row(score_type = "Linear", colname = "x",
             score_name = "a", weight = 1, lb = 1, ub = 2,
             exponential = F) %>%
@@ -198,7 +207,7 @@ test_that("create_score works", {
   create_score(scores_with_scores, editing = 2, score_type = "Peak", colname = "x",
                score_name = "a", weight = 2, lb = 1, ub = 3, centre = 2,
                inverse = FALSE, exponential = FALSE) %>%
-    expect_equal(scores %>%
+    expect_equal(scores_init %>%
                    tibble::add_row(score_type = "Linear", colname = "x",
                                    score_name = "a", weight = 1, lb = 1, ub = 2,
                                    exponential = F) %>%
@@ -217,6 +226,6 @@ test_that("create_score works", {
                                  score_name = "Score 3: x", weight = 2, lb = 1, ub = 2,
                                  exponential = F))
   #check that replace_score_names is not run on empty data.
-  create_score(scores, editing = NA) %>%
-    expect_equal(scores)
+  create_score(scores_init, editing = NA) %>%
+    expect_equal(scores_init)
 })

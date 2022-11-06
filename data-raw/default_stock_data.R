@@ -151,6 +151,9 @@ default_stock_data <- joined %>%
   mutate(across(c("cash_flow_updated", "balance_sheet_updated",
                   "income_updated", "date"),
                 milliseconds_to_datetime)) %>%
-  rename(EBIT = "ebit")
+  rename(EBIT = "ebit") %>%
+  filter(default_stock_data, !duplicated(symbol)) %>%
+  mutate(across(where(is.timepoint), as.numeric)) %>%
+  mutate(favourite = FALSE)
 
 usethis::use_data(default_stock_data, overwrite = TRUE)

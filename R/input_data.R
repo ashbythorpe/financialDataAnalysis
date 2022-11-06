@@ -54,10 +54,6 @@ file_format <- function(file){
   excel_formats <- c("\\.xls$", "\\.xlsx$", "\\.xlsm$", "\\.xltx$", "\\.xltm$")
   if(stringr::str_detect(file, "\\.csv$")){
     "CSV"
-  } else if(stringr::str_detect(file, "\\.psv$")){
-    "PSV"
-  } else if(stringr::str_detect(file, "\\.tsv$")){
-    "TSV"
   } else if(purrr::some(excel_formats, stringr::str_detect, string = file)){
     "Excel"
   } else{
@@ -93,42 +89,43 @@ combine_if_specified <- function(df, default, combine){
   combine_two_dfs(df, default)
 }
 
-transform_df <- function(df, default_data){
+transform_df <- function(df, default){
   if(is.null(df)){
     return(NULL)
-  } else if(identical(df, default_data)){
+  } else if(identical(df, default)){
     return(df)
   }
-  cols <- df %>%
-    dplyr::select(., !where(~ purrr::every(., is.na))) %>%
+  res <- df %>%
     dplyr::distinct() %>%
-    purrr::map(transform_col)
-  if(all(!purrr::map_lgl(cols, is.numeric) | purrr::map_lgl(cols, purrr::every, is.na))){
+    purrr::modify(transform_col)
+  if(all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))){
     return(NULL)
   }
-  dplyr::bind_cols(cols)
+  res
 }
 
 transform_col <- function(x){
   if(!is.numeric(x) && mean(!is.na(suppressWarnings(as.numeric(x)))) >= 0.5){
     suppressWarnings(as.numeric(x))
-  } else{
+  } else if(is.numeric(x)) {
     x
+  } else {
+    as.character(x)
   }
 }
 
 get_error <- function(files, dfs, current_df){
-  fatal = ""
-  nonfatal = ""
+  fatal <- ""
+  nonfatal <- ""
   if(!is.null(dfs) && length(files) > length(dfs)){
     nonfatal = "Not all files were converted correctly."
   }
   if(is.null(dfs)){
-    fatal = "Files were not converted correctly."
+    fatal <- "Files were not converted correctly."
   } else if(is.null(current_df)){
-    fatal = "The data does not contain any scorable columns."
+    fatal <- "The data does not contain any scorable columns."
   } else if(any(dim(current_df) < 2)){
-    fatal = "The inputted data frame is not valid."
+    fatal <- "The inputted data frame is not valid."
   }
   list(fatal = fatal, nonfatal = nonfatal)
 }

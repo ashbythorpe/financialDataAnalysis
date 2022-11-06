@@ -4,8 +4,7 @@ test_that("validate_plotting_method works", {
   validate_plotting_method("aa") %>%
     expect_null()
   validate_plotting_method("line") %>%
-    ggplot2::is.ggproto() %>%
-    expect_true()
+    expect_equal("line")
 })
 
 test_that("validate_plot_args works", {
@@ -14,11 +13,38 @@ test_that("validate_plot_args works", {
     y = "a"
   )
   validate_plot_args(list(x = "x", y = "x", colour = NULL), df) %>%
-    expect_equal(list(x = "x", y = "x"))
+    expect_equal(c(x = "x", y = "x"))
   validate_plot_args(list(x = "x", y = "x", colour = "z"), df) %>%
-    expect_equal(list(x = "x", y = "x"))
+    expect_equal(c(x = "x", y = "x"))
   validate_plot_args(list(x = NULL, y = "z"), df) %>%
     expect_null()
+})
+
+test_that("subset_plot_args works", {
+  subset_plot_args(NULL, "line") %>%
+    expect_null()
+  subset_plot_args(c(), "line") %>%
+    expect_null()
+  subset_plot_args(c(z = 1), "line") %>%
+    expect_null()
+  subset_plot_args(c(colour = 1), "scatter") %>%
+    expect_null()
+  subset_plot_args(c(x = 1), "scatter") %>%
+    expect_null()
+  subset_plot_args(c(x = 1, y = 2, size = 1), "histogram") %>%
+    expect_equal(c(x = 1, size = 1))
+  subset_plot_args(c(x = 1, y = 2, size = 1), "scatter") %>%
+    expect_equal(c(x = 1, y = 2, size = 1))
+})
+
+test_that("create_plot works", {
+  df <- tibble::tibble(x = 1:10, y = 10:1)
+  create_plot(df, args = c(x = "x", y = "y"), "line") %>%
+    vdiffr::expect_doppelganger(title = "Create_plot line graph")
+  create_plot(df, args = c(x = "x", y = "y"), "scatter") %>%
+    vdiffr::expect_doppelganger(title = "Create_plot scatter graph")
+  create_plot(df, args = c(x = "x"), "histogram") %>%
+    vdiffr::expect_doppelganger(title = "Create_plot histogram")
 })
 
 test_that("custom_plot works", {
@@ -32,11 +58,29 @@ test_that("custom_plot works", {
   custom_plot(df, "line", x = "x", y = "z") %>%
     expect_null()
   custom_plot(df, "line", x = "x", y = "x", colour = "x") %>%
-    expect_snapshot_output()
-  custom_plot(df, "scatter", x = "x", y = "y", colour = "y", size = "x", shape = "y") %>%
-    expect_snapshot_output()
-  plot <- custom_plot(df, "histogram", x = "x", colour = "y")
-  expect_snapshot_output(plot)
-  custom_plot(df, "histogram", x = "x", colour = "y", size = "z") %>%
-    expect_equal(plot)
+    vdiffr::expect_doppelganger(title = "Custom line plot")
+  custom_plot(df, "scatter", x = "x", y = "y", colour = "y", size = "x", 
+              shape = "y") %>%
+    vdiffr::expect_doppelganger(title = "Custom scatter plot")
+  plot <- custom_plot(df, "histogram", x = "x", y = "y")
+  plot2 <- custom_plot(df, "histogram", x = "x", y = "y", size = "z")
+  expect_equal(plot, plot2)
+  
+  # Evaluating the plot changes it, so this must be after the expect_equal call
+  vdiffr::expect_doppelganger("Custom histogram plot", plot)
+})
+
+test_that("print_plot works", {
+  df <- tibble::tibble(x = 1:100, y = 100:1, z = letters[1:100])
+  
+  plot1 <- custom_plot(df, "scatter", x = "x", y = "y", shape = "x")
+  expect_error(print(plot1))
+  print_plot(plot1)
+  
+  plot2 <- custom_plot(df, "scatter", x = "x", y = "y", shape = "z")
+  expect_warning(expect_warning(print(plot2))) # Two warnings are thrown
+  print_plot(plot2)
+  
+  plot3 <- custom_plot(df, "line", x = "x", y = "z")
+  print_plot(plot3)
 })
