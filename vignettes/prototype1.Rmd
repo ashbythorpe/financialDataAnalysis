@@ -35,7 +35,6 @@ library(generics)
 library(stats)
 library(tibble)
 library(bonsai)
-library(modeltime)
 library(lubridate)
 ```
 
