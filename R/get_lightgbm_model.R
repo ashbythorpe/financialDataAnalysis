@@ -1,12 +1,12 @@
 get_lightgbm_model <- function(x) {
   if(x == "daily") {
     wf <- readRDS(system.file(
-      "data/daily_lightgbm_model.rds",
+      "extdata/daily_lightgbm_model.rds",
       package = "financialDataAnalysis"
     ))
     
     model <- lightgbm::readRDS.lgb.Booster(system.file(
-      "data/daily_lightgbm_inner_model.rds",
+      "extdata/daily_lightgbm_inner_model.rds",
       package = "financialDataAnalysis"
     ))
     
@@ -15,12 +15,12 @@ get_lightgbm_model <- function(x) {
     wf
   } else {
     wf <- readRDS(system.file(
-      "data/monthly_lightgbm_model.rds",
+      "extdata/monthly_lightgbm_model.rds",
       package = "financialDataAnalysis"
     ))
     
     model <- lightgbm::readRDS.lgb.Booster(system.file(
-      "data/monthly_lightgbm_inner_model.rds",
+      "extdata/monthly_lightgbm_inner_model.rds",
       package = "financialDataAnalysis"
     ))
     

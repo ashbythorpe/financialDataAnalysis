@@ -5,7 +5,7 @@ apply_filters <- function(df, filters){
   }
   filtered <- purrr::pmap(filters, ~ filter_column(df[[..2]], ...)) %>%
     purrr::reduce(`&`, .init = T) %>%
-    {dplyr::filter(df, .env$.)} # in case there is a column named `.`
+    dplyr::filter(.data = df)
   if(nrow(filtered) == 0){
     return(NULL)
   }

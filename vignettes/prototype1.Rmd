@@ -21,6 +21,7 @@ library(financialDataAnalysis)
 ```
 
 Prototype 1 includes the following features:
+
 * A large and rich dataset about a set of stocks, which can be freely used and analysed.
 * Two models, fit on a large dataset of historic stock prices, allowing you to predict the price of a variety of stocks.
 
@@ -28,9 +29,9 @@ The stock data contains `r nrow(default_stock_data)` rows and `r ncol(default_st
 
 The models can be used in the following way:
 
-Note that the shown method for generating predictions will no longer work as of prototype 4. Instead, use the [predict_price()] function.
+Note that the shown method for generating predictions will no longer work as of prototype 4. Instead, use the `predict_price()` function.
 
-```{r setup2, echo = FALSE}
+```{r setup2, include = FALSE}
 library(generics)
 library(stats)
 library(tibble)

@@ -49,7 +49,7 @@ predict_price_daily <- function(stock, dates) {
     pred_data <- tibble::tibble(ds = dates_after)
     
     preds <- withr::with_package("prophet", {
-      predict(prophet_model, pred_data) %>%
+      stats::predict(prophet_model, pred_data) %>%
         dplyr::select(ds, yhat) %>%
         dplyr::mutate(ds = lubridate::date(ds))
     })
@@ -62,7 +62,7 @@ predict_price_daily <- function(stock, dates) {
     pred_data <- tibble::tibble(ds = dates)
     
     preds <- withr::with_package("prophet", {
-      predict(prophet_model, pred_data) %>%
+      stats::predict(prophet_model, pred_data) %>%
         dplyr::select(ds, yhat) %>%
         dplyr::mutate(ds = lubridate::date(ds))
     })

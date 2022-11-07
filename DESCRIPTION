@@ -19,8 +19,6 @@ Config/testthat/edition: 3
 Imports: 
     bonsai,
     dplyr,
-    DT,
-    generics,
     ggplot2,
     glue,
     htmltools,
@@ -50,6 +48,7 @@ Imports:
 Depends: 
     R (>= 2.10)
 LazyData: true
+LazyDataCompression: xz
 Collate: 
     'add_filter.R'
     'app.R'

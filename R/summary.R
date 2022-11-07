@@ -7,10 +7,10 @@ col_summary <- function(x){
   summary_funs <-
     list(
       "Mean" = mean, # "Mean" is the name, mean is the function
-      "Median" = median,
+      "Median" = stats::median,
       "Minimum" = min,
       "Maximum" = max,
-      "Standard deviation" = sd
+      "Standard deviation" = stats::sd
     )
   # imap means that the names of summary_funs are passed into col_summary_val()
   purrr::imap_chr(summary_funs, .f = col_summary_val, x = x) %>%
