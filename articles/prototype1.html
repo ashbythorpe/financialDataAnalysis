@@ -81,30 +81,22 @@
 This is a demonstration of of prototype 1.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ashbythorpe/financialDataAnalysis" class="external-link">financialDataAnalysis</a></span><span class="op">)</span></span></code></pre></div>
-<p>Prototype 1 includes the following features: * A large and rich
-dataset about a set of stocks, which can be freely used and analysed. *
-Two models, fit on a large dataset of historic stock prices, allowing
-you to predict the price of a variety of stocks.</p>
+<p>Prototype 1 includes the following features:</p>
+<ul>
+<li>A large and rich dataset about a set of stocks, which can be freely
+used and analysed.</li>
+<li>Two models, fit on a large dataset of historic stock prices,
+allowing you to predict the price of a variety of stocks.</li>
+</ul>
 <p>The stock data contains 497 rows and 106 columns. Each row represents
 a particular stock.</p>
 <p>The models can be used in the following way:</p>
 <p>Note that the shown method for generating predictions will no longer
-work as of prototype 4. Instead, use the [predict_price()] function.</p>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'generics'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,</span></span>
-<span><span class="co">#&gt;     setequal, union</span></span>
-<span><span class="co">#&gt; Loading required package: parsnip</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'lubridate'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     date, intersect, setdiff, union</span></span></code></pre>
+work as of prototype 4. Instead, use the <code>predict_price()</code>
+function.</p>
 <p>First we need to create a data frame to predict on. Lets use make
 monthly predictions, going 6 months ahead.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span></span>
 <span>  ticker <span class="op">=</span> <span class="st">"GOOGL"</span>,</span>
 <span>  ref_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span></span>
@@ -125,11 +117,11 @@ monthly predictions, going 6 months ahead.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> GOOGL  2023-04-07</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> GOOGL  2023-05-07</span></span></code></pre></div>
 <p>Now lets make predictions on the data using the monthly model.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">monthly_stock_model</span>, <span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p>You can also add the predictions automatically to the data you have
 created.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">monthly_stock_model</span>, <span class="va">data</span><span class="op">)</span></span></code></pre></div>
   </main>
 </div>
