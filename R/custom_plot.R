@@ -18,7 +18,7 @@ custom_plot <- function(df, plotting_method, ...){
 create_plot <- function(df, args, method){
   aesthetics <- args %>%
     rlang::parse_exprs() %>%
-    ggplot2::aes(!!!.)
+    ggplot2::aes(,,!!!.)
   
   layer <- 
     switch(method,
