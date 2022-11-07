@@ -1,4 +1,5 @@
 test_that("score_distributions works", {
+  skip_on_ci()
   withr::local_seed(42)
   
   score_distributions(NULL) %>%
@@ -23,6 +24,7 @@ test_that("score_distributions works", {
 })
 
 test_that("score_performance works", {
+  skip_on_ci()
   df <- tibble::tibble(x = 1:10, s1 = 1:10)
   scores <- tibble::tibble(
     s1 = 1:10,

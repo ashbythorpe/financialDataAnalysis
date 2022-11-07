@@ -9,6 +9,7 @@ test_that("col_summary works", {
 })
 
 test_that("score_summary works", {
+  skip_on_ci()
   score_summary(1:100, score_type = NA_character_, lb = 0, ub = 100, centre = NA, inverse = NA,
                 exponential = F, logarithmic = NA, magnitude = NA, custom_args = NA) %>%
     expect_null()

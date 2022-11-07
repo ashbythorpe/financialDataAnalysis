@@ -26,6 +26,12 @@ You can install the development version of financialDataAnalysis from
 devtools::install_github("ashbythorpe/financialDataAnalysis")
 ```
 
+## Running the app locally
+
+``` r
+library(financialDataAnalysis)
+```
+
 The website was built using [shiny](https://shiny.rstudio.com/). Run it
 by executing the following:
 

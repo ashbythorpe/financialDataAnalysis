@@ -38,6 +38,7 @@ test_that("subset_plot_args works", {
 })
 
 test_that("create_plot works", {
+  skip_on_ci()
   df <- tibble::tibble(x = 1:10, y = 10:1)
   create_plot(df, args = c(x = "x", y = "y"), "line") %>%
     vdiffr::expect_doppelganger(title = "Create_plot line graph")
@@ -48,6 +49,7 @@ test_that("create_plot works", {
 })
 
 test_that("custom_plot works", {
+  skip_on_ci()
   df <- tibble::tibble(x = c(1,2,3,4,5,6), y = letters[1:6])
   custom_plot(df, NULL) %>%
     expect_null()
