@@ -7,8 +7,7 @@ fDA_dependencies <- function(){
       src = "inst/assets",
       script = "js/script.js",
       stylesheet = "css/style.css"
-    ) %>%
-      createWebDependency(),
+    ),
     htmltools::htmlDependency(
       "underscore",
       version = "1.13.6",

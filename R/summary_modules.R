@@ -66,3 +66,9 @@ score_summary_server <- function(id, column, score_spec) {
     })
   })
 }
+
+stock_summary_ui <- function(id) {
+  ns <- NS(id)
+  textOutput(ns(summary))
+}
+

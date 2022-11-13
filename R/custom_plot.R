@@ -17,7 +17,7 @@ custom_plot <- function(df, plotting_method, ...){
 
 create_plot <- function(df, args, method){
   aesthetics <- args %>%
-    rlang::parse_exprs() %>%
+    rlang::data_syms() %>%
     ggplot2::aes(,,!!!.)
   
   layer <- 
@@ -73,3 +73,4 @@ subset_plot_args <- function(args, method) {
 print_plot <- function(plot) {
   suppressWarnings(purrr::possibly(print, otherwise = NULL)(plot))
 }
+

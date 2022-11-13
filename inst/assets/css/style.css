@@ -17,3 +17,11 @@
   width: auto !important;
   margin-bottom: auto !important;
 }
+
+.filter_update {
+  width: auto;
+}
+
+.unused_label {
+  display: inline !important;
+}

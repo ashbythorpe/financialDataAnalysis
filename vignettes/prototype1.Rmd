@@ -31,7 +31,7 @@ The models can be used in the following way:
 
 Note that the shown method for generating predictions will no longer work as of prototype 4. Instead, use the `predict_price()` function.
 
-```{r setup2, include = FALSE}
+```{r setup2, message = FALSE}
 library(generics)
 library(stats)
 library(tibble)

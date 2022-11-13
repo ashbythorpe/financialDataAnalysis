@@ -11,6 +11,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Suggests: 
     covr,
+    generics,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
@@ -54,6 +55,7 @@ Collate:
     'app.R'
     'apply_filters.R'
     'apply_scores.R'
+    'create_filter_module.R'
     'create_score.R'
     'create_scores_module.R'
     'custom_plot.R'
@@ -61,12 +63,14 @@ Collate:
     'get_lightgbm_model.R'
     'data.R'
     'data_input_module.R'
+    'data_module.R'
     'default_plots.R'
     'delete_scores.R'
     'dependencies.R'
     'download_df.R'
     'editing_module.R'
     'favourite_stock.R'
+    'filters_module.R'
     'financialDataAnalysis-package.R'
     'fix_names.R'
     'forecast_stock.R'
@@ -85,10 +89,11 @@ Collate:
     'summary_modules.R'
     'test_module.R'
     'types.R'
+    'validated_inputs.R'
     'utils.R'
     'utils-pipe.R'
     'ui.R'
-    'validated_inputs.R'
+    'view_data_module.R'
 URL: https://github.com/ashbythorpe/financialDataAnalysis,
     https://ashbythorpe.github.io/financialDataAnalysis/
 BugReports: https://github.com/ashbythorpe/financialDataAnalysis/issues

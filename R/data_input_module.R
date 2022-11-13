@@ -7,29 +7,38 @@ data_input_ui <- function(id){
   box(title = "Upload data",
     fileInput(ns("files"), "Upload files:", multiple = T, 
               accept = accepted_files) %>%
-      format_file_input(ns),
+      format_file_input(ns), # Add cancel button
+    shinyWidgets::prettySwitch(ns("combine"),
+                               label = "Combine files with default data?"),
     textOutput(ns("fatal")) %>%
       tagAppendAttributes(class = "error"),
     textOutput(ns("nonfatal")) %>%
-      tagAppendAttributes(class = "warning"),
-    shinyWidgets::prettySwitch(ns("combine"),
-                               label = "Combine files with default data?")
+      tagAppendAttributes(class = "warning")
   )
 }
 
 data_input_server <- function(id){
   moduleServer(id, function(input, output, session){
-    dfs <- reactive({
-      if(is.null(input$files) || is.null(input$combine)) {
-        NULL
-      } else {
-        read_files(input$files$datapath)
-      }
-    }) %>%
-      bindEvent(input$files, ignoreNULL = FALSE)
+    values <- reactiveValues()
+    values$files <- NULL
     
     observe({
+      values$files <- input$files
+    })
+    
+    dfs <- reactive({
+      if(is.null(values$files) || is.null(input$combine)) {
+        NULL
+      } else {
+        read_files(values$files$datapath)
+      }
+    }) %>%
+      bindEvent(values$files, ignoreNULL = FALSE)
+    
+    # Reset the look of the file input and the value of values$files
+    observe({
       shinyjs::reset("files")
+      values$files <- NULL
     }) %>%
       bindEvent(input$reset)
     

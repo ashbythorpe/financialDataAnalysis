@@ -56,7 +56,7 @@ create_scores_server <- function(id, data){
     # Reset inputs when data is changed, not when it is initiated
     observe({
       values$trigger_reset <- isolate(!values$trigger_reset)
-    }) %>%
+    }, priority = 100) %>%
       bindEvent(data(), ignoreInit = TRUE)
     
     # Get the score that is currently being edited
@@ -80,14 +80,25 @@ create_scores_server <- function(id, data){
       }
     })
     
-    # Get and validate the score name, column name and weight.
-    universal_score <- universal_score_server("universal_score", data, reset,
+    # Get and the score name, column name and weight.
+    # This is not yet validated
+    universal_score_vals <- universal_score_server("universal_score", data, reset,
                                               editing_row = editing_row)
     
     # Get the column from the specified column name
     column <- reactive({
-      req(universal_score())
-      data()[[universal_score()$colname]]
+      column <- data()[[universal_score_vals$colname()]]
+      req(column)
+      column
+    })
+    
+    # Validate the universal score
+    universal_score <- reactive({
+      validate_universal_score(
+        colname = universal_score_vals$colname(),
+        score_name = universal_score_vals$colname(),
+        weight = universal_score_vals$weight()
+      )
     })
     
     # Get and validate the rest of the score arguments

@@ -76,13 +76,19 @@ universal_score_server <- function(id, data, reset, editing_row){
     }) %>%
       bindEvent(editing_row(), ignoreInit = T)
     
-    # Validate the column name, score name and weight
-    universal_row <- reactive({
-      validate_universal_score(input$colname, input$score_name, input$weight)
-    })
+    # Stop any errors happening from the column specifying an incorrect column
+    # in 'data'.
+    # observe({
+    #   freezeReactiveValue(input, "colname")
+    # }) %>%
+    #   bindEvent(editing_row(), ignoreInit = T)
     
-    # Return the validated inputs
-    universal_row
+    # Don't validate the inputs, since we need the colname to be accessible
+    list(
+      colname = reactive(input$colname), 
+      score_name = reactive(input$score_name), 
+      weight = reactive(input$weight)
+    )
   })
 }
 

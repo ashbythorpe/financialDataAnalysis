@@ -15,8 +15,10 @@ test_module <- function(ui, server, ...) {
     res <- server("id", ...)
     
     observe({
-      cat("Module server output:\n")
-      print(res())
+      if(is.reactive(res)) {
+        cat("Module server output:\n")
+        print(res())
+      }
     })
   }
   

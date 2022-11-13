@@ -1,5 +1,3 @@
-#' @include utils-pipe.R
-#' @include utils.R
 # ui <- tagList(dashboardPage(
 #   dashboardHeader(title = "Financial Data Analysis"),
 #   dashboardSidebar(sidebarMenu(
@@ -17,17 +15,27 @@
 #   )),
 # ), fDA_dependencies())
 
-ui <- tagList(dashboardPage(
-  dashboardHeader(title = span("Financial Data Analysis", 
-                               style = "font-size: 18px")),
-  dashboardSidebar(sidebarMenu(
-    menuItem("Home", tabName = "home", icon = icon("house")),
-    menuItem("Input Data", tabName = "data_input", icon = icon("upload"))
-  )),
-  dashboardBody(tabItems(
-    tabItem("home",
-            home_ui()),
-    tabItem("data_input",
-            data_input_ui("data_input"))
-  )),
-), fDA_dependencies())
+
+ui <- function() {
+  tagList(dashboardPage(
+    dashboardHeader(title = span("Financial Data Analysis", 
+                                 style = "font-size: 18px")),
+    dashboardSidebar(sidebarMenu(
+      menuItem("Home", tabName = "home", icon = icon("house")),
+      menuItem("Input Data", tabName = "data_input", icon = icon("upload")),
+      menuItem("Create scores", tabName = "create_scores", 
+               icon = icon("ranking-star")),
+      menuItem("View data", tabName = "view_data", icon = icon("table"))
+    )),
+    dashboardBody(tabItems(
+      tabItem("home",
+              home_ui()),
+      tabItem("data_input",
+              data_input_ui("data_input")),
+      tabItem("create_scores",
+              create_scores_ui("create_scores")),
+      tabItem("view_data",
+              view_data_ui("view_data"))
+    )),
+  ), fDA_dependencies())
+}

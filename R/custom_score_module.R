@@ -2,7 +2,7 @@ custom_score_ui <- function(id){
   ns <- NS(id)
   tagList(
     div(
-      id = "row_container",
+      id = "custom_row_container",
       # Start with two "default" rows
       custom_row_ui(ns("row_1"), 1),
       custom_row_ui(ns("row_2"), 2, y = 1)
@@ -16,10 +16,16 @@ custom_score_server <- function(id, column, reset, editing_row){
     ns <- session$ns
     values <- reactiveValues()
     
+    # Container for module outputs
+    module_outputs <- reactiveValues()
+    
     # A vector of row numbers
     # Each number corresponds to an `n` in the custom_row_ui() function
     # The order of this vector is the same as the order of the rows
     values$rows <- c(1,2)
+    
+    module_outputs[["1"]] <- custom_row_server("row_1")
+    module_outputs[["2"]] <- custom_row_server("row_2")
     
     # Get the minimum and maximum of the column
     minc <- reactive(min(column(), na.rm = T))
@@ -42,14 +48,15 @@ custom_score_server <- function(id, column, reset, editing_row){
         # Number seems to be converted to a string from JS to R, hence as.numeric()
         row <- which(values$rows == as.numeric(input$add))
         # The jQuery selector for the specified row.
-        selector <- glue::glue("row_{input$add}") %>%
+        selector <- paste0("row_", input$add) %>%
           ns() %>%
           paste0("#", .)
         # Insert a new row after the specified row.
         insertUI(selector, where = "afterEnd",
-                 custom_row_ui(ns(glue::glue("row_{n}")), n, x = minc()))
+                 custom_row_ui(ns(paste0("row_", n)), n, x = minc()))
         # Update values$scores to include this new row.
         values$rows <- append(values$rows, n, after = row)
+        module_outputs[[as.character(n)]] <- custom_row_server(paste0("row_", n))
       }
     }) %>%
       bindEvent(input$add)
@@ -58,13 +65,14 @@ custom_score_server <- function(id, column, reset, editing_row){
     # input$delete is the number of the row to delete
     observe({
       # Don't delete a row if there is only one left
-      if(length(values$rows) > 1) {
-        selector <- glue::glue("row_{input$delete}") %>%
+      if(length(values$rows) > 1 && input$delete %in% values$rows) {
+        selector <- paste0("row_", input$delete) %>%
           ns() %>%
           paste0("#", .)
         removeUI(selector)
         # Remove the row from values$rows
         values$rows <- values$rows[values$rows != as.numeric(input$delete)]
+        module_outputs[[as.character(input$delete)]] <- NULL
       }
     }) %>%
       bindEvent(input$delete)
@@ -72,18 +80,20 @@ custom_score_server <- function(id, column, reset, editing_row){
     # Reset coordinate rows to original state when reset() changes
     observe({
       # Remove all existing rows
-      selectors <- glue::glue("row_{values$rows}") %>%
-        purrr::map_chr(ns) %>%
-        paste0("#", .)
-      purrr::walk(selectors, removeUI)
+      removeUI(".custom_row", multiple = TRUE)
+      purrr::walk(values$rows, ~ {
+        module_outputs[[as.character(.)]] <- NULL
+      })
       
       # Add default row
-      insertUI("#row_container", where = "beforeEnd",
+      insertUI("#custom_row_container", where = "beforeEnd",
                tagList(
                  custom_row_ui(ns("row_1"), 1, x = minc()),
                  custom_row_ui(ns("row_2"), 2, x = maxc(), y = 1)
                ))
       values$rows <- c(1,2)
+      module_outputs[["1"]] <- custom_row_server("row_1")
+      module_outputs[["2"]] <- custom_row_server("row_2")
     }) %>%
       bindEvent(reset(), ignoreInit = TRUE)
     
@@ -95,11 +105,14 @@ custom_score_server <- function(id, column, reset, editing_row){
         
         # Remove all existing rows
         removeUI(".custom_row", multiple = TRUE)
+        purrr::walk(as.character(values$rows), ~ {
+          module_outputs[[.]] <- NULL
+        })
         
         # Create a table of arguments to pass to custom_row_ui
         args <- tibble::tibble(
           n = seq_len(nrow(coords)),
-          id = glue::glue("row_{n}") %>%
+          id = paste0("row_", n) %>%
             purrr::map_chr(ns),
           !!!coords
         )
@@ -107,21 +120,31 @@ custom_score_server <- function(id, column, reset, editing_row){
         # Add new elements as specified
         ui_elements <- purrr::pmap(args, custom_row_ui) %>%
           tagList()
-        insertUI("#row_container", where = "beforeEnd", ui_elements)
+        insertUI("#custom_row_container", where = "beforeEnd", ui_elements)
         values$rows <- seq_len(nrow(coords))
+        purrr::walk(as.character(values$rows), ~ {
+          module_outputs[[.]] <- custom_row_server(paste0("row_", .))
+        })
       }
     }) %>%
       bindEvent(editing_row(), ignoreInit = T)
     
-    custom_args <- reactive({
-      # Returns a list of reactive expressions (that need to be executed).
-      purrr::map(glue::glue("row_{values$rows}"), custom_row_server) %>%
-        purrr::map(rlang::exec) %>% # Get the values from the expressions
-        dplyr::bind_rows() # Combine them together
-    }) %>%
-      bindEvent(values$rows, input$update)
+    # custom_args <- reactive({
+    #   # Returns a list of reactive expressions (that need to be executed).
+    #   purrr::map(paste0("row_", values$rows), custom_row_server) %>%
+    #     purrr::map(rlang::exec) %>% # Get the values from the expressions
+    #     dplyr::bind_rows() # Combine them
+    # }) %>%
+    #   bindEvent(values$rows, input$update)
     # Invalidates when number of rows change (values$rows) or when values in 
     # rows change (input$update).
+    
+    custom_args <- reactive({
+      purrr::map(as.character(values$rows), ~ {module_outputs[[.]]}) %>%
+        purrr::map(rlang::exec) %>% # Get the values from the expressions
+        dplyr::bind_rows() # Combine them
+    }) %>%
+      bindEvent(values$rows, input$update)
     
     # Validate the custom coordinates
     custom_row <- reactive({

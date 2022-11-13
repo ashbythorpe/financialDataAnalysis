@@ -1,6 +1,6 @@
 parent_ns <- function(id){
   id %>%
-    stringr::str_remove(paste0("\\Q", ns.sep, "\\Erow_[:digit:]+$")) %>%
+    stringr::str_remove(paste0("\\Q", ns.sep, "\\E[:alpha:]+_[:digit:]+$")) %>%
     NS()
 }
 
