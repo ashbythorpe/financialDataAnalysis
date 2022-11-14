@@ -12,13 +12,15 @@ search_bar_ui <- function(id) {
 }
 
 search_bar_server <- function(id) {
-  stock <- reactive({
-    if(isTruthy(input$stock) && input$stock %in% default_stock_data$symbol) {
-      input$stock
-    } else {
-      NULL
-    }
+  moduleServer(id, function(input, output, session) {
+    stock <- reactive({
+      if(isTruthy(input$stock) && input$stock %in% default_stock_data$symbol) {
+        input$stock
+      } else {
+        NULL
+      }
+    })
+    
+    stock
   })
-  
-  stock
 }

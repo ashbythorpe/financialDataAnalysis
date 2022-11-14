@@ -9,4 +9,6 @@ server <- function(input, output, session) {
   })
   
   view_data_server("view_data", scored_data, scores)
+  
+  forecast_price_server("forecast_price")
 }

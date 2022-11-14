@@ -69,6 +69,26 @@ score_summary_server <- function(id, column, score_spec) {
 
 stock_summary_ui <- function(id) {
   ns <- NS(id)
-  textOutput(ns(summary))
+  reactable::reactableOutput(ns("summary"))
 }
 
+stock_summary_server <- function(id, stock) {
+  moduleServer(id, function(input, output, session) {
+    stock_row <- reactive({
+      req(stock())
+      default_stock_data[default_stock_data$symbol == stock(),]
+    })
+    
+    output$summary <- reactable::renderReactable({
+      req(stock_row())
+      reactable::reactable(
+        stock_row(), sortable = FALSE, pagination = FALSE,
+        columns <- list(
+          description = reactable::colDef(
+            minWidth = 1000
+          )
+        )
+      )
+    })
+  })
+}

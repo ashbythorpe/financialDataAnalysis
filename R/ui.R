@@ -25,7 +25,9 @@ ui <- function() {
       menuItem("Input Data", tabName = "data_input", icon = icon("upload")),
       menuItem("Create scores", tabName = "create_scores", 
                icon = icon("ranking-star")),
-      menuItem("View data", tabName = "view_data", icon = icon("table"))
+      menuItem("View data", tabName = "view_data", icon = icon("table")),
+      menuItem("Forecast prices", tabName = "forecast_price", 
+               icon = icon("chart-line"))
     )),
     dashboardBody(tabItems(
       tabItem("home",
@@ -35,7 +37,9 @@ ui <- function() {
       tabItem("create_scores",
               create_scores_ui("create_scores")),
       tabItem("view_data",
-              view_data_ui("view_data"))
+              view_data_ui("view_data")),
+      tabItem("forecast_price",
+              forecast_price_ui("forecast_price"))
     )),
   ), fDA_dependencies())
 }
