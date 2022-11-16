@@ -96,7 +96,7 @@ create_scores_server <- function(id, data){
     universal_score <- reactive({
       validate_universal_score(
         colname = universal_score_vals$colname(),
-        score_name = universal_score_vals$colname(),
+        score_name = universal_score_vals$score_name(),
         weight = universal_score_vals$weight()
       )
     })

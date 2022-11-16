@@ -27,7 +27,8 @@ ui <- function() {
                icon = icon("ranking-star")),
       menuItem("View data", tabName = "view_data", icon = icon("table")),
       menuItem("Forecast prices", tabName = "forecast_price", 
-               icon = icon("chart-line"))
+               icon = icon("chart-line")),
+      menuItem("Plot data", tabName = "plot_data", icon = icon("chart-simple"))
     )),
     dashboardBody(tabItems(
       tabItem("home",
@@ -39,7 +40,9 @@ ui <- function() {
       tabItem("view_data",
               view_data_ui("view_data")),
       tabItem("forecast_price",
-              forecast_price_ui("forecast_price"))
+              forecast_price_ui("forecast_price")),
+      tabItem("plot_data",
+              plot_data_ui("plot_data"))
     )),
   ), fDA_dependencies())
 }
