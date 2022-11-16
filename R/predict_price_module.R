@@ -76,6 +76,7 @@ predict_price_server <- function(id, stock) {
     })
     
     output$plot <- plotly::renderPlotly({
+      req(plot())
       plotly::ggplotly(plot())
     }) %>%
       bindEvent(plot())

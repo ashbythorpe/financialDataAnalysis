@@ -179,6 +179,7 @@ peak_score_server <- function(id, column, reset, editing_row) {
     # Perform client side validation to stop the user inputting an invalid
     # value for input$centre
     observe({
+      req(input$lb, input$ub, input$centre)
       if(input$lb <= input$ub) {
         if(input$centre < input$lb) {
           updateNumericInput(session, "centre", value = input$lb)

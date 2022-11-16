@@ -25,6 +25,10 @@ test_that("data_input_server works", {
     session$setInputs(combine = TRUE)
     
     expect_equal(final_df(), dplyr::bind_rows(example_valid_data, default_stock_data))
+    
+    session$setInputs(reset = 1)
+    
+    expect_equal(final_df(), default_stock_data)
   })
 })
 

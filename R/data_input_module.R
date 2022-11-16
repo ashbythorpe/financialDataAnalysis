@@ -22,10 +22,12 @@ data_input_server <- function(id){
     values <- reactiveValues()
     values$files <- NULL
     
+    # Set the value of values$files to the inputted files
     observe({
       values$files <- input$files
     })
     
+    # Convert the files to data frames
     dfs <- reactive({
       if(is.null(values$files) || is.null(input$combine)) {
         NULL
@@ -42,6 +44,7 @@ data_input_server <- function(id){
     }) %>%
       bindEvent(input$reset)
     
+    # Transform and format the data frames
     transformed_df <- reactive({
       if(is.null(dfs())) {
         NULL
@@ -53,8 +56,8 @@ data_input_server <- function(id){
       }
     })
     
+    # Detect if any errors have occurred in the process
     error <- reactive({
-      
       if(is.null(dfs()) || is.null(transformed_df())) {
         list(fatal = "", nonfatal = "")
       } else {
@@ -62,6 +65,7 @@ data_input_server <- function(id){
       }
     })
     
+    # Output errors
     output$fatal <- reactive({
       error()$fatal
     })
@@ -70,6 +74,8 @@ data_input_server <- function(id){
       error()$nonfatal
     })
     
+    # Validate the final data frame
+    # If it is invalid, use the default data instead
     final_df <- reactive({
       if(is.null(transformed_df())) {
         default_stock_data
@@ -82,6 +88,7 @@ data_input_server <- function(id){
   })
 }
 
+# Create a reset button for the fileInput
 format_file_input <- function(tag, ns) {
   tag <- tagAppendChildren(
     tag, .cssSelector = ".input-group",
