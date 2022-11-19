@@ -55,7 +55,9 @@ predict_price_daily <- function(stock, dates) {
         dplyr::mutate(ds = lubridate::date(ds))
     })
     
-    residuals <- predict_residuals_daily(stock, dates_after, preds)
+    residuals <- withr::with_package("workflows", {
+      predict_residuals_daily(stock, dates_after, preds)
+    })
     
     c(known_prices, preds$yhat + residuals)
   } else {
@@ -68,7 +70,9 @@ predict_price_daily <- function(stock, dates) {
         dplyr::mutate(ds = lubridate::date(ds))
     })
     
-    residuals <- predict_residuals_daily(stock, dates, preds)
+    residuals <- withr::with_package("workflows", {
+      predict_residuals_daily(stock, dates, preds)
+    })
     
     preds$yhat + residuals
   }
