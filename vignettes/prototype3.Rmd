@@ -1,0 +1,35 @@
+---
+title: "prototype3"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{prototype3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is a demonstration of prototype 3 of the 'financialDataAnalysis' project.
+
+```{r setup}
+library(financialDataAnalysis)
+```
+
+In this prototype, I have created a Graphical User Interface to interact with 
+the project. To load this, use the `financialDataAnalysis()` function.
+
+```{r app, eval = FALSE}
+financialDataAnalysis()
+```
+
+To run it in your browser, use the following code:
+
+```{r website, eval = FALSE}
+financialDataAnalysis(options = list(launch.browser = TRUE))
+```
+

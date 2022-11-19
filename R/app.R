@@ -2,6 +2,6 @@
 #' @import shinydashboard
 
 #' @export
-financialDataAnalysis <- function(){
-  shinyApp(ui, server)
+financialDataAnalysis <- function(...){
+  shinyApp(ui, server, ...)
 }
