@@ -1,5 +1,5 @@
 #' @export
-input_data <- function(files, default_data, combine){
+input_data <- function(files, default_data = default_stock_data, combine = FALSE){
   if(is.null(files) || is.null(combine)){
     return(default_data)
   }

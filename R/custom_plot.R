@@ -1,3 +1,4 @@
+#' @export
 custom_plot <- function(df, plotting_method, ...){
   plot_args <- rlang::list2(...)
   

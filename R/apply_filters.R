@@ -13,7 +13,7 @@ apply_filters <- function(df, filters){
 }
 
 filter_column <- function(x, type, pattern, min, max, ...){
-  if(type == "string"){
+  if(type == "character"){
     # The pattern must not be treated as a regular expression
     stringr::str_detect(x, paste0("\\Q", pattern, "\\E")) 
   } else{

@@ -1,4 +1,5 @@
 test_that("predict_price_server works", {
+  skip_on_ci()
   testServer(predict_price_server, args = list(
     stock = reactive("GOOGL")
   ), {

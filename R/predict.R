@@ -1,3 +1,4 @@
+#' @export
 predict_price <- function(stock, start_date = lubridate::today(),
                           end_date = lubridate::today() + lubridate::years(1),
                           freq = c("daily", "monthly")){
@@ -123,6 +124,7 @@ predict_price_monthly <- function(stock, dates) {
   }
 }
 
+#' @export
 plot_predictions <- function(predicted){
   if(is.null(predicted)){
     return(NULL)

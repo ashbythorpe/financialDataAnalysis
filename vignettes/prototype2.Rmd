@@ -1,0 +1,461 @@
+---
+title: "prototype2"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{prototype2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is a demonstration of prototype 2 of the 'financialDataAnalysis' project.
+
+```{r setup}
+library(financialDataAnalysis)
+```
+
+Prototype 2 is a functionally complete project, meaning that almost all promised features are included. However, the user interface is very minimal, and involves directly calling R functions without any GUI.
+
+The demonstration of this project also loads the following packages (although they are by no means required to have loaded for the project to work):
+
+```{r setup2, message = FALSE}
+library(tibble)
+library(readr)
+library(writexl)
+library(lubridate)
+```
+
+# Uploading data
+This project allows you to upload your own files using the `input_data()` function. We're going to create two dummy files to demonstrate this.
+
+```{r}
+data_1 <- tibble(
+  x = 1:10,
+  y = 10:1
+)
+file_1 <- tempfile(fileext = "csv")
+write_csv(data_1, file_1)
+
+data_2 <- tibble(
+  x = 1:100,
+  z = letters[1:100]
+)
+file_2 <- tempfile(fileext = "xlsx")
+write_xlsx(data_2, file_2)
+```
+
+The first argument of `input_data()` should be a character vector of one or more file paths, to be converted into data frames. If we give the function a bad file or a file containing bad data, it will return the default stock data and print out a message describing the problem.
+
+```{r}
+input_data("aaaa")
+```
+
+It is currently able to convert CSV and Excel files.
+
+```{r}
+input_data(file_1)
+input_data(file_2)
+```
+
+If more than one files are given, the data frames are combined together. This is done in a way such that all data is preserved and the function never errors.
+
+```{r}
+input_data(c(file_1, file_2))
+```
+
+The function also has a `combine` argument, which allows you to combine your data with the default stock data. This is useful if you want to add more rows or columns to the data.
+
+```{r}
+input_data(file_1, combine = TRUE)
+input_data(c(file_1, file_2), combine = TRUE)
+```
+
+# Scoring data
+Once you have imported your data into R, you now need to score it. You do this by creating *score specifications*, which are definitions of how a score should be created.
+
+These score specifications are stored in a table, where each row represents a single score.
+
+The `scores_init` object is a table storing zero scores.
+
+```{r}
+scores_init
+```
+
+This table has a number of fields that control how each score will be created:
+
+Each score will always be between 0 and 1.
+
+The `score_type` argument is arguably the most important, as it defines the method used to create a score. Each score type has a number of specific arguments.
+
+## Universal arguments
+These arguments have to be defined for every score.
+
+The `colname` argument defines the column that the score will be creating using.
+
+The `score_name` argument defines the name of the score, which will be used as a column name when the score is added back to the original data frame. If `score_name` is "Default", an informative and sensible default name will be used.
+
+The `weight` argument defines the weight of the score when it is used to calculate the final score.
+
+## Exponential arguments
+The `exponential` argument is required for all scores. If it is `FALSE`, the score is not modified after it has been created. If it is `TRUE`, an exponential transformation is applied to the score, and you will need to specify two additional arguments. The score will continue to be bounded by 0 and 1.
+
+The `logarithmic` argument defines whether the transformation is exponential or logarithmic. If it `TRUE`, the transformation is inverted.
+
+The `magnitude` argument defines the magnitude of the transformation: a higher number means that the transformation will have a bigger effect.
+
+```{r exponential, echo = FALSE}
+x <- 1:1000/1000
+y <- financialDataAnalysis:::transform_exponential(x, T, F, 1)
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_line() +
+  ggplot2::labs(x = "score",
+                y = "transformed score") +
+  ggthemes::theme_clean()
+```
+
+## Linear scores
+When the `score_name` is "Linear", a linear score is created. To make the score you need to specify the `lb` and `ub` arguments.
+
+### Calculating the score
+If the column value is less than or equal to the `lb` argument, the score is 0.
+If the column value is more than or equal to the `ub` argument, the score is 1.
+
+Otherwise, the score is defined is the proportion of the distance of the column value between the `lb` and `ub`.
+
+```{r linear_score_1, echo = FALSE}
+x <- 1:100
+
+y <- financialDataAnalysis:::score_linear(x, 20, 80)
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_line() + 
+  ggplot2::labs(x = "column value",
+                y = "score") + 
+  ggplot2::scale_x_continuous(breaks = c(20,80),
+                              labels = c("lb", "ub")) +
+  ggthemes::theme_clean()
+```
+
+If the `lb` argument is more than the `ub` argument, the score is inverted. This means that the `lb` produces a score of 1, the `ub` produces a score of 0, etc.
+
+```{r linear_score_2, echo = FALSE}
+y <- financialDataAnalysis:::score_linear(x, 80, 20)
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_line() + 
+  ggplot2::labs(x = "column value",
+                y = "score") + 
+  ggplot2::scale_x_continuous(breaks = c(20,80),
+                              labels = c("lb", "ub")) +
+  ggthemes::theme_clean()
+```
+
+## Peak scores
+When the `score_name` is "Peak", a peak score is created. To make the score you need to specify the `lb`, `ub`, `centre` and `inverse` arguments. The `lb`, `ub` and `centre` arguments must be numeric, and the `centre` must be between the `lb` and `ub`.
+
+### Calculating the score
+If the column value is less than or equal to the `lb` argument, the score is 0.
+If the column value is equal to the `centre` argument, the score is 1.
+If the column value is more than or equal to the `ub` argument, the score is 1.
+
+If the column value is in between the `lb` and `centre` arguments, the score is defined as the proportion of the column value along between the `lb` and `centre`.
+If the column value is in between the `centre` and `ub` arguments, the score is defined as the proportion of the column value along between the `ub` and `centre`.
+
+```{r peak_score_1, echo = FALSE}
+y <- financialDataAnalysis:::score_peak(x, 20, 80, 50, FALSE)
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_line() + 
+  ggplot2::labs(x = "column value",
+                y = "score") + 
+  ggplot2::scale_x_continuous(breaks = c(20, 50, 80),
+                              labels = c("lb", "centre", "ub")) +
+  ggthemes::theme_clean()
+```
+
+When `inverse` is `TRUE`, the score is inverted: the lower bound and upper bound produce a score of 1, and the centre produces a score of 0.
+
+```{r peak_score_2, echo = FALSE}
+y <- financialDataAnalysis:::score_peak(x, 20, 80, 50, TRUE)
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_line() + 
+  ggplot2::labs(x = "column value",
+                y = "score") + 
+  ggplot2::scale_x_continuous(breaks = c(20, 50, 80),
+                              labels = c("lb", "centre", "ub")) +
+  ggthemes::theme_clean()
+```
+
+## Custom score
+When `score_type` is "Custom coordinates", a custom score is created. This allows you to define a set of coordinates, where the x coordinate is a value in the column, and the y coordinate is a score between 0 and 1. The score will then be created by connecting the coordinates together. The coordinates should be in the form of a data frame, with the x coordinates in the 'x' column and the y coordinates in the 'y' column.
+
+```{r custom_score_1, echo = FALSE}
+x <- c(0, 20, 40, 70, 100)
+y <- c(0.5, 0.3, 1, 0.8, 0.9)
+label <- glue::glue("(x{1:5}, y{1:5})")
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y, label = label)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_text(color = "grey") +
+  ggplot2::labs(x = "column value",
+       y = "score") +
+  ggplot2::scale_x_continuous(breaks = NULL, expand = ggplot2::expansion(add = 10)) +
+  ggthemes::theme_clean()
+```
+
+This can be used to create a huge variety of different scores.
+
+```{r custom_score_2, echo = FALSE}
+x <- c(0, 20, 40, 40, 100)
+y <- c(0.5, 0.2, 0.2, 1, 0.9)
+label <- glue::glue("(x{1:5}, y{1:5})")
+
+ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y, label = label)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_text(color = "grey") +
+  ggplot2::labs(x = "column value",
+       y = "score") +
+  ggplot2::scale_x_continuous(breaks = NULL, expand = ggplot2::expansion(add = 10)) +
+  ggthemes::theme_clean()
+```
+
+To add a score to a table, use the `create_score()` function. Lets create a linear and a peak score.
+
+```{r create_scores}
+scores <- create_score(
+  scores_init, score_type = "Linear", colname = "x", score_name = "Default", 
+  weight = 1, lb = 0, ub = 10, exponential = FALSE
+)
+scores <- create_score(
+  scores, score_type = "Peak", colname = "y", score_name = "Default", 
+  weight = 5, lb = 0, ub = 20, centre = 5, inverse = FALSE, exponential = TRUE,
+  logarithmic = FALSE, magnitude = 2
+)
+scores
+```
+
+The `create_score()` function also allows you to edit a score, using the `editing` argument. Here, we will edit the linear score to change the weight. Note that the arguments you give must always be valid for the score to be added or edited.
+
+```{r edit_scores}
+scores <- create_score(
+  scores, editing = 1, score_type = "Linear", colname = "x", 
+  score_name = "Default", weight = 2, lb = 0, ub = 10, exponential = FALSE
+)
+scores
+```
+
+Scores can be deleted with the `delete_scores()` function. Enter a vector containing multiple numbers to delete multiple scores.
+
+```{r delete_scores}
+delete_scores(scores, 2)
+delete_scores(scores, c(1,2))
+```
+
+You can observe how a score will be created using the `score_summary()` function. This is useful to check that the score you are going to create is what you expect.
+
+```{r score_summary}
+column <- 1:100
+score_summary(column, score_type = "Linear", lb = 0, ub = 10, exponential = FALSE)
+```
+
+## Applying score specifications
+Create the actual scores, and add them to your data, with the `apply_scores()` function.
+
+```{r apply_scores}
+data <- tibble(
+  x = 1:100,
+  y = 100:1,
+  z = letters[rep(1:10, 10)]
+)
+scored_data <- apply_scores(data, scores)
+scored_data
+```
+
+Finally, you can create a final score with the `score_final()` function. This calculates a weighted mean of all the scores you have created.
+
+```{r final_score}
+final_data <- score_final(scored_data, scores)
+final_data
+```
+
+# Filtering data
+Once you have scored your data, it is useful to be able to filter and sort it. Filters are stored in a table in the same way as scores are. Use the `filters_init` object to get a table with 0 filters in.
+
+```{r filters_init}
+filters_init
+```
+
+Create a filter with the `add_filter()` function. All you need to specify initially is the column you want to filter.
+
+```{r add_filter}
+filters <- add_filter(filters_init, "Score 1: x", final_data)
+filters <- add_filter(filters, "z", final_data)
+filters
+```
+
+There are two types of filters: numeric and character filters. 
+
+Numeric filters filter numeric columns using a minimum and maximum value. Only rows where the value of the specified column is between the minimum and maximum are included in the filtered data frame.
+
+String filters filter string (word) columns using a pattern. Only rows where the value of the specified column contains the pattern are included in the filtered data frame.
+
+You can edit created filters with the `edit_filter()` function.
+
+```{r edit_filter}
+filters <- edit_filter(filters, 1, min = 0.5, max = 1)
+filters <- edit_filter(filters, 2, pattern = "a")
+filters
+```
+
+You can then apply these filters with the `apply_filters()` function.
+
+```{r apply_filters}
+filtered_data <- apply_filters(final_data, filters[2,])
+filtered_data
+```
+
+# Sorting data
+Data can be sorted with the `sort_df()` function. The `desc` argument controls whether the column is sorted in ascending or descending order.
+
+```{r sort}
+sort_df(filtered_data, "y", desc = FALSE)
+```
+
+# Downloading data
+Use the `download_df()` function to write your data frame to a file. The `file_type` argument currently only accepts "CSV" and "Excel".
+
+```{r download, eval = FALSE}
+download_df(filtered_data, "CSV", "myfile.csv")
+```
+
+# Predicting prices
+A major part of this app is the ability to predict the price of a specified stock. First, certain stocks can be 'favourited' using the `favourite_stock()` function.
+
+```{r favourite_stock}
+stock_data <- favourite_stock(default_stock_data, "GOOGL")
+```
+
+Stock data can be searched using the `search_stock()` function. The results will show the favourited stocks at the top.
+
+```{r search_stocks}
+search_stocks(stock_data, "go")
+```
+
+Once you have found a stock you want to make predictions on, you can generate a summary of it using the `stock_summary()` function.
+
+```{r stock_summary}
+stock <- which(stock_data$symbol == "GOOGL")
+stock_summary(stock_data, stock)
+```
+
+Finally, predictions can be made using the `predict_price()` function. Specify a stock, a start date and an end date to start making predictions. The function can make daily or monthly predictions, specify this using the `freq` argument.
+
+```{r predict_price}
+predictions_daily <- predict_price(
+  "GOOGL", start_date = today(), 
+  end_date = today() %m+% months(2), freq = "daily"
+)
+predictions_monthly <- predict_price(
+  "GOOGL", start_date = today(), 
+  end_date = today() + years(1), freq = "monthly"
+)
+
+predictions_daily
+predictions_monthly
+```
+
+Make a graph of these predictions using the `plot_predictions()` function.
+
+```{r plot_predictions}
+plot_predictions(predictions_daily)
+```
+
+# Plotting data
+The project currently provides two 'default' plots, and a framework for you to create your own custom plots.
+
+## Score distribution
+The score distribution plot creates a box plot with a jitter overlay to show the distribution of each of your scores.
+
+To get your scores to plot, use the `get_scores()` function.
+
+```{r get_scores}
+actual_scores <- get_scores(final_data, scores)
+actual_scores
+```
+
+This is the only argument to the `score_distributions()` function.
+
+```{r score_distributions}
+score_distributions(actual_scores)
+```
+
+Here we can see that most of the column values produced a single score, so we may want to change our score specifications to be more specific.
+
+## Score performance
+The score performance graph allows you to plot a column of your choice against every one of your scores. To create this graph, use the `score_performance()` function.
+
+```{r score_performance}
+score_performance(final_data, "y", actual_scores)
+```
+
+## Custom plots
+The `custom_plot()` function allows you to create a vast number of plots from your data. The first argument to the function is the data, followed by the plotting method. The rest of the arguments depend on the plotting method. Each argument should be specified in the format `aesthetic = "column_name"`, where `aesthetic` is a visual property that a variable can be mapped to (e.g. x, colour), and `column_name` is the name of a column in your data.
+
+Currently, three different types of graphs can be created: line graphs, scatter graphs and histograms.
+
+### Line graphs
+Create line graphs passing in "line" to the `plotting_method` argument.
+
+Line graphs accept the following aesthetics:
+
+* `x` - the variable on the x axis.
+* `y` - the variable on the y axis.
+* `colour` - the colour of the line.
+
+`x` and `y` are required arguments, meaning that they must be supplied for a plot to be outputted.
+
+```{r line_graph}
+custom_plot(final_data, "line", x = "x", y = "final_score", colour = "y")
+```
+
+### Scatter graphs
+Create scatter graphs passing in "scatter" to the `plotting_method` argument.
+
+Scatter graphs accept the following aesthetics:
+
+* `x` - the variable on the x axis.
+* `y` - the variable on the y axis.
+* `colour` - the colour of the point.
+* `size` - the size of the point.
+* `shape` - the shape of the point.
+
+`x` and `y` are required arguments, meaning that they must be supplied for a plot to be outputted.
+
+```{r scatter_graph}
+custom_plot(final_data, "scatter", x = "x", y = "y", size = "Score 2: y")
+```
+
+### Histograms
+Create histograms passing in "histogram" to the `plotting_method` argument.
+
+Histograms accept the following aesthetics:
+
+* `x` - the variable on the x axis.
+* `colour` - the colour of the bar.
+* `size` - the size of the bar.
+
+`x` is a required arguments, meaning that it must be supplied for a plot to be outputted.
+
+The y aesthetic of a histogram is the frequency density of the x coordinate.
+
+```{r histogram}
+custom_plot(final_data, "histogram", x = "Score 1: x", colour = "z")
+```

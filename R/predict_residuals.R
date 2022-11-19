@@ -12,7 +12,7 @@ predict_residuals_daily <- function(stock, dates, preds) {
   # Forecast from the end of the training data to the end of the specified 
   # period
   forecast_stock_daily(
-    daily_lightgbm_model,
+    get_lightgbm_model("daily"),
     stock = stock,
     horizon = horizon,
     training_data = data
@@ -36,7 +36,7 @@ predict_residuals_monthly <- function(stock, dates, preds) {
   # Forecast from the end of the training data to the end of the specified 
   # period
   forecast_stock_monthly(
-    monthly_lightgbm_model,
+    get_lightgbm_model("monthly"),
     stock = stock,
     horizon = horizon,
     training_data = data

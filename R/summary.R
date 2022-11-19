@@ -38,9 +38,11 @@ score_summary <- function(x, score_type = NULL, lb = NULL, ub = NULL, centre = N
   }
   tibble::tibble(column_value = x, score = rlang::inject(score_column(x, !!!score_spec))) %>%
     ggplot2::ggplot(ggplot2::aes(x = column_value, y = score)) +
-    ggplot2::geom_line()
+    ggplot2::geom_line() +
+    ggplot2::ylim(0,1)
 }
 
+#' @export
 stock_summary <- function(df, x){
   df[x,]
 }

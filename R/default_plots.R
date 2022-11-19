@@ -1,3 +1,4 @@
+#' @export
 score_distributions <- function(scores){
   if(is.null(scores)){
     return(NULL)
@@ -12,6 +13,7 @@ score_distributions <- function(scores){
     ggplot2::labs(x = "Score name", y = "Score")
 }
 
+#' @export
 score_performance <- function(df, colname, scores){
   if(is.null(colname) || !colname %in% colnames(df) || 
      colname %in% colnames(scores) || all(is.na(df[[colname]]))){

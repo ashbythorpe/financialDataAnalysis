@@ -1,3 +1,4 @@
+#' @export
 get_scores <- function(df, scores, final_score = T){
   if(nrow(scores) == 0){
     return(NULL)
