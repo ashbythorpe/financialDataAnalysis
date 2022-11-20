@@ -69,15 +69,40 @@ combine_if_multiple <- function(dfs){
 }
 
 combine_two_dfs <- function(df_1, df_2){
-  if(is.null(df_1)){
-    df_2
-  } else if(is.null(df_2)){
-    df_1
-  } else if(any(colnames(df_1) %in% colnames(df_2))){
-    suppressMessages(dplyr::full_join(df_1, df_2))
+  if(is.null(df_1) || 0 %in% dim(df_1)){
+    return(df_2)
+  } else if(is.null(df_2) || 0 %in% dim(df_2)){
+    return(df_1)
+  }
+  
+  # Names that are in both columns
+  equal_names <- generics::intersect(colnames(df_1), colnames(df_2))
+  
+  if(length(equal_names) > 0) {
+    # Get names of compatible columns (where a common type exists)
+    compatible_names <- purrr::keep(equal_names, ~ {
+      tryCatch({
+        # Check that the columns can be combined
+        vctrs::vec_ptype_common(df_1[[.]], df_2[[.]]) 
+        TRUE
+      }, error = function(c) {
+        FALSE
+      })
+    })
+  }
+  
+  if(length(equal_names) > 0 && length(compatible_names) > 0){
+    suppressMessages(dplyr::full_join(df_1, df_2, by = compatible_names))
   } else if(nrow(df_1) == nrow(df_2)){
     dplyr::bind_cols(df_1, df_2)
-  } else{
+  } else if(length(equal_names) > 0){
+    # Prevent bind_rows() from trying to combine incompatible columns.
+    colnames(df_1)[colnames(df_1) %in% equal_names] <- 
+      paste0(colnames(df_1)[colnames(df_1) %in% equal_names], ".x")
+    colnames(df_2)[colnames(df_2) %in% equal_names] <- 
+      paste0(colnames(df_2)[colnames(df_2) %in% equal_names], ".y")
+    dplyr::bind_rows(df_1, df_2)
+  } else {
     dplyr::bind_rows(df_1, df_2)
   }
 }

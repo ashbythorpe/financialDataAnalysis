@@ -1,3 +1,21 @@
+#' Create a filter
+#' 
+#' A shiny module containing a simple select input/action button combination.
+#' The column to filter is selected, and the button is pressed to actually
+#' create the filter.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data that is being filtered.
+#' 
+#' @returns 
+#' The server alerts its parent of the value of the select input whenever the
+#' button is pressed. Note that the logic for adding filters is not contained
+#' within this module.
+#' 
+#' @seealso [add_filter()]
+#' 
+#' @rdname create_filter_module
+#' @export
 create_filter_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -6,6 +24,8 @@ create_filter_ui <- function(id) {
   )
 }
 
+#' @rdname create_filter_module
+#' @export
 create_filter_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
     valid_colnames <- reactive({

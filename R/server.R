@@ -1,3 +1,11 @@
+#' Main server
+#' 
+#' The main server logic for the application.
+#' 
+#' @examples 
+#' server
+#' 
+#' @export
 server <- function(input, output, session) {
   data <- data_input_server("data_input")
   

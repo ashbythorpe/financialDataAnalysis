@@ -1,3 +1,19 @@
+#' Input the type of a score.
+#' 
+#' A shiny module that allows the user to input the score type of a score via a
+#' select input.
+#' 
+#' @param id The namespace of the module.
+#' @param reset When this value is changed, all inputs will reset.
+#' @param editing_row The row that the user is currently editing. When this
+#'   changes, all inputs will be updated to the state of the score that is being
+#'   edited.
+#' 
+#' @returns 
+#' The server returns the score type, or NULL if it is invalid.
+#' 
+#' @rdname score_type_module
+#' @export
 score_type_ui <- function(id){
   ns <- NS(id)
   selectInput(ns("score_type"), "Score type", choices = c(
@@ -5,6 +21,8 @@ score_type_ui <- function(id){
   ))
 }
 
+#' @rdname score_type_module
+#' @export
 score_type_server <- function(id, reset, editing_row){
   moduleServer(id, function(input, output, session){
     # Reset the score type when reset() changes
@@ -29,6 +47,20 @@ score_type_server <- function(id, reset, editing_row){
   })
 }
 
+#' Input the score arguments that are universal.
+#' 
+#' A shiny module that allows the user to input the column name, score name and
+#' weight of a score specification.
+#' 
+#' @inheritParams score_type_module
+#' 
+#' @param data The data to be scored.
+#' 
+#' @returns 
+#' The server returns the three inputs.
+#' 
+#' @rdname universal_score_module
+#' @export
 universal_score_ui <- function(id){
   ns <- NS(id)
   tagList(
@@ -39,6 +71,8 @@ universal_score_ui <- function(id){
   )
 }
 
+#' @rdname universal_score_module
+#' @export
 universal_score_server <- function(id, data, reset, editing_row){
   moduleServer(id, function(input, output, session){
     # Only the numeric columns should be considered scorable
@@ -85,6 +119,21 @@ universal_score_server <- function(id, data, reset, editing_row){
   })
 }
 
+#' Input the arguments specific to a linear score.
+#' 
+#' A shiny module that allows the user to input the lower bound and upper bound
+#' of a score.
+#' 
+#' @inheritParams score_type_module
+#' 
+#' @param column The column currently being scored.
+#' 
+#' @returns
+#' A [tibble::tibble_row()] containing the two inputs, or NULL if any are 
+#' invalid.
+#'
+#' @rdname linear_score_module
+#' @export
 linear_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -93,6 +142,8 @@ linear_score_ui <- function(id) {
   )
 }
 
+#' @rdname linear_score_module
+#' @export
 linear_score_server <- function(id, column, reset, editing_row) {
   moduleServer(id, function(input, output, session) {
     # Get the minimum and maximum of the column
@@ -133,6 +184,19 @@ linear_score_server <- function(id, column, reset, editing_row) {
   })
 }
 
+#' Input the arguments specific to a peak score
+#' 
+#' A shiny module that allows the user to the input the lower bound, upper 
+#' bound, centre and inverse arguments to a peak score.
+#' 
+#' @inheritParams linear_score_module
+#' 
+#' @returns 
+#' A [tibble::tibble_row()] containing the four inputs, or NULL if any are 
+#' invalid.
+#' 
+#' @rdname peak_score_module
+#' @export
 peak_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -143,6 +207,8 @@ peak_score_ui <- function(id) {
   )
 }
 
+#' @rdname peak_score_module
+#' @export
 peak_score_server <- function(id, column, reset, editing_row) {
   moduleServer(id, function(input, output, session) {
     # Get the minimum and maximum of the column
@@ -206,6 +272,20 @@ peak_score_server <- function(id, column, reset, editing_row) {
   })
 }
 
+#' Input the exponential transformation arguments
+#' 
+#' A shiny module that allows the user to input the score arguments that decide
+#' if and how an exponential transformation will be performed on a score 
+#' (exponential, logarithmic and magnitude).
+#' 
+#' @inheritParams linear_score_module
+#' 
+#' @returns 
+#' A [tibble::tibble_row()] containing the four inputs, or NULL if any are 
+#' invalid.
+#' 
+#' @rdname exponential_score_module
+#' @export
 exponential_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -219,6 +299,8 @@ exponential_score_ui <- function(id) {
   )
 }
 
+#' @rdname exponential_score_module
+#' @export
 exponential_score_server <- function(id, reset, editing_row) {
   moduleServer(id, function(input, output, session) {
     # Reset all inputs when reset() changes

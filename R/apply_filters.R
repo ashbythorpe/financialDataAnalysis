@@ -1,3 +1,30 @@
+#' Apply a table of filters to a data frame.
+#' 
+#' Use a data frame, where each row represents a filter, to filter another data
+#' frame using the value of its columns.
+#' 
+#' @param df The data frame to filter. See [filters_init].
+#' @param filters A data frame of filters.
+#' 
+#' @returns 
+#' A filtered version of `df` (a subset of the rows), or `NULL` if all rows are
+#' removed.
+#' 
+#' @seealso 
+#' * [filters_init] for the filters table.
+#' * [add_filter()], [edit_filter()] and [remove_filter()] to manipulate the 
+#'   filters table.
+#'
+#' @examples 
+#' data <- tibble::tibble(
+#'   x = 1:10,
+#'   y = "a"
+#' )
+#' 
+#' filters <- add_filter(filters_init, "x", data)
+#' filters <- edit_filter(filters, 1, min = 1, max = 5)
+#' apply_filters(data, filters)
+#' 
 #' @export
 apply_filters <- function(df, filters){
   if(nrow(filters) == 0){

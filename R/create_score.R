@@ -1,3 +1,99 @@
+#' Create or edit a score specification
+#' 
+#' Add to a table of score specifications, where each one is represented by a 
+#' row. The score specification will only be added if all arguments are valid.
+#' Alternatively, edit an existing score specification with the `editing` 
+#' parameter.
+#' 
+#' @param scores A data frame of score specifications. See [scores_init].
+#' @param editing The row number of the score specification to edit. If NA (the
+#'   default), add the newly created score to the end of `scores`.
+#' @param score_type The method to use when creating the score. Either "Linear",
+#'   "Peak" or "Custom coordinates".
+#' @param colname The name of the column to score.
+#' @param score_name The resulting name of the score. If "Default", the score
+#'   will be given a sensible and informative default name.
+#' @param weight The weight of the score when calculating the final score. See
+#'   [score_final()].
+#' @param lb For a linear or peak score, the lower bound of the score. This will
+#'   produce a score of 0 in most cases.
+#' @param ub For a linear or peak score, the upper bound of the score. This will
+#'   usually produce a score of 1 for linear scores and a score of 0 for peak
+#'   scores.
+#' @param centre For a peak score, the centre of the score. This will produce
+#'   a score of 1 unless inverse is `TRUE`.
+#' @param inverse For a peak score, whether to invert the scoring method.
+#' @param exponential Whether to apply an exponential transformation to the
+#'   resulting score.
+#' @param logarithmic If `exponential` is `TRUE`, whether to invert the 
+#'   exponential transformation.
+#' @param magnitude If `exponential` is `TRUE`, the numeric magnitude of the
+#'   exponential transformation.
+#' @param custom_args For a custom score, a data frame of coordinates used to
+#'   create the score.
+#'   
+#' @details 
+#' # Linear scores
+#' When the `score_name` is "Linear", a linear score is created. To make the score you need to specify the `lb` and `ub` arguments.
+#' 
+#' If the column value is less than or equal to the `lb` argument, the score is 0.
+#' If the column value is more than or equal to the `ub` argument, the score is 1.
+#' 
+#' Otherwise, the score is defined is the proportion of the distance of the column value between the `lb` and `ub`.
+#' 
+#' 
+#' If the `lb` argument is more than the `ub` argument, the score is inverted. This means that the `lb` produces a score of 1, the `ub` produces a score of 0, etc.
+#' 
+#'
+#' # Peak scores
+#' When the `score_name` is "Peak", a peak score is created. To make the score you need to specify the `lb`, `ub`, `centre` and `inverse` arguments. The `lb`, `ub` and `centre` arguments must be numeric, and the `centre` must be between the `lb` and `ub`.
+#' 
+#' If the column value is less than or equal to the `lb` argument, the score is 0.
+#' If the column value is equal to the `centre` argument, the score is 1.
+#' If the column value is more than or equal to the `ub` argument, the score is 1.
+#' 
+#' If the column value is in between the `lb` and `centre` arguments, the score 
+#' is defined as the proportion of the column value along between the `lb` and 
+#' `centre`.
+#' If the column value is in between the `centre` and `ub` arguments, the score 
+#' is defined as the proportion of the column value along between the `ub` and 
+#' `centre`.
+#'
+#' 
+#' When `inverse` is `TRUE`, the score is inverted: the lower bound and upper bound produce a score of 1, and the centre produces a score of 0.
+#'
+#' 
+#' # Custom scores
+#' When `score_type` is "Custom coordinates", a custom score is created. This allows you to define a set of coordinates, where the x coordinate is a value in the column, and the y coordinate is a score between 0 and 1. The score will then be created by connecting the coordinates together. The coordinates should be in the form of a data frame, with the x coordinates in the 'x' column and the y coordinates in the 'y' column.
+#' 
+#' This can be used to create a huge variety of different scores.
+#' 
+#' For more detailed information, along with plots that demonstrate the 3
+#' scoring methods, see the Prototype 2 vignette:
+#' `vignette("prototype2", package = "financialDataAnalysis")`
+#' 
+#' @returns 
+#' If any required arguments are not valid, `scores` is returned as is.
+#' If `editing` is `NA`, `scores` is returned with an ectra row.
+#' If `editing` is a valid row number, `scores` with 1 edited row is returned.
+#' 
+#' @seealso 
+#' * [scores_init] for the format of the `scores` table.
+#' * [delete_scores()] for the inverse operation.
+#' * [apply_scores()] for the creation of the actual scores.
+#' 
+#' @examples 
+#' scores <- create_score(
+#'   scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+#'   weight = 1, lb = 1, ub = 6, exponential = FALSE
+#' )
+#' 
+#' # Change the weight
+#' create_score(
+#'   scores, editing = 1, score_type = "Linear", colname = "x", 
+#'   score_name = "Default", weight = 2, lb = 1, ub = 6, exponential = FALSE
+#' )
+#' 
 #' @export
 create_score <- function(scores,
                          editing = NA,

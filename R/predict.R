@@ -1,6 +1,6 @@
 #' @export
 predict_price <- function(stock, start_date = lubridate::today(),
-                          end_date = lubridate::today() + lubridate::years(1),
+                          end_date = lubridate::today() + lubridate::days(60),
                           freq = c("daily", "monthly")){
   if(is.null(freq) || all(!freq %in% c("daily", "monthly"))) {
     return(NULL)
@@ -28,17 +28,17 @@ predict_price <- function(stock, start_date = lubridate::today(),
 }
 
 predict_price_daily <- function(stock, dates) {
-  data <- dplyr::filter(daily_stock_data, ticker == stock)
+  data <- dplyr::filter(daily_training_data, ticker == stock)
   
-  if(max(dates) <= max(daily_stock_data$ref_date)) {
+  if(max(dates) <= max(daily_training_data$ref_date)) {
     dplyr::left_join(
       tibble::tibble(ref_date = dates),
       data
     ) %>%
       dplyr::pull(price_adjusted)
-  } else if(min(dates) <= max(daily_stock_data$ref_date)) {
-    dates_before <- dates[dates <= max(daily_stock_data$ref_date)]
-    dates_after <- dates[dates > max(daily_stock_data$ref_date)]
+  } else if(min(dates) <= max(daily_training_data$ref_date)) {
+    dates_before <- dates[dates <= max(daily_training_data$ref_date)]
+    dates_after <- dates[dates > max(daily_training_data$ref_date)]
     
     known_prices <- dplyr::left_join(
       tibble::tibble(ref_date = dates_before),
@@ -133,7 +133,7 @@ plot_predictions <- function(predicted){
   if(is.null(predicted)){
     return(NULL)
   }
-  ggplot2::ggplot(predicted, ggplot2::aes(x = ref_date, y = .pred)) +
+  ggplot2::ggplot(na.omit(predicted), ggplot2::aes(x = ref_date, y = .pred)) +
     ggplot2::geom_line()
 }
 

@@ -1,3 +1,20 @@
+#' Input custom coordinates to create a custom score
+#' 
+#' A shiny module that allows the user to specify the custom coordinates for a
+#' custom score.
+#' 
+#' @inheritParams linear_score_module
+#' 
+#' @details 
+#' The module's initial state uses two coordinates to create a linear score.
+#' 
+#' @returns 
+#' The server returns a validated tibble of coordinates.
+#' 
+#' @seealso [custom_row_module]
+#' 
+#' @rdname custom_score_module
+#' @export
 custom_score_ui <- function(id){
   ns <- NS(id)
   tagList(
@@ -11,6 +28,8 @@ custom_score_ui <- function(id){
   )
 }
 
+#' @rdname custom_score_module
+#' @export
 custom_score_server <- function(id, column, reset, editing_row){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
@@ -129,16 +148,6 @@ custom_score_server <- function(id, column, reset, editing_row){
     }) %>%
       bindEvent(editing_row(), ignoreInit = T)
     
-    # custom_args <- reactive({
-    #   # Returns a list of reactive expressions (that need to be executed).
-    #   purrr::map(paste0("row_", values$rows), custom_row_server) %>%
-    #     purrr::map(rlang::exec) %>% # Get the values from the expressions
-    #     dplyr::bind_rows() # Combine them
-    # }) %>%
-    #   bindEvent(values$rows, input$update)
-    # Invalidates when number of rows change (values$rows) or when values in 
-    # rows change (input$update).
-    
     custom_args <- reactive({
       purrr::map(as.character(values$rows), ~ {module_outputs[[.]]}) %>%
         purrr::map(rlang::exec) %>% # Get the values from the expressions
@@ -155,6 +164,30 @@ custom_score_server <- function(id, column, reset, editing_row){
   })
 }
 
+#' Input a set of coordinates for a custom score
+#' 
+#' A shiny module that contains the UI and server logic for a single row (or a
+#' single set of coordinates) of a custom score.
+#' 
+#' @param id The namespace of the module.
+#' @param n The row number.
+#' @param x The initial value of the x coordinate.
+#' @param y The initial value of the y coordinate.
+#' 
+#' @details 
+#' Note that the row number (`n`) may not reflect the actual position of the row
+#' within the app. As an example, consider three rows (`n` is 1, 2 and 3 
+#' respectively). If the second row is deleted, since the UI is not changed, the
+#' row which will now be second will have a row number of 3.
+#' 
+#' @returns 
+#' The server returns a [tibble::tibble_row()] containing the x and y 
+#' coordinates.
+#' 
+#' @seealso [custom_score_module]
+#' 
+#' @rdname custom_row_module
+#' @export
 custom_row_ui <- function(id, n, x = 0, y = 0) {
   ns <- NS(id)
   # Get the namespace of the 'custom_score' module.
@@ -193,6 +226,8 @@ custom_row_ui <- function(id, n, x = 0, y = 0) {
   )
 }
 
+#' @rdname custom_row_module
+#' @export
 custom_row_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     # Create a row with the specified x and y coordinates

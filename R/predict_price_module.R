@@ -9,7 +9,7 @@ predict_price_ui <- function(id) {
         shinyWidgets::airDatepickerInput(
           ns("dates_daily"), range = TRUE, firstDay = 1, 
           value = c(lubridate::today(), lubridate::today() + 30),
-          minDate = min(daily_stock_data$ref_date, na.rm = TRUE)
+          minDate = min(daily_training_data$ref_date, na.rm = TRUE)
         )
       ),
       tabPanelBody(
@@ -41,7 +41,7 @@ predict_price_server <- function(id, stock) {
       if(input$frequency == "daily") {
         req(length(input$dates_daily) == 2, 
             input$dates_daily[1], input$dates_daily[2])
-        req(stock() %in% daily_stock_data$ticker)
+        req(stock() %in% daily_training_data$ticker)
         
         if(input$dates_daily[1] <= input$dates_daily[2]) {
           from <- input$dates_daily[1]

@@ -1,3 +1,33 @@
+#' Create a set of scores
+#' 
+#' Apply a table of score specification, where each specification is represented
+#' as a row, to a data frame. The set of created scores are then added back to
+#' the original data frame as columns.
+#' 
+#' @param df A data frame to score.
+#' @param scores A data frame of score specifications. See [scores_init].
+#' 
+#' @returns `df`, with scores added as columns.
+#' 
+#' @seealso 
+#' * [scores_init] for the format of the `scores` table.
+#' * [create_score()] and [delete_scores()] to create, edit and delete score
+#'   specifications.
+#' * [score_final()] to create a final score after these scores have been 
+#'   created.
+#'
+#' @examples
+#' data <- tibble::tibble(
+#'   x = 1:10
+#' )
+#' 
+#' scores <- create_score(
+#'   scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+#'   weight = 1, lb = 1, ub = 6, exponential = FALSE
+#' )
+#' 
+#' apply_scores(data, scores)
+#' 
 #' @export
 apply_scores <- function(df, scores){
   if(nrow(scores) == 0){

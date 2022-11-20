@@ -156,6 +156,23 @@ test_that("combine_two_dfs works", {
     expect_equal(tibble::tibble(x = 1, y = 2, z = 3))
   combine_two_dfs(tibble::tibble(x = c(1,2,3)), tibble::tibble(y = c(1,2))) %>%
     expect_equal(tibble::tibble(x = c(1,2,3,NA,NA), y = c(NA,NA,NA,1,2)))
+  combine_two_dfs(tibble::tibble(x = 1:10), tibble::tibble(x = "1")) %>%
+    expect_equal(tibble::tibble(
+      x.x = c(1:10, NA),
+      x.y = c(rep(NA, 10), "1")
+    ))
+  combine_two_dfs(tibble::tibble(
+    x = 1:10,
+    y = 10:1
+  ), tibble::tibble(
+    x = 1:10,
+    y = "a"
+  )) %>%
+    expect_equal(tibble::tibble(
+      x = 1:10,
+      y.x = 10:1,
+      y.y = "a"
+    ))
 })
 
 #combine can't be NULL

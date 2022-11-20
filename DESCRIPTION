@@ -11,7 +11,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Suggests: 
     covr,
-    generics,
     ggthemes,
     knitr,
     rmarkdown,
@@ -21,6 +20,7 @@ Config/testthat/edition: 3
 Imports: 
     bonsai,
     dplyr,
+    generics,
     ggplot2,
     glue,
     htmltools,
@@ -47,6 +47,7 @@ Imports:
     utils,
     vctrs,
     withr,
+    workflows,
     writexl
 Depends: 
     R (>= 2.10)

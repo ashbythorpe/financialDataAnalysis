@@ -1,9 +1,5 @@
-test_that("predict_price works", {
-  # withr::local_package("bonsai")
-  # withr::local_package("timetk")
-  # daily <- daily_stock_model$member_fits$lightgbm_1_07
-  # monthly <- monthly_stock_model$member_fits$lightgbm_1_06
-  # 
-  # predict_price(daily, "GOOG")
-  # predict_price(monthly, "GOOGL", freq = "monthly")
+test_that("predict_price + plot_predictions works", {
+  date <- lubridate::ymd("2023", truncated = 2)
+  predict_price("GOOGL", start_date = date, date + lubridate::days(60)) %>%
+    plot_predictions()
 })

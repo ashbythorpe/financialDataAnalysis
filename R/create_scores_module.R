@@ -1,3 +1,17 @@
+#' Create score specifications
+#' 
+#' A shiny module that contains the Create Scores page, allowing the user to
+#' create a set of score specifications. These are then automatically applied
+#' to the data.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data to score.
+#' 
+#' @returns 
+#' The table of score specifications that the user has created.
+#' 
+#' @rdname create_scores_module
+#' @export
 create_scores_ui <- function(id){
   ns <- NS(id)
   fluidRow(
@@ -35,6 +49,8 @@ create_scores_ui <- function(id){
   )
 }
 
+#' @rdname create_scores_module
+#' @export
 create_scores_server <- function(id, data){
   moduleServer(id, function(input, output, session){
     values <- reactiveValues()

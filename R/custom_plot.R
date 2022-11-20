@@ -1,3 +1,66 @@
+#' Create a customisable plot
+#' 
+#' Create a plot which is fully customisable by the user.
+#' 
+#' @param df The data to plot.
+#' @param plotting_method The type of plot to create (either "line", "scatter"
+#'   or "histogram")
+#' @param ... A set of arguments mapping certain variables to aesthetics. Each
+#' argument should be specified in the format `aesthetic = "column_name"`, where
+#' `aesthetic` is a visual property that a variable can be mapped to (e.g. x, 
+#' colour), and `column_name` is the name of a column in your data.
+#' 
+#' @details 
+#' # Line graphs
+#' Create line graphs passing in "line" to the `plotting_method` argument.
+#' 
+#' Line graphs accept the following aesthetics:
+#'   
+#' * `x` - the variable on the x axis.
+#' * `y` - the variable on the y axis.
+#' * `colour` - the colour of the line.
+#' 
+#' `x` and `y` are required arguments, meaning that they must be supplied for a 
+#' plot to be outputted.
+#' 
+#' # Scatter graphs
+#' Create scatter graphs passing in "scatter" to the `plotting_method` argument.
+#' 
+#' Scatter graphs accept the following aesthetics:
+#'   
+#' * `x` - the variable on the x axis.
+#' * `y` - the variable on the y axis.
+#' * `colour` - the colour of the point.
+#' * `size` - the size of the point.
+#' * `shape` - the shape of the point.
+#' 
+#' `x` and `y` are required arguments, meaning that they must be supplied for a 
+#' plot to be outputted.
+#' 
+#' # Histograms
+#' Create histograms passing in "histogram" to the `plotting_method` argument.
+#' 
+#' Histograms accept the following aesthetics:
+#'   
+#' * `x` - the variable on the x axis.
+#' * `colour` - the colour of the bar.
+#' * `size` - the size of the bar.
+#' 
+#' `x` is a required arguments, meaning that it must be supplied for a plot to 
+#' be outputted.
+#' 
+#' The y aesthetic of a histogram is the frequency density of the x coordinate.
+#' 
+#' @returns A [ggplot2::ggplot()] object.
+#' 
+#' @examples 
+# data <- tibble::tibble(
+#   a = 1:10,
+#   b = 10:1
+# )
+# 
+# custom_plot(data, "line", x = "a", y = "b")
+#' 
 #' @export
 custom_plot <- function(df, plotting_method, ...){
   plot_args <- rlang::list2(...)

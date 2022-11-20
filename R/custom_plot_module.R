@@ -1,3 +1,22 @@
+#' Input the arguments for a custom plot
+#' 
+#' A shiny module that allows the user to input the arguments in order to create
+#' a custom plot.
+#' 
+#' @param id The namespace of the module.
+#' @param custom Whether the user wants to make a custom plot.
+#' @param data The data that is being plotted.
+#' 
+#' @returns 
+#' The server returns a list of validated arguments, along with the inputted
+#' plot type.
+#' 
+#' @seealso 
+#' * [custom_plot()]
+#' * The modules for the different custom plot types: [custom_plot_modules]
+#' 
+#' @rdname custom_plot_module
+#' @export
 custom_plot_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -22,6 +41,8 @@ custom_plot_ui <- function(id) {
   )
 }
 
+#' @rdname custom_plot_module
+#' @export
 custom_plot_server <- function(id, custom, data) {
   moduleServer(id, function(input, output, session) {
     type <- reactive({
@@ -61,6 +82,21 @@ custom_plot_server <- function(id, custom, data) {
   })
 }
 
+#' Input arguments for different custom plots
+#' 
+#' A set of shiny modules that allow the user to input a set of arguments
+#' depending on the plot type.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data that is being plotted
+#' 
+#' @returns
+#' Each module's server returns a list of validated arguments.
+#' 
+#' @seealso [custom_plot_module]
+#' 
+#' @rdname custom_plot_modules
+#' @export
 line_graph_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -70,6 +106,8 @@ line_graph_ui <- function(id) {
   )
 }
 
+#' @rdname custom_plot_modules
+#' @export
 line_graph_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
     observe({
@@ -96,6 +134,8 @@ line_graph_server <- function(id, data) {
   })
 }
 
+#' @rdname custom_plot_modules
+#' @export
 scatter_graph_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -107,6 +147,8 @@ scatter_graph_ui <- function(id) {
   )
 }
 
+#' @rdname custom_plot_modules
+#' @export
 scatter_graph_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
     observe({
@@ -143,6 +185,8 @@ scatter_graph_server <- function(id, data) {
   })
 }
 
+#' @rdname custom_plot_modules
+#' @export
 histogram_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -152,6 +196,8 @@ histogram_ui <- function(id) {
   )
 }
 
+#' @rdname custom_plot_modules
+#' @export
 histogram_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
     observe({

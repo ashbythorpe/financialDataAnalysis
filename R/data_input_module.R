@@ -1,3 +1,19 @@
+#' Upload data
+#' 
+#' A shiny module that contains the Data Input page, allowing the user to 
+#' upload files. If no valid files are uploaded, the default stock data is
+#' returned.
+#' 
+#' @seealso [input_data()]
+#' 
+#' @param id The namespace of the module.
+#' 
+#' @returns
+#' The server returns the data frame that has been uploaded (or the default
+#' stock data).
+#' 
+#' @rdname data_input_module
+#' @export
 data_input_ui <- function(id){
   ns <- NS(id)
   accepted_files <- c(
@@ -17,6 +33,8 @@ data_input_ui <- function(id){
   )
 }
 
+#' @rdname data_input_module
+#' @export
 data_input_server <- function(id){
   moduleServer(id, function(input, output, session){
     values <- reactiveValues()
