@@ -8,9 +8,10 @@
 #' @param data The data to score.
 #' 
 #' @returns 
-#' The table of score specifications that the user has created.
+#' The server returns the table of score specifications that the user has 
+#' created.
 #' 
-#' @rdname create_scores_module
+#' @name create_scores_module
 #' @export
 create_scores_ui <- function(id){
   ns <- NS(id)
@@ -49,7 +50,7 @@ create_scores_ui <- function(id){
   )
 }
 
-#' @rdname create_scores_module
+#' @name create_scores_module
 #' @export
 create_scores_server <- function(id, data){
   moduleServer(id, function(input, output, session){

@@ -1,8 +1,27 @@
+#' Edit a set of numeric filters
+#' 
+#' A shiny module that allows the user to edit a set of numeric filters for a 
+#' data frame. 
+#' 
+#' @param id The namespace of the module.
+#' @param data The data to filter.
+#' @param add The input (from another module) that signifies the creation of a
+#'   new filter.
+#'   
+#' @returns
+#' The server returns a [tibble::tibble()] of filters.
+#' 
+#' @seealso [apply_filters()] [filter_module]
+#' 
+#' @name filters_module
+#' @export
 filters_ui <- function(id) {
   ns <- NS("id")
   div(id = "filter_container")
 }
 
+#' @name filters_module
+#' @export
 filters_server <- function(id, data, add) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -83,6 +102,34 @@ filters_server <- function(id, data, add) {
   })
 }
 
+#' Edit a single numeric filter
+#' 
+#' A shiny module that allows the user to edit a single numeric filter. The
+#' filter consists of a slider range input and two numeric inputs, where the
+#' numeric inputs are linked to the values of the slider input.
+#' 
+#' @param id The namespace of the module.
+#' @param n The filter number - unique for each filter.
+#' @param name The column name that is being filtered.
+#' @param column The column that is being filtered.
+#' 
+#' @details 
+#' The link between the numeric and slider inputs means that when the numeric
+#' inputs are updated, the slider inputs will update, and vice versa.
+#' 
+#' Note that the filter number (`n`) may not reflect the actual position of the 
+#' filter within the app. As an example, consider three filters (`n` is 1, 2 and
+#' 3 respectively). If the second filter is deleted, since the UI is not 
+#' changed, the filter which will now be second will have a filter number of 3.
+#' 
+#' @returns 
+#' The server returns a [tibble::tibble_row()] containing the min and max of the
+#' filter.
+#' 
+#' @seealso [filters_module]
+#' 
+#' @name filter_module
+#' @export
 filter_ui <- function(id, n, name, column) {
   ns <- NS(id)
   p_ns <- parent_ns(id)
@@ -118,6 +165,8 @@ filter_ui <- function(id, n, name, column) {
   )
 }
 
+#' @name filter_module
+#' @export
 filter_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     p_ns <- session$ns("") %>%

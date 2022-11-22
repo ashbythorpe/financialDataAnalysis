@@ -9,7 +9,7 @@
 #' 
 #' @seealso [ui()] [server()]
 #' 
-#' @example 
+#' @examples
 #' \dontrun{
 #'   financialDataAnalysis()
 #' }

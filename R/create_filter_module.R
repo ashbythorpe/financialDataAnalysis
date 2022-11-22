@@ -14,7 +14,7 @@
 #' 
 #' @seealso [add_filter()]
 #' 
-#' @rdname create_filter_module
+#' @name create_filter_module
 #' @export
 create_filter_ui <- function(id) {
   ns <- NS(id)
@@ -24,7 +24,7 @@ create_filter_ui <- function(id) {
   )
 }
 
-#' @rdname create_filter_module
+#' @name create_filter_module
 #' @export
 create_filter_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {

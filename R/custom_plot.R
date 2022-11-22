@@ -54,12 +54,12 @@
 #' @returns A [ggplot2::ggplot()] object.
 #' 
 #' @examples 
-# data <- tibble::tibble(
-#   a = 1:10,
-#   b = 10:1
-# )
-# 
-# custom_plot(data, "line", x = "a", y = "b")
+#' data <- tibble::tibble(
+#'   a = 1:10,
+#'   b = 10:1
+#' )
+#' 
+#' custom_plot(data, "line", x = "a", y = "b")
 #' 
 #' @export
 custom_plot <- function(df, plotting_method, ...){

@@ -34,23 +34,32 @@
 #'   
 #' @details 
 #' # Linear scores
-#' When the `score_name` is "Linear", a linear score is created. To make the score you need to specify the `lb` and `ub` arguments.
+#' When the `score_name` is "Linear", a linear score is created. To make the 
+#' score you need to specify the `lb` and `ub` arguments.
 #' 
-#' If the column value is less than or equal to the `lb` argument, the score is 0.
-#' If the column value is more than or equal to the `ub` argument, the score is 1.
+#' If the column value is less than or equal to the `lb` argument, the score is 
+#' 0.
+#' If the column value is more than or equal to the `ub` argument, the score is 
+#' 1.
 #' 
-#' Otherwise, the score is defined is the proportion of the distance of the column value between the `lb` and `ub`.
+#' Otherwise, the score is defined is the proportion of the distance of the 
+#' column value between the `lb` and `ub`.
 #' 
+#' If the `lb` argument is more than the `ub` argument, the score is inverted. 
+#' This means that the `lb` produces a score of 1, the `ub` produces a score of 
+#' 0, etc.
 #' 
-#' If the `lb` argument is more than the `ub` argument, the score is inverted. This means that the `lb` produces a score of 1, the `ub` produces a score of 0, etc.
-#' 
-#'
 #' # Peak scores
-#' When the `score_name` is "Peak", a peak score is created. To make the score you need to specify the `lb`, `ub`, `centre` and `inverse` arguments. The `lb`, `ub` and `centre` arguments must be numeric, and the `centre` must be between the `lb` and `ub`.
+#' When the `score_name` is "Peak", a peak score is created. To make the score 
+#' you need to specify the `lb`, `ub`, `centre` and `inverse` arguments. The 
+#' `lb`, `ub` and `centre` arguments must be numeric, and the `centre` must be 
+#' between the `lb` and `ub`.
 #' 
-#' If the column value is less than or equal to the `lb` argument, the score is 0.
+#' If the column value is less than or equal to the `lb` argument, the score is 
+#' 0.
 #' If the column value is equal to the `centre` argument, the score is 1.
-#' If the column value is more than or equal to the `ub` argument, the score is 1.
+#' If the column value is more than or equal to the `ub` argument, the score is 
+#' 1.
 #' 
 #' If the column value is in between the `lb` and `centre` arguments, the score 
 #' is defined as the proportion of the column value along between the `lb` and 
@@ -60,11 +69,17 @@
 #' `centre`.
 #'
 #' 
-#' When `inverse` is `TRUE`, the score is inverted: the lower bound and upper bound produce a score of 1, and the centre produces a score of 0.
+#' When `inverse` is `TRUE`, the score is inverted: the lower bound and upper 
+#' bound produce a score of 1, and the centre produces a score of 0.
 #'
 #' 
 #' # Custom scores
-#' When `score_type` is "Custom coordinates", a custom score is created. This allows you to define a set of coordinates, where the x coordinate is a value in the column, and the y coordinate is a score between 0 and 1. The score will then be created by connecting the coordinates together. The coordinates should be in the form of a data frame, with the x coordinates in the 'x' column and the y coordinates in the 'y' column.
+#' When `score_type` is "Custom coordinates", a custom score is created. This 
+#' allows you to define a set of coordinates, where the x coordinate is a value 
+#' in the column, and the y coordinate is a score between 0 and 1. The score 
+#' will then be created by connecting the coordinates together. The coordinates 
+#' should be in the form of a data frame, with the x coordinates in the 'x' 
+#' column and the y coordinates in the 'y' column.
 #' 
 #' This can be used to create a huge variety of different scores.
 #' 

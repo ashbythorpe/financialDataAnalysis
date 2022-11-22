@@ -13,6 +13,10 @@ fit <- data %>%
                      seasonality.mode = "multiplicative")
   )
 
+monthly_prophet_model <- fit
+
+usethis::use_data(monthly_prophet_model, overwrite = TRUE)
+
 pred <- fit %>%
   dplyr::mutate(
     pred = purrr::pmap(
@@ -20,6 +24,13 @@ pred <- fit %>%
     )
   )
 
-monthly_prophet_model <- fit
+monthly_training_data <- pred %>%
+  dplyr::select(-fit) %>%
+  tidyr::unnest(c(data, pred), names_repair = "unique") %>%
+  dplyr::select(-ds...4) %>%
+  dplyr::rename(ds = "ds...2") %>%
+  dplyr::mutate(residuals = y - yhat) %>%
+  dplyr::rename(price_adjusted = "y", ref_date = "ds") %>%
+  dplyr::select(ticker, ref_date, price_adjusted, residuals)
 
-usethis::use_data(monthly_prophet_model, overwrite = TRUE)
+use_data(monthly_training_data, overwrite = TRUE)

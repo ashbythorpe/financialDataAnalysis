@@ -1,3 +1,13 @@
+#' Generate stock price predictions
+#' 
+#' Allows the user to specify a start date and an end date, then predicts the
+#' price of a stock over the specified period, and plots the results.
+#' 
+#' @param id The namespace of the module.
+#' @param stock The selected stock to generate predictions for.
+#' 
+#' @name predict_price_module
+#' @export
 predict_price_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -19,7 +29,7 @@ predict_price_ui <- function(id) {
           value = c(lubridate::today(), lubridate::add_with_rollback(
             lubridate::today(), months(6)
           )),
-          minDate = min(monthly_stock_data$ref_date, na.rm = TRUE)
+          minDate = min(monthly_training_data$ref_date, na.rm = TRUE)
         )
       )
     ),
@@ -27,6 +37,8 @@ predict_price_ui <- function(id) {
   )
 }
 
+#' @name predict_price_module
+#' @export
 predict_price_server <- function(id, stock) {
   moduleServer(id, function(input, output, session) {
     observe({
@@ -57,7 +69,7 @@ predict_price_server <- function(id, stock) {
       } else {
         req(length(input$dates_monthly) == 2, 
             input$dates_monthly[1], input$dates_monthly[2])
-        req(stock() %in% monthly_stock_data$ticker)
+        req(stock() %in% monthly_training_data$ticker)
         
         if(input$dates_monthly[1] <= input$dates_monthly[2]) {
           from <- input$dates_monthly[1]

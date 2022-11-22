@@ -1,3 +1,15 @@
+#' Create a variety of plots
+#' 
+#' A shiny module that contains the Plot Data page, which allows the user to 
+#' create a variety of default or custom plots.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data to plot.
+#' @param scores The data frame of score specifications created by the user. See
+#'   [scores_init].
+#'   
+#' @name plot_data_module
+#' @export
 plot_data_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -23,6 +35,8 @@ plot_data_ui <- function(id) {
   )
 }
 
+#' @name plot_data_module
+#' @export
 plot_data_server <- function(id, data, scores) {
   moduleServer(id, function(input, output, session) {
     custom_plot <- reactive(input$plot_select == "Custom")

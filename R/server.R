@@ -2,8 +2,13 @@
 #' 
 #' The main server logic for the application.
 #' 
-#' @examples 
-#' server
+#' @param input A [shiny::reactiveValues()] object containing all inputs sent
+#'   from the client/UI to the server.
+#' @param output A "shinyoutput" object containing all values sent from the
+#'   server to the client/UI.
+#' @param session A "ShinySession" object. This is an environment that contains
+#'   information and functionality relating to the current session (see 
+#'   [shiny::session]).
 #' 
 #' @export
 server <- function(input, output, session) {
@@ -21,4 +26,10 @@ server <- function(input, output, session) {
   forecast_price_server("forecast_price")
   
   plot_data_server("plot_data", scored_data, scores)
+}
+
+server <- function(input, output, session) {
+  print(session)
+  print(class(session))
+  print(typeof(session))
 }

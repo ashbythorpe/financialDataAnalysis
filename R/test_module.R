@@ -1,5 +1,14 @@
 test_module <- function(ui, server, ...) {
-  force(server)
+  call <- rlang::call_match()
+  ui_call <- call$ui
+  server_call <- call$server
+  if(is.call(ui_call)) {
+    ui_call <- rlang::call_modify(ui_call, id = "id")
+    ui <- rlang::eval_tidy(ui_call)
+  } else {
+    ui <- ui("id")
+  }
+  
   actual_ui <- tagList(dashboardPage(
     dashboardHeader(title = "Financial Data Analysis"),
     dashboardSidebar(sidebarMenu(
@@ -7,12 +16,19 @@ test_module <- function(ui, server, ...) {
     )),
     dashboardBody(tabItems(
       tabItem("tab",
-              ui("id"))
+              ui)
     ))
   ), fDA_dependencies())
   
   actual_server <- function(input, output, session) {
-    res <- server("id", ...)
+    if(is.call(server_call)) {
+      server_call <- rlang::call_modify(server_call, ..., id = "id")
+      server <- rlang::eval_tidy(server_call)
+    } else {
+      server <- server("id", ...)
+    }
+    
+    res <- server
     
     observe({
       if(is.reactive(res)) {

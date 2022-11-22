@@ -10,7 +10,7 @@
 #' The server alerts its parent when the user indicates that they want to stop
 #' editing.
 #' 
-#' @rdname editing_module
+#' @name editing_module
 #' @export
 editing_ui <- function(id) {
   ns <- NS(id)
@@ -29,7 +29,7 @@ editing_ui <- function(id) {
   )
 }
 
-#' @rdname editing_module
+#' @name editing_module
 #' @export
 editing_server <- function(id, editing, scores) {
   moduleServer(id, function(input, output, session) {

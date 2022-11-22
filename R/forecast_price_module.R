@@ -1,3 +1,13 @@
+#' Select and forecast stocks
+#' 
+#' A shiny module which contains the Forecast Price page. Allows the user to 
+#' search for stocks, see details about selected stocks and forecast the price
+#' of a stock over time.
+#' 
+#' @param id The namespace of the module.
+#' 
+#' @name forecast_price_module
+#' @export
 forecast_price_ui <- function(id) {
   ns <- NS(id)
   div(
@@ -15,6 +25,8 @@ forecast_price_ui <- function(id) {
   )
 }
 
+#' @name forecast_price_module
+#' @export
 forecast_price_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     selected_stock <- search_bar_server("search_bar")

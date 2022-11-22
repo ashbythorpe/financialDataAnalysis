@@ -2,7 +2,7 @@
 #' 
 #' Returns the home page of the application
 #' 
-#' @rdname home_module
+#' @name home_module
 #' @export
 home_ui <- function(){
   tagList(

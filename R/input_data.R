@@ -1,3 +1,28 @@
+#' Convert a set of files into a data frame
+#' 
+#' Read one or more files and combine them into a single data frame. If the
+#' result is invalid, the default stock data is returned
+#' 
+#' @param files A vector of file paths. The function only accepts CSV and Excel
+#'   files.
+#' @param default_data The default data, included for testing purposes. It is
+#'   not recommended to change this from its default.
+#' @param combine If `TRUE`, the resulting data frame will be combined with the
+#'   default data frame.
+#' 
+#' @returns A [tibble::tibble()].
+#' 
+#' @seealso [default_stock_data]
+#' 
+#' @examples 
+#' file <- tempfile(fileext = "csv")
+#' data <- tibble::tibble(
+#'   x = 1:100
+#' )
+#' readr::write_csv(data, file)
+#' 
+#' input_data(file)
+#' 
 #' @export
 input_data <- function(files, default_data = default_stock_data, combine = FALSE){
   if(is.null(files) || is.null(combine)){

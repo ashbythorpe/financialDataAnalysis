@@ -1,3 +1,18 @@
+#' View a data frame.
+#' 
+#' A shiny module that allows the user to view some data, and download it in
+#' various file formats. The user can choose which columns are displayed, 
+#' although the number of columns are limited to 15.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data to be viewed.
+#' 
+#' @details 
+#' The data is displayed using [reactable::reactable()], and the columns are
+#' sortable and filterable.
+#' 
+#' @name data_module
+#' @export
 data_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -12,6 +27,8 @@ data_ui <- function(id) {
   )
 }
 
+#' @name data_module
+#' @export
 data_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
     observe({

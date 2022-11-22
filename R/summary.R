@@ -1,3 +1,15 @@
+#' Generate a summary of a column
+#' 
+#' Generate a string summary of a numeric column. Shows important information
+#' such as the mean and standard deviation.
+#' 
+#' @param x The column to summarise, in vector form.
+#' 
+#' @returns A string: the summary of the column.
+#' 
+#' @examples 
+#' col_summary(1:100)
+#' 
 #' @export
 col_summary <- function(x){
   # This list is defined inside the function so that they run the most updated
@@ -21,16 +33,25 @@ col_summary_val <- function(x, fun, fun_name){
   glue::glue("{fun_name}: {round(fun(x, na.rm = T), 2)}")
 }
 
+#' Generate a summary of a score
+#' 
+#' Generate a summary of a score currently being created. Generates a line graph
+#' comparing the column value and the corresponding score.
+#' 
+#' @param x The column being scored.
+#' @param ... The score arguments. See [create_score()].
+#' 
+#' @returns A [ggplot2::ggplot()] object containing the graph.
+#' 
+#' @examples 
+#' score_summary(
+#'   1:100, score_type = "Linear", lb = 15, ub = 70, exponential = FALSE
+#' )
+#' 
 #' @export
-score_summary <- function(x, score_type = NULL, lb = NULL, ub = NULL, centre = NULL,
-                          inverse = NULL, exponential = NULL, logarithmic = NULL,
-                          magnitude = NULL, custom_args = NULL, ...){
+score_summary <- function(x, ...){
   score_spec <- validate_score(
-    score_type = score_type, colname = "a", score_name = "",
-    weight = 0, lb = lb, ub = ub, centre = centre,
-    inverse = inverse, exponential = exponential,
-    logarithmic = logarithmic, magnitude = magnitude,
-    custom_args = custom_args
+    colname = "a", score_name = "", weight = 0, ...
   )
   
   if(is.null(score_spec)){
@@ -42,6 +63,18 @@ score_summary <- function(x, score_type = NULL, lb = NULL, ub = NULL, centre = N
     ggplot2::ylim(0,1)
 }
 
+#' Create a summary of a stock
+#' 
+#' Summarise a stock by showing the data corresponding to the stock.
+#' 
+#' @param df The stock data. See [default_stock_data].
+#' @param x The row number of the stock.
+#' 
+#' @returns A [tibble::tibble_row()].
+#' 
+#' @examples 
+#' stock_summary(default_stock_data, 1)
+#' 
 #' @export
 stock_summary <- function(df, x){
   df[x,]

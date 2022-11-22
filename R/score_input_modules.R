@@ -12,7 +12,7 @@
 #' @returns 
 #' The server returns the score type, or NULL if it is invalid.
 #' 
-#' @rdname score_type_module
+#' @name score_type_module
 #' @export
 score_type_ui <- function(id){
   ns <- NS(id)
@@ -21,7 +21,7 @@ score_type_ui <- function(id){
   ))
 }
 
-#' @rdname score_type_module
+#' @name score_type_module
 #' @export
 score_type_server <- function(id, reset, editing_row){
   moduleServer(id, function(input, output, session){
@@ -59,7 +59,7 @@ score_type_server <- function(id, reset, editing_row){
 #' @returns 
 #' The server returns the three inputs.
 #' 
-#' @rdname universal_score_module
+#' @name universal_score_module
 #' @export
 universal_score_ui <- function(id){
   ns <- NS(id)
@@ -71,7 +71,7 @@ universal_score_ui <- function(id){
   )
 }
 
-#' @rdname universal_score_module
+#' @name universal_score_module
 #' @export
 universal_score_server <- function(id, data, reset, editing_row){
   moduleServer(id, function(input, output, session){
@@ -132,7 +132,7 @@ universal_score_server <- function(id, data, reset, editing_row){
 #' A [tibble::tibble_row()] containing the two inputs, or NULL if any are 
 #' invalid.
 #'
-#' @rdname linear_score_module
+#' @name linear_score_module
 #' @export
 linear_score_ui <- function(id) {
   ns <- NS(id)
@@ -142,7 +142,7 @@ linear_score_ui <- function(id) {
   )
 }
 
-#' @rdname linear_score_module
+#' @name linear_score_module
 #' @export
 linear_score_server <- function(id, column, reset, editing_row) {
   moduleServer(id, function(input, output, session) {
@@ -195,7 +195,7 @@ linear_score_server <- function(id, column, reset, editing_row) {
 #' A [tibble::tibble_row()] containing the four inputs, or NULL if any are 
 #' invalid.
 #' 
-#' @rdname peak_score_module
+#' @name peak_score_module
 #' @export
 peak_score_ui <- function(id) {
   ns <- NS(id)
@@ -207,7 +207,7 @@ peak_score_ui <- function(id) {
   )
 }
 
-#' @rdname peak_score_module
+#' @name peak_score_module
 #' @export
 peak_score_server <- function(id, column, reset, editing_row) {
   moduleServer(id, function(input, output, session) {
@@ -284,7 +284,7 @@ peak_score_server <- function(id, column, reset, editing_row) {
 #' A [tibble::tibble_row()] containing the four inputs, or NULL if any are 
 #' invalid.
 #' 
-#' @rdname exponential_score_module
+#' @name exponential_score_module
 #' @export
 exponential_score_ui <- function(id) {
   ns <- NS(id)
@@ -299,7 +299,7 @@ exponential_score_ui <- function(id) {
   )
 }
 
-#' @rdname exponential_score_module
+#' @name exponential_score_module
 #' @export
 exponential_score_server <- function(id, reset, editing_row) {
   moduleServer(id, function(input, output, session) {

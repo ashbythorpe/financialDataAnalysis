@@ -1,3 +1,14 @@
+#' View a text summary of a column
+#' 
+#' A shiny module that displays a text summary of a selected numeric column.
+#' 
+#' @param id The namespace of the module.
+#' @param column The column to summarise, in vector form.
+#' 
+#' @seealso [col_summary()]
+#' 
+#' @name col_summary_module
+#' @export
 col_summary_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -7,6 +18,8 @@ col_summary_ui <- function(id) {
   )
 }
 
+#' @name col_summary_module
+#' @export
 col_summary_server <- function(id, column) {
   moduleServer(id, function(input, output, session) {
     # Summarise the given column
@@ -18,11 +31,26 @@ col_summary_server <- function(id, column) {
   })
 }
 
+#' View a graphical summary of a score
+#' 
+#' A shiny module that allows the user to view a plot of how the score they are
+#' currently creating will look.
+#' 
+#' @param id The namespace of the module.
+#' @param column The column being scored.
+#' @param score_spec The score currently being created.
+#' 
+#' @seealso [score_summary()]
+#' 
+#' @name score_summary_module
+#' @export
 score_summary_ui <- function(id) {
   ns <- NS(id)
   plotly::plotlyOutput(ns("plot"))
 }
 
+#' @name score_summary_module
+#' @export
 score_summary_server <- function(id, column, score_spec) {
   moduleServer(id, function(input, output, session) {
     # Make sure the plot doesn't generate unnecessarily
@@ -67,11 +95,25 @@ score_summary_server <- function(id, column, score_spec) {
   })
 }
 
+#' View a summary of a selected stock
+#' 
+#' A shiny module that allows the user to see a tabular summary of a stock they
+#' have selected.
+#' 
+#' @param id The namespace of the module.
+#' @param stock The stock that has been selected.
+#' 
+#' @seealso [stock_summary()]
+#' 
+#' @name stock_summary_module
+#' @export
 stock_summary_ui <- function(id) {
   ns <- NS(id)
   reactable::reactableOutput(ns("summary"))
 }
 
+#' @name stock_summary_module
+#' @export
 stock_summary_server <- function(id, stock) {
   moduleServer(id, function(input, output, session) {
     stock_row <- reactive({

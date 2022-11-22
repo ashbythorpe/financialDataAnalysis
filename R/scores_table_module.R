@@ -1,3 +1,17 @@
+#' View the table of scores
+#' 
+#' A shiny module that allows the user to view, edit and delete created score
+#' specifications.
+#' 
+#' @param id The namespace of the module.
+#' @param scores The data frame of score specifications created by the user. See
+#'   [scores_init].
+#' 
+#' @returns 
+#' The server returns the edited and deleted scores.
+#' 
+#' @name scores_table_module
+#' @export
 scores_table_ui <- function(id) {
   ns <- NS(id)
   # Only show the table if there is at least one score
@@ -17,6 +31,8 @@ scores_table_ui <- function(id) {
   )
 }
 
+#' @name scores_table_module
+#' @export
 scores_table_server <- function(id, scores) {
   moduleServer(id, function(input, output, session) {
     # Update the UI to show the table if there are scores and vice versa

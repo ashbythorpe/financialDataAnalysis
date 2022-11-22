@@ -1,3 +1,41 @@
+#' A large table of stock data
+#' 
+#' A large amount of data fetched from 'iex.cloud' about almost 500 stocks.
+#' Each row represents a stock
+#' 
+#' @examples 
+#' default_stock_data
+#' 
+"default_stock_data"
+
+#' Stock price training data
+#' 
+#' A set of tables containing the stock price and the residuals of the Prophet
+#' model over a daily or monthly period. This data was used to train the 
+#' LightGBM model.
+#' 
+#' @format 
+#' A tibble with 63,617 / 57,793 rows and 4 variables.
+#' \describe{
+#'   \item{ticker}{The ticker/symbol of the stock}
+#'   \item{ref_date}{The date on which the price was recorded}
+#'   \item{price}{The price of the stock (USD)}
+#'   \item{residuals}{The residuals (difference between predictions and actual 
+#'   price) of the Prophet model}
+#' }
+#' 
+#' @seealso [prophet_model] [get_lightgbm_model()]
+#' 
+#' @examples 
+#' daily_training_data
+#' monthly_training_data
+#' 
+#' @name training_data
+"daily_training_data"
+
+#' @name training_data
+"monthly_training_data"
+
 #' A table of score specifications
 #' 
 #' The initial state of a table where each row represents a specification of a
@@ -73,19 +111,29 @@
 
 #' Predict the price of a stock over time
 #' 
-#' Use a Prophet model to predict the price of a stock over time.
+#' Use a Prophet model to predict the price of a stock over time. Use 
+#' `daily_prophet_model` for daily predictions, and `monthly_prophet_model` for
+#' monthly predictions.
 #' 
+#' @format 
+#' A tibble with 491 / 470 rows and 3 variables.
+#' \describe{
+#'   \item{ticker}{The ticker that the model was fitted on}
+#'   \item{data}{The training data that the model was fitted on}
+#'   \item{fit}{The fitted Prophet model object}
+#' }
 #' 
-#' @rdname prophet_model
+#' @details 
+#' Each model was fitted on the time series data for an individual stock.
+#' 
+#' @seealso [predict_price()] [get_lightgbm_model()]
+#' 
+#' @examples 
+#' daily_prophet_model
+#' monthly_prophet_model
+#' 
+#' @name prophet_models
 "daily_prophet_model"
 
-
-
-#' @include get_lightgbm_model.R
-#' 
-#' @export
-daily_lightgbm_model <- get_lightgbm_model("daily")
-
-#'
-#' @export
-monthly_lightgbm_model <- get_lightgbm_model("monthly")
+#' @name prophet_models
+"monthly_prophet_model"

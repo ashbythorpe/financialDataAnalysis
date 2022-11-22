@@ -1,3 +1,7 @@
+fix_names <- function(df, scores) {
+  new_names <- vctrs::vec_as_names(c(scores$score_name, colnames(df)), quiet = T)
+}
+
 parent_ns <- function(id){
   id %>%
     stringr::str_remove(paste0("\\Q", ns.sep, "\\E[:alpha:]+_[:digit:]+$")) %>%

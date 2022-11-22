@@ -1,3 +1,15 @@
+#' Search and select a stock.
+#' 
+#' A shiny module that allows the user to search through stocks using the ticker
+#' and name of the stock.
+#' 
+#' @param id The namespace of the module
+#' 
+#' @returns 
+#' The server returns the selected stock.
+#' 
+#' @name search_bar_module
+#' @export
 search_bar_ui <- function(id) {
   ns <- NS(id)
   shinyWidgets::pickerInput(
@@ -11,6 +23,8 @@ search_bar_ui <- function(id) {
   )
 }
 
+#' @name search_bar_module
+#' @export
 search_bar_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     stock <- reactive({

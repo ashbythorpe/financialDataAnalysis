@@ -1,3 +1,39 @@
+#' Plot the spread of a set of scores
+#' 
+#' Use a boxplot and jitter plot to display the spread and arrangement of a set
+#' of scores. Can often be used to view non-useful scores, where the majority
+#' of the scores are the same.
+#' 
+#' @param scores A data frame containing a set of numerical scores. If your data
+#'   frame has been scored using [apply_scores()], use [get_scores()] to extract
+#'   the actual scores.
+#'   
+#' @details
+#' Scores must be between 0 and 1.
+#' 
+#' @returns 
+#' A [ggplot2::ggplot()] object.
+#' 
+#' @seealso [score_performance()]
+#' 
+#' @examples 
+#' data <- tibble::tibble(
+#'   x = 1:10
+#' )
+#' 
+#' scores <- create_score(
+#'   scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+#'   weight = 1, lb = 1, ub = 6, exponential = FALSE
+#' )
+#' scores <- create_score(
+#'   scores, score_type = "Peak", colname = "x", score_name = "Peak score",
+#'   weight = 2, lb = 2, ub = 8, centre = 5, inverse = FALSE,
+#'   exponential = FALSE
+#' )
+#' 
+#' scored <- apply_scores(data, scores)
+#' score_distributions(get_scores(scored, scores, final_score = FALSE))
+#' 
 #' @export
 score_distributions <- function(scores){
   if(is.null(scores)){
@@ -10,9 +46,46 @@ score_distributions <- function(scores){
     ggplot2::geom_jitter() +
     ggplot2::facet_grid(.~name) +
     ggplot2::scale_x_discrete(breaks = NULL, position = "top") +
-    ggplot2::labs(x = "Score name", y = "Score")
+    ggplot2::labs(x = "Score name", y = "Score") +
+    ggplot2::ylim(0, 1)
 }
 
+#' Compare a set of scores to a column
+#' 
+#' Plot a line graph of a set of scores against a single column in a data frame.
+#' Can be used to evaluate whether a score is useful in determining some other
+#' factor.
+#' 
+#' @param df A data frame to be plotted.
+#' @param colname The name of the column to plot.
+#' @param scores A data frame containing a set of numerical scores. If your data
+#'   frame has been scored using [apply_scores()], use [get_scores()] to extract
+#'   the actual scores.
+#'
+#' @seealso [score_distributions()]
+#' 
+#' @examples 
+#' data <- tibble::tibble(
+#'   x = 1:10
+#' )
+#' 
+#' scores <- create_score(
+#'   scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+#'   weight = 1, lb = 1, ub = 6, exponential = FALSE
+#' )
+#' scores <- create_score(
+#'   scores, score_type = "Peak", colname = "x", score_name = "Peak score",
+#'   weight = 2, lb = 2, ub = 8, centre = 5, inverse = FALSE,
+#'   exponential = FALSE
+#' )
+#' 
+#' scored <- apply_scores(data, scores)
+#' score_performance(
+#'   scored, 
+#'   colname = "x",
+#'   scores = get_scores(scored, scores, final_score = FALSE)
+#' )
+#' 
 #' @export
 score_performance <- function(df, colname, scores){
   if(is.null(colname) || !colname %in% colnames(df) || 
@@ -25,5 +98,6 @@ score_performance <- function(df, colname, scores){
     tidyr::pivot_longer(-tidyselect::any_of(colname)) %>%
     ggplot2::ggplot(ggplot2::aes(x = value, y = .data[[colname]], 
                                  color = name)) +
-    ggplot2::geom_line()
+    ggplot2::geom_line() +
+    ggplot2::ylim(0, 1)
 }

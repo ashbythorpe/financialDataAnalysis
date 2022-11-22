@@ -23,10 +23,8 @@ predict_residuals_daily <- function(stock, dates, preds) {
 
 predict_residuals_monthly <- function(stock, dates, preds) {
   # Make sure dates line up correctly
-  data <- dplyr::filter(monthly_stock_data, ticker == stock) %>%
-    dplyr::rename(ds = "ref_date") %>%
-    dplyr::left_join(preds, by = "ds") %>%
-    dplyr::mutate(residuals = price_adjusted - yhat)
+  data <- dplyr::filter(monthly_training_data, ticker == stock) %>%
+    dplyr::rename(ds = "ref_date")
   
   horizon <- lubridate::interval(
     max(data$ds),

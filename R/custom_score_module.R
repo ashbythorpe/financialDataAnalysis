@@ -9,11 +9,11 @@
 #' The module's initial state uses two coordinates to create a linear score.
 #' 
 #' @returns 
-#' The server returns a validated tibble of coordinates.
+#' The server returns a validated [tibble::tibble()] of coordinates.
 #' 
 #' @seealso [custom_row_module]
 #' 
-#' @rdname custom_score_module
+#' @name custom_score_module
 #' @export
 custom_score_ui <- function(id){
   ns <- NS(id)
@@ -28,7 +28,7 @@ custom_score_ui <- function(id){
   )
 }
 
-#' @rdname custom_score_module
+#' @name custom_score_module
 #' @export
 custom_score_server <- function(id, column, reset, editing_row){
   moduleServer(id, function(input, output, session){
@@ -170,7 +170,7 @@ custom_score_server <- function(id, column, reset, editing_row){
 #' single set of coordinates) of a custom score.
 #' 
 #' @param id The namespace of the module.
-#' @param n The row number.
+#' @param n The row number - unique for every row.
 #' @param x The initial value of the x coordinate.
 #' @param y The initial value of the y coordinate.
 #' 
@@ -186,7 +186,7 @@ custom_score_server <- function(id, column, reset, editing_row){
 #' 
 #' @seealso [custom_score_module]
 #' 
-#' @rdname custom_row_module
+#' @name custom_row_module
 #' @export
 custom_row_ui <- function(id, n, x = 0, y = 0) {
   ns <- NS(id)
@@ -226,7 +226,7 @@ custom_row_ui <- function(id, n, x = 0, y = 0) {
   )
 }
 
-#' @rdname custom_row_module
+#' @name custom_row_module
 #' @export
 custom_row_server <- function(id) {
   moduleServer(id, function(input, output, session) {

@@ -1,4 +1,112 @@
 url: https://ashbythorpe.github.io/financialDataAnalysis/
 template:
   bootstrap: 5
+reference:
+- title: Financial Data Analysis
+  desc: Run the app
+- contents:
+  - financialDataAnalysis
+  - ui
+  - server
+- title: Home
+  desc: The home page, with basic information about the application.
+- subtitle: Modules
+- contents:
+  - home_module
+- title: Input Data
+  desc: Allows the user to input files and converts them to data frames.
+- subtitle: Modules
+- contents:
+  - data_input_module
+- subtitle: Functions
+- contents:
+  - input_data
+- title: Create scores
+  desc: Allows the user to create, edit and delete score specifications.
+- subtitle: Modules
+- contents:
+  - create_scores_module
+  - score_type_module
+  - universal_score_module
+  - linear_score_module
+  - peak_score_module
+  - custom_score_module
+  - custom_row_module
+  - exponential_score_module
+  - col_summary_module
+  - editing_module
+  - scores_table_module
+  - score_summary_module
+- subtitle: Functions
+- contents:
+  - create_score
+  - delete_scores
+  - apply_scores
+  - score_final
+  - col_summary
+  - score_summary
+- title: View Data
+  desc: Allows the user to view, filter and sort their scored data.
+- subtitle: Modules
+- contents:
+  - view_data_module
+  - create_filter_module
+  - filters_module
+  - filter_module
+  - data_module
+- subtitle: Functions
+- contents:
+  - add_filter
+  - edit_filter
+  - remove_filter
+  - apply_filters
+  - sort_df
+- title: Forecast Prices
+  desc: Allows the user to search for and predict the price of a set of stocks.
+- subtitle: Modules
+- contents:
+  - forecast_price_module
+  - search_bar_module
+  - stock_summary_module
+  - predict_price_module
+- subtitle: Functions
+- contents:
+  - search_stocks
+  - stock_summary
+  - predict_price
+  - plot_predictions
+- title: Plot data
+  desc: Allows the user to create a variety of plots
+- subtitle: Modules
+- contents:
+  - plot_data_module
+  - score_performance_module
+  - custom_plot_module
+  - custom_plot_modules
+  - plot_module
+- subtitle: Functions
+- contents:
+  - score_distributions
+  - score_performance
+  - custom_plot
+- title: Other functions
+- contents:
+  - fDA_dependencies
+  - download_df
+  - favourite_stock
+  - get_scores
+- title: Datasets
+- contents:
+  - default_stock_data
+  - training_data
+  - scores_init
+  - filters_init
+- title: Models
+  desc: The predictive models used to predict stock prices.
+- contents:
+  - prophet_models
+  - get_lightgbm_model
+
+  
+
 

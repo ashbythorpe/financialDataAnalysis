@@ -1,9 +1,28 @@
+#' Input a column to generate a score performance plot
+#' 
+#' A shiny module that allows the user to select a column to use for the score
+#' performance plot.
+#' 
+#' @param id The namespace of the module.
+#' @param data The data to plot.
+#' @param scores The data frame of score specifications created by the user. See
+#'   [scores_init].
+#' 
+#' @returns 
+#' The server returns the selected column name.
+#' 
+#' @seealso [score_performance()]
+#' 
+#' @name score_performance_module   
+#' @export
 score_performance_ui <- function(id) {
   ns <- NS(id)
   selectInput(ns("colname"), label = "Column to compare against", 
               choices = c(""))
 }
 
+#' @name score_performance_module   
+#' @export
 score_performance_server <- function(id, data, scores) {
   moduleServer(id, function(input, output, session) {
     observe({

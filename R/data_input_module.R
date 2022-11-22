@@ -12,7 +12,7 @@
 #' The server returns the data frame that has been uploaded (or the default
 #' stock data).
 #' 
-#' @rdname data_input_module
+#' @name data_input_module
 #' @export
 data_input_ui <- function(id){
   ns <- NS(id)
@@ -33,7 +33,7 @@ data_input_ui <- function(id){
   )
 }
 
-#' @rdname data_input_module
+#' @name data_input_module
 #' @export
 data_input_server <- function(id){
   moduleServer(id, function(input, output, session){

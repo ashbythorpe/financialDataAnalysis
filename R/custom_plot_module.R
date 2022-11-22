@@ -15,7 +15,7 @@
 #' * [custom_plot()]
 #' * The modules for the different custom plot types: [custom_plot_modules]
 #' 
-#' @rdname custom_plot_module
+#' @name custom_plot_module
 #' @export
 custom_plot_ui <- function(id) {
   ns <- NS(id)
@@ -41,7 +41,7 @@ custom_plot_ui <- function(id) {
   )
 }
 
-#' @rdname custom_plot_module
+#' @name custom_plot_module
 #' @export
 custom_plot_server <- function(id, custom, data) {
   moduleServer(id, function(input, output, session) {
@@ -95,7 +95,7 @@ custom_plot_server <- function(id, custom, data) {
 #' 
 #' @seealso [custom_plot_module]
 #' 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 line_graph_ui <- function(id) {
   ns <- NS(id)
@@ -106,7 +106,7 @@ line_graph_ui <- function(id) {
   )
 }
 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 line_graph_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
@@ -134,7 +134,7 @@ line_graph_server <- function(id, data) {
   })
 }
 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 scatter_graph_ui <- function(id) {
   ns <- NS(id)
@@ -147,7 +147,7 @@ scatter_graph_ui <- function(id) {
   )
 }
 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 scatter_graph_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {
@@ -185,7 +185,7 @@ scatter_graph_server <- function(id, data) {
   })
 }
 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 histogram_ui <- function(id) {
   ns <- NS(id)
@@ -196,7 +196,7 @@ histogram_ui <- function(id) {
   )
 }
 
-#' @rdname custom_plot_modules
+#' @name custom_plot_modules
 #' @export
 histogram_server <- function(id, data) {
   moduleServer(id, function(input, output, session) {

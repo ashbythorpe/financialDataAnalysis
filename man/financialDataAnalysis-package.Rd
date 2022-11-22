@@ -4,9 +4,9 @@
 \name{financialDataAnalysis-package}
 \alias{financialDataAnalysis}
 \alias{financialDataAnalysis-package}
-\title{financialDataAnalysis: What the Package Does (One Line, Title Case)}
+\title{financialDataAnalysis: A shiny app for scoring, viewing and plotting financial data.}
 \description{
-What the package does (one paragraph).
+Score, view and plot data. The package includes a rich default dataset of stock data, but allows the user to upload their own data. A predictive model is included to forecast the price of a stock over time.
 }
 \seealso{
 Useful links:
