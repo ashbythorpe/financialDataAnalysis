@@ -159,6 +159,7 @@ problem.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1</span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="va">file_2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
 <span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 106</span></span></span>
 <span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ CEO   secur…⁵ sector prima…⁶</span></span>
@@ -185,6 +186,7 @@ together. This is done in a way such that all data is preserved and the
 function never errors.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 6</span></span></span>
 <span><span class="co">#&gt;        x     y `&lt;?xml`                                   versi…¹ encod…² stand…³</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
@@ -199,8 +201,8 @@ function never errors.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>&lt;Types<span style="color: #949494;">"</span>                                  <span style="color: #949494;">"</span>xmlns… <span style="color: #949494;">"</span>Exten… <span style="color: #949494;">"</span>Conte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span> ContentType=\"application/xml\"/&gt;&lt;Over… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span> PartName=\"/xl/styles.xml\"<span style="color: #949494;">"</span>            <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>ContentType=\"application/xml\"/&gt;&lt;Overr… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>PartName=\"/xl/styles.xml\"<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​`version="1.0"`, ²​`encoding="UTF-8"`,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ³​`standalone="yes"?&gt;`</span></span></span></code></pre></div>
 <p>The function also has a <code>combine</code> argument, which allows
@@ -229,6 +231,7 @@ you want to add more rows or columns to the data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   depreciation &lt;dbl&gt;, filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   netBorrowings &lt;dbl&gt;, netIncome &lt;dbl&gt;, reportDate &lt;dbl&gt;, …</span></span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span>, combine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 510 × 112</span></span></span>
 <span><span class="co">#&gt;        x     y `&lt;?xml` version=…¹ encod…² stand…³ symbol compa…⁴ excha…⁵ indus…⁶</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
@@ -710,7 +713,7 @@ function.</p>
 function.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/score_distributions.html">score_distributions</a></span><span class="op">(</span><span class="va">actual_scores</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 43 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 36 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
 <p><img src="prototype2_files/figure-html/score_distributions-1.png" width="700"></p>
 <p>Here we can see that most of the column values produced a single
 score, so we may want to change our score specifications to be more
