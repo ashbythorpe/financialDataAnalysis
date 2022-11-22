@@ -78,3 +78,6 @@ data <- tibble::tibble(
 custom_plot(data, "line", x = "a", y = "b")
 
 }
+\seealso{
+\code{\link[=print_plot]{print_plot()}}
+}

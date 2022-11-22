@@ -61,12 +61,18 @@ read_file <- function(file){
   format <- file_format(file)
   tryCatch(
     {
-      if(format == "CSV"){
-        suppressMessages(readr::read_csv(file, show_col_types = F, progress = F))
-      } else if(format == "Excel"){
-        suppressMessages(readxl::read_excel(file, progress = F))
+      if(format == "Excel"){
+        readxl::read_excel(file, progress = F)
+      } else if(format == "DTA") {
+        haven::read_dta(file)
+      } else if(format == "SPSS") {
+        haven::read_spss(file)
+      } else if(format == "SAS") {
+        haven::read_sas(file)
+      } else if(format == "XPT") {
+        haven::read_xpt(file)
       } else{
-        suppressMessages(readr::read_delim(file, show_col_types = F, progress = F))
+        vroom::vroom(file, progress = FALSE, show_col_types = FALSE)
       }
     },
     error = function(cond){
@@ -76,11 +82,24 @@ read_file <- function(file){
 }
 
 file_format <- function(file){
-  excel_formats <- c("\\.xls$", "\\.xlsx$", "\\.xlsm$", "\\.xltx$", "\\.xltm$")
-  if(stringr::str_detect(file, "\\.csv$")){
-    "CSV"
-  } else if(purrr::some(excel_formats, stringr::str_detect, string = file)){
+  ext <- stringr::str_to_lower(tools::file_ext(file))
+  if(ext %in% c("gz", "bz2", "xz", "zip")) {
+    new_file <- stringr::str_remove(file, paste0(".", ext, "$"))
+    return(file_format(new_file))
+  }
+  excel_formats <- c("xls", "xlsx", "xlsm", "xltx", "xltm")
+  if(ext %in% c("csv", "tsv", "fwf")){
+    "Delimited"
+  } else if(ext %in% excel_formats){
     "Excel"
+  } else if(ext == "dta") {
+    "DTA"
+  } else if(ext %in% c("sav", "zsav", "por")) {
+    "SPSS"
+  } else if(ext %in% c("sas7bdat", "sas7bcat")) {
+    "SAS"
+  } else if(ext == "xpt") {
+    "XPT"
   } else{
     "not recognised"
   }

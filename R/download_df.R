@@ -14,7 +14,7 @@
 #'   x = 1:10
 #' )
 #' 
-#' download_file(data, "CSV", file)
+#' download_df(data, "CSV", file)
 #' 
 #' @export
 download_df <- function(df, file_type, file){

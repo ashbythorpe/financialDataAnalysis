@@ -25,6 +25,6 @@ data <- tibble::tibble(
   x = 1:10
 )
 
-download_file(data, "CSV", file)
+download_df(data, "CSV", file)
 
 }

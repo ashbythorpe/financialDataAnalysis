@@ -21,6 +21,7 @@ data_ui <- function(id) {
       selectizeInput(ns("columns"), "Columns", choices = c(""), multiple = TRUE,
                      width = "80%", options = list(maxItems = 15)),
       downloadButton(ns("download_csv"), "Download CSV"),
+      downloadButton(ns("download_tsv"), "Download TSV"),
       downloadButton(ns("download_excel"), "Download Excel")
     ),
     reactable::reactableOutput(ns("data"))
@@ -55,7 +56,14 @@ data_server <- function(id, data) {
     output$download_csv <- downloadHandler(
       filename = "stock_data.csv",
       content = function(file) {
-        readr::write_csv(selected_data(), file)
+        vroom::vroom_write(selected_data(), file, delim = ",")
+      }
+    )
+    
+    output$download_tsv <- downloadHandler(
+      filename = "stock_data.tsv",
+      content = function(file) {
+        vroom::vroom_write(selected_data(), file)
       }
     )
     

@@ -17,7 +17,9 @@
 data_input_ui <- function(id){
   ns <- NS(id)
   accepted_files <- c(
-    ".csv", ".xls", ".xlsx", ".xlsm", ".xltx", ".xltm"
+    ".csv", ".tsv", ".fwf", ".xls", ".xlsx", ".xlsm", ".xltx", ".xltm", "dta",
+    ".sav", ".zsav", ".por", ".sas7bdat", ".sas7bcat", ".xpt", ".gz", ".bz2", 
+    ".xz", ".zip"
   )
   
   box(title = "Upload data",

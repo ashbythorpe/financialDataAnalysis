@@ -51,6 +51,8 @@
 #' 
 #' The y aesthetic of a histogram is the frequency density of the x coordinate.
 #' 
+#' @seealso [print_plot()]
+#' 
 #' @returns A [ggplot2::ggplot()] object.
 #' 
 #' @examples 
@@ -133,6 +135,16 @@ subset_plot_args <- function(args, method) {
   valid_args
 }
 
+#' Safely print a plot
+#' 
+#' Suppress all errors and warnings while printing a plot.
+#' 
+#' @param plot The plot to print.
+#' 
+#' @seealso [custom_plot()]
+#' 
+#' @returns `plot`
+#' 
 #' @export
 print_plot <- function(plot) {
   suppressWarnings(purrr::possibly(print, otherwise = NULL)(plot))

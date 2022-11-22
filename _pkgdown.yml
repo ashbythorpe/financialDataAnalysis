@@ -89,6 +89,7 @@ reference:
   - score_distributions
   - score_performance
   - custom_plot
+  - print_plot
 - title: Other functions
 - contents:
   - fDA_dependencies

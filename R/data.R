@@ -24,7 +24,7 @@
 #'   price) of the Prophet model}
 #' }
 #' 
-#' @seealso [prophet_model] [get_lightgbm_model()]
+#' @seealso [prophet_models] [get_lightgbm_model()]
 #' 
 #' @examples 
 #' daily_training_data

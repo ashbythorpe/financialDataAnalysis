@@ -1,5 +1,5 @@
 Package: financialDataAnalysis
-Title: A shiny app for scoring, viewing and plotting financial data.
+Title: A shiny app for scoring, viewing and plotting financial data
 Version: 0.0.0.9000
 Authors@R: 
     person("Ashby", "Thorpe", , "ashbythorpe@gmail.com", role = c("aut", "cre"),
@@ -25,6 +25,7 @@ Imports:
     generics,
     ggplot2,
     glue,
+    haven,
     htmltools,
     lightgbm,
     lubridate,
@@ -46,8 +47,10 @@ Imports:
     tidyr,
     tidyselect,
     timetk,
+    tools,
     utils,
     vctrs,
+    vroom,
     withr,
     workflows,
     writexl

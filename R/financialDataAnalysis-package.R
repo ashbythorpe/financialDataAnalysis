@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @aliases financialDataAnalysis-package
 "_PACKAGE"
 
 ## usethis namespace: start

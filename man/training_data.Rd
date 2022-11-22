@@ -34,6 +34,6 @@ monthly_training_data
 
 }
 \seealso{
-\link{prophet_model} \code{\link[=get_lightgbm_model]{get_lightgbm_model()}}
+\link{prophet_models} \code{\link[=get_lightgbm_model]{get_lightgbm_model()}}
 }
 \keyword{datasets}
