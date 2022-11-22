@@ -16,21 +16,204 @@
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/articles/prototype1.html</loc>
   </url>
   <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/articles/prototype2.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/articles/prototype3.html</loc>
+  </url>
+  <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/authors.html</loc>
   </url>
   <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/index.html</loc>
   </url>
   <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/add_filter.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/apply_filters.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/apply_scores.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/col_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/col_summary_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/create_filter_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/create_score.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/create_scores_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/custom_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/custom_plot_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/custom_plot_modules.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/custom_row_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/custom_score_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/data_input_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/data_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/default_stock_data.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/delete_scores.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/download_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/edit_filter.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/editing_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/exponential_score_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/fDA_dependencies.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/favourite_stock.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/filter_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/filters_init.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/filters_module.html</loc>
+  </url>
+  <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/financialDataAnalysis-package.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/financialDataAnalysis.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/forecast_price_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/get_lightgbm_model.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/get_scores.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/home_module.html</loc>
   </url>
   <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/input_data.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/linear_score_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/peak_score_module.html</loc>
+  </url>
+  <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/prophet_model.html</loc>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/plot_data_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/plot_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/plot_predictions.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/predict_price.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/predict_price_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/prophet_models.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/remove_filter.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_distributions.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_final.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_performance.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_performance_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_summary_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/score_type_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/scores_init.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/scores_table_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/search_bar_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/search_stocks.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/server.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/sort_df.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/stock_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/stock_summary_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/training_data.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/ui.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/universal_score_module.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/view_data_module.html</loc>
   </url>
 </urlset>

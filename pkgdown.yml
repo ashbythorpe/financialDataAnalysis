@@ -3,7 +3,9 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   prototype1: prototype1.html
-last_built: 2022-11-16T19:19Z
+  prototype2: prototype2.html
+  prototype3: prototype3.html
+last_built: 2022-11-22T21:19Z
 urls:
   reference: https://ashbythorpe.github.io/financialDataAnalysis/reference
   article: https://ashbythorpe.github.io/financialDataAnalysis/articles
