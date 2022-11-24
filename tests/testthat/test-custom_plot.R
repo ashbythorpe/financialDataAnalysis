@@ -1,3 +1,46 @@
+test_that("custom_plot works", {
+  skip_on_ci()
+  df <- tibble::tibble(x = c(1,2,3,4,5,6), y = rep(letters[1:3], 2))
+  custom_plot(df, NULL) %>%
+    expect_null()
+  custom_plot(df, "aaa") %>%
+    expect_null()
+  custom_plot(df, "line", x = "z", y = "a") %>%
+    expect_null()
+  custom_plot(df, "line", x = "x", y = "z") %>%
+    expect_null()
+  custom_plot(df, "line", x = "x", y = "x", colour = "x") %>%
+    vdiffr::expect_doppelganger(title = "Custom line plot")
+  custom_plot(df, "scatter", x = "x", y = "y", colour = "y", size = "x", 
+              shape = "y") %>%
+    vdiffr::expect_doppelganger(title = "Custom scatter plot")
+  plot <- custom_plot(df, "histogram", x = "x", y = "y")
+  plot2 <- custom_plot(df, "histogram", x = "x", y = "y", size = "z")
+  expect_equal(plot, plot2)
+  
+  # Evaluating the plot changes it, so this must be after the expect_equal call
+  vdiffr::expect_doppelganger("Custom histogram plot", plot)
+  
+  custom_plot(df, "line", x = "x", y = "x", opacity = 0.5) %>%
+    vdiffr::expect_doppelganger(title = "Half opacity")
+  custom_plot(df, "line", x = "x", y = "x", size = 10) %>%
+    vdiffr::expect_doppelganger(title = "Large line width")
+  custom_plot(df, "scatter", x = "x", y = "x", size = 10) %>%
+    vdiffr::expect_doppelganger(title = "Large point size")
+  custom_plot(df, "scatter", x = "x", y = "y", jitter = TRUE) %>%
+    vdiffr::expect_doppelganger(title = "Jitter")
+  custom_plot(df, "histogram", y = "x", bins = 10) %>%
+    vdiffr::expect_doppelganger(title = "Custom histogram")
+  custom_plot(df, "smooth", x = "x", y = "x", span = 10) %>%
+    vdiffr::expect_doppelganger(title = "Smoothed plot")
+  custom_plot(df, "area", x = "x", y = "x", fill = "y", colour = "y", 
+              opacity = 0.75) %>%
+    vdiffr::expect_doppelganger(title = "Area plot")
+  custom_plot(df, "hex", x = "x", y = "x", fill = "y", bins = 10) %>%
+    vdiffr::expect_doppelganger(title = "Hex plot")
+  custom_plot(df, "line", x = "x", y = "x", alpha = "x")
+})
+
 test_that("validate_plotting_method works", {
   validate_plotting_method(NULL) %>%
     expect_null()

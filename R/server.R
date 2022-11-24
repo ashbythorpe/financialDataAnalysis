@@ -27,9 +27,3 @@ server <- function(input, output, session) {
   
   plot_data_server("plot_data", scored_data, scores)
 }
-
-server <- function(input, output, session) {
-  print(session)
-  print(class(session))
-  print(typeof(session))
-}

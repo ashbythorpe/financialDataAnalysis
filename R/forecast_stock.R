@@ -1,4 +1,5 @@
-forecast_stock_daily <- function(object, stock, horizon, training_data) {
+forecast_stock_daily <- function(object, stock, horizon, training_data, 
+                                 hostess, r) {
   if (horizon <= 0) {
     return(NULL)
   }
@@ -6,19 +7,24 @@ forecast_stock_daily <- function(object, stock, horizon, training_data) {
   iterations <- horizon %/% 7 + (horizon %% 7 != 0)
   remove_from_end <- (7 - horizon %% 7) * (horizon %% 7 != 0)
   
+  inc <- r / iterations
+  
+  inc <- c(inc[1], diff(round(cumsum(inc), 2)))
+  
   data <- training_data %>%
     dplyr::filter(ticker == stock) %>%
     dplyr::arrange(ds)
   
   purrr::reduce(
     seq_len(iterations), .init = data,
-    predict_iteration_daily, object = object
+    predict_iteration_daily, object = object,
+    hostess = hostess, inc = inc
   ) %>%
     dplyr::slice(-1:-nrow(data)) %>%
     dplyr::slice_head(n = -remove_from_end)
 }
 
-predict_iteration_daily <- function(data, n, object) {
+predict_iteration_daily <- function(data, n, object, hostess, inc) {
   ticker <- data$ticker[1]
   max <- max(data$ds)
   
@@ -33,6 +39,8 @@ predict_iteration_daily <- function(data, n, object) {
   
   pred <- stats::predict(object, pred_data)
   
+  hostess$inc(unname(inc * 100))
+  
   dplyr::add_row(
     data,
     ticker = ticker,
@@ -41,7 +49,8 @@ predict_iteration_daily <- function(data, n, object) {
   )
 }
 
-forecast_stock_monthly <- function(object, stock, horizon, training_data) {
+forecast_stock_monthly <- function(object, stock, horizon, training_data, 
+                                   hostess, r) {
   if (horizon <= 0) {
     return(NULL)
   }
@@ -49,19 +58,24 @@ forecast_stock_monthly <- function(object, stock, horizon, training_data) {
   iterations <- horizon %/% 6 + (horizon %% 6 != 0)
   remove_from_end <- (6 - horizon %% 6) * (horizon %% 6 != 0)
   
+  inc <- r / iterations
+  
+  inc <- c(inc[1], diff(round(cumsum(inc))))
+  
   data <- training_data %>%
     dplyr::filter(ticker == stock) %>%
     dplyr::arrange(ds)
   
   purrr::reduce(
     seq_len(iterations), .init = data,
-    predict_iteration_monthly, object = object
+    predict_iteration_monthly, object = object,
+    hostess = hostess, inc = inc
   ) %>%
     dplyr::slice(-1:-nrow(data)) %>%
     dplyr::slice_head(n = -remove_from_end)
 }
 
-predict_iteration_monthly <- function(data, n, object) {
+predict_iteration_monthly <- function(data, n, object, hostess, inc) {
   ticker <- data$ticker[1]
   max <- max(data$ds)
   
@@ -77,6 +91,8 @@ predict_iteration_monthly <- function(data, n, object) {
     dplyr::slice_tail(n = 6)
   
   pred <- stats::predict(object, pred_data)
+  
+  hostess$inc(unname(inc * 100))
   
   dplyr::add_row(
     data,

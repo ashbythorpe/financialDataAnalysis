@@ -120,7 +120,7 @@ test_that("read_file works", {
 
 test_that("file_format works", {
   file_format("x.csv") %>%
-    expect_equal("CSV")
+    expect_equal("Delimited")
   purrr::map(list("x.xls", "x.xlsm", "x.csv.xls", "x.xlsx", "x.xltx", "x.xltm"), file_format) %>%
     purrr::walk(expect_equal, "Excel") #since the return value from expect_equal should not be shown
   file_format("x.aaa") %>%

@@ -19,19 +19,20 @@ ui <- function() {
                icon = icon("chart-line")),
       menuItem("Plot data", tabName = "plot_data", icon = icon("chart-simple"))
     )),
-    dashboardBody(tabItems(
-      tabItem("home",
-              home_ui()),
-      tabItem("data_input",
-              data_input_ui("data_input")),
-      tabItem("create_scores",
-              create_scores_ui("create_scores")),
-      tabItem("view_data",
-              view_data_ui("view_data")),
-      tabItem("forecast_price",
-              forecast_price_ui("forecast_price")),
-      tabItem("plot_data",
-              plot_data_ui("plot_data"))
-    )),
-  ), fDA_dependencies())
+    dashboardBody(
+      tabItems(
+        tabItem("home",
+                home_ui()),
+        tabItem("data_input",
+                data_input_ui("data_input")),
+        tabItem("create_scores",
+                create_scores_ui("create_scores")),
+        tabItem("view_data",
+                view_data_ui("view_data")),
+        tabItem("forecast_price",
+                forecast_price_ui("forecast_price")),
+        tabItem("plot_data",
+                plot_data_ui("plot_data"))
+      )),
+  ), fDA_dependencies(), waiter::waiterPreloader(waiter::spin_loaders(12)))
 }

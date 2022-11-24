@@ -23,7 +23,9 @@ fDA_dependencies <- function(){
       src = c(href = "https://cdnjs.cloudflare.com/ajax/libs"),
       script = "underscore.js/1.13.6/underscore-umd-min.js"
     ),
-    shinyjs::useShinyjs()
+    shinyjs::useShinyjs(),
+    waiter::useWaiter(),
+    waiter::useHostess()
   )
 }
 

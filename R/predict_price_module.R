@@ -33,7 +33,12 @@ predict_price_ui <- function(id) {
         )
       )
     ),
-    plotly::plotlyOutput(ns("plot"))
+    actionButton(ns("predict"), "Predict prices"),
+    br(),
+    div(
+      id = "predict_waiter",
+      plotly::plotlyOutput(ns("plot"))
+    )
   )
 }
 
@@ -41,6 +46,15 @@ predict_price_ui <- function(id) {
 #' @export
 predict_price_server <- function(id, stock) {
   moduleServer(id, function(input, output, session) {
+    hostess <- waiter::Hostess$new()
+    
+    print(hostess$.__enclos_env__$private$.id)
+    
+    waiter <- waiter::Waiter$new(
+      "predict_waiter",
+      html = hostess$get_loader(stroke_color = "#ffffff")
+    )
+    
     observe({
       if(input$frequency %in% c("daily", "monthly")) {
         updateTabsetPanel(session, "wizard", input$frequency)
@@ -48,6 +62,7 @@ predict_price_server <- function(id, stock) {
     })
     
     plot <- reactive({
+      print(input$dates_daily)
       req(input$frequency %in% c("daily", "monthly"))
       
       if(input$frequency == "daily") {
@@ -63,9 +78,14 @@ predict_price_server <- function(id, stock) {
           to <- input$dates_daily[2]
         }
         
+        waiter$show()
+        hostess$set(0)
+        
         preds <- predict_price(
-          stock(), start_date = from, end_date = to, freq = "daily"
+          stock(), start_date = from, end_date = to, freq = "daily",
+          hostess = hostess
         )
+        
       } else {
         req(length(input$dates_monthly) == 2, 
             input$dates_monthly[1], input$dates_monthly[2])
@@ -79,18 +99,35 @@ predict_price_server <- function(id, stock) {
           to <- input$dates_monthly[2]
         }
         
+        waiter$show()
+        
         preds <- predict_price(
-          stock(), start_date = from, end_date = to, freq = "monthly"
+          stock(), start_date = from, end_date = to, freq = "monthly", 
+          hostess = hostess
         )
       }
       
       plot_predictions(preds)
-    })
+    }) %>%
+      bindEvent(input$predict)
     
     output$plot <- plotly::renderPlotly({
       req(plot())
-      plotly::ggplotly(plot())
+      p <- plotly::ggplotly(plot(), source = "predict")
+      hostess$set(95)
+      plotly::event_register(p, "plotly_afterplot")
+      p
     }) %>%
       bindEvent(plot())
+    
+    observe({
+      hostess$set(100)
+      waiter$hide()
+    }) %>% 
+      bindEvent({
+        req(plot())
+        plotly::event_data("plotly_afterplot", source = "predict", 
+                           priority = "event")
+      })
   })
 }

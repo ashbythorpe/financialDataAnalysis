@@ -20,7 +20,10 @@
 #' @export
 plot_ui <- function(id) {
   ns <- NS(id)
-  plotly::plotlyOutput(ns("plot"))
+  div(
+    id = "plot_waiter", 
+    plotly::plotlyOutput(ns("plot"))
+  )
 }
 
 #' @name plot_module
@@ -28,22 +31,47 @@ plot_ui <- function(id) {
 plot_server <- function(id, type, data, scores, performance_col, custom_type, 
                         custom_args, create) {
   moduleServer(id, function(input, output, session) {
-    output$plot <- plotly::renderPlotly({
-      print("updated")
+    ns <- session$ns
+    
+    values <- reactiveValues()
+    values$update_counter <- 0
+    
+    waiter <- waiter::Waiter$new(
+      id = "plot_waiter", 
+      html = waiter::spin_three_bounce()
+    )
+    
+    plot <- reactive({
+      waiter$show()
       req(type())
       if(type() == "Score distributions") {
-        p <- score_distributions(get_scores(data(), scores()))
+        score_distributions(get_scores(data(), scores()))
       } else if(type() == "Score performance") {
         req(performance_col())
-        p <- score_performance(data(), performance_col(),
+        score_performance(data(), performance_col(),
                                get_scores(data(), scores()))
       } else {
-        p <- custom_plot(data(), custom_type(), !!!custom_args())
+        custom_plot(data(), custom_type(), !!!custom_args())
       }
-      req(p)
-      plotly::ggplotly(p) %>%
-        print_plot()
     }) %>%
       bindEvent(create())
+    
+    output$plot <- plotly::renderPlotly({
+      req(plot())
+      p <- plotly::ggplotly(plot(), source = "plot")
+      plotly::event_register(p, "plotly_afterplot")
+      build_plot(p)
+    })
+    
+    observe({
+      req(plot())
+      plotly::event_data("plotly_afterplot", source = "plot", priority = "event")
+      
+      # Plot will always update twice due to use of build_plot()
+      values$update_counter <- isolate((values$update_counter + 1) %% 2)
+      if(isolate(values$update_counter) == 0) {
+        waiter$hide()
+      }
+    })
   })
 }
