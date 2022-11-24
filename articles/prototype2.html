@@ -623,20 +623,8 @@ argument.</p>
 <span>  <span class="st">"GOOGL"</span>, start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>  end_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://lubridate.tidyverse.org/reference/mplus.html" class="external-link">%m+%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html" class="external-link">months</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, freq <span class="op">=</span> <span class="st">"daily"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 127 × 4</span></span></span>
-<span><span class="co">#&gt;    ticker ds         price_adjusted residuals</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> GOOGL  2022-03-16           133.    -<span style="color: #BB0000;">1.18</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> GOOGL  2022-03-17           134.    -<span style="color: #BB0000;">1.25</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> GOOGL  2022-03-18           136.     0.541</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> GOOGL  2022-03-21           136.    -<span style="color: #BB0000;">1.73</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> GOOGL  2022-03-22           140.     1.61 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> GOOGL  2022-03-23           138.    -<span style="color: #BB0000;">0.981</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> GOOGL  2022-03-24           142.     1.69 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> GOOGL  2022-03-25           142.     1.30 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> GOOGL  2022-03-28           141.    -<span style="color: #BB0000;">1.17</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> GOOGL  2022-03-29           143.     0.692</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 117 more rows</span></span></span>
+<span><span class="co">#&gt;  x </span></span>
+<span><span class="co">#&gt; 35</span></span>
 <span><span class="va">predictions_monthly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_price.html">predict_price</a></span><span class="op">(</span></span>
 <span>  <span class="st">"GOOGL"</span>, start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>  end_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, freq <span class="op">=</span> <span class="st">"monthly"</span></span>
@@ -646,34 +634,34 @@ argument.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 62 × 2</span></span></span>
 <span><span class="co">#&gt;    ref_date   .pred</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-22  74.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-11-23  74.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-11-24  75.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-11-25  74.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-11-26  63.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-11-27  64.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-11-28  75.4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-11-29  74.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-11-30  73.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-12-01  72.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-24  75.9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-11-25  74.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-11-26  63.9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-11-27  64.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-11-28  75.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-11-29  74.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-11-30  73.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-12-01  72.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-12-02  71.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-12-03  62.3</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span></span>
 <span><span class="va">predictions_monthly</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span></span>
 <span><span class="co">#&gt;    ref_date   .pred</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-22  137.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-12-22  128.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2023-01-22  136.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2023-02-22  142.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2023-03-22  139.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2023-04-22  133.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2023-05-22  148.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2023-06-22  158.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2023-07-22  148.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2023-08-22  146.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2023-09-22  179.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2023-10-22  177.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2023-11-22  180.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-24  137.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-12-24  128.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2023-01-24  136.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2023-02-24  142.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2023-03-24  139.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2023-04-24  133.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2023-05-24  148.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2023-06-24  158.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2023-07-24  148.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2023-08-24  146.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2023-09-24  179.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2023-10-24  177.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2023-11-24  180.</span></span></code></pre></div>
 <p>Make a graph of these predictions using the
 <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
@@ -713,7 +701,7 @@ function.</p>
 function.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/score_distributions.html">score_distributions</a></span><span class="op">(</span><span class="va">actual_scores</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 36 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 38 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
 <p><img src="prototype2_files/figure-html/score_distributions-1.png" width="700"></p>
 <p>Here we can see that most of the column values produced a single
 score, so we may want to change our score specifications to be more
