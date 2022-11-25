@@ -105,14 +105,14 @@ files to demonstrate this.</p>
 <span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
 <span>  y <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">1</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">file_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span>
+<span><span class="va">file_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_csv</a></span><span class="op">(</span><span class="va">data_1</span>, <span class="va">file_1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,</span>
 <span>  z <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">file_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">"xlsx"</span><span class="op">)</span></span>
+<span><span class="va">file_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".xlsx"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://docs.ropensci.org/writexl/reference/write_xlsx.html" class="external-link">write_xlsx</a></span><span class="op">(</span><span class="va">data_2</span>, <span class="va">file_2</span><span class="op">)</span></span></code></pre></div>
 <p>The first argument of <code><a href="../reference/input_data.html">input_data()</a></code> should be a character
 vector of one or more file paths, to be converted into data frames. If
@@ -159,52 +159,39 @@ problem.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1</span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="va">file_2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
-<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 106</span></span></span>
-<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ CEO   secur…⁵ sector prima…⁶</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 96 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   address2 &lt;chr&gt;, state &lt;chr&gt;, city &lt;chr&gt;, zip &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   phone &lt;dbl&gt;, capitalExpenditures &lt;dbl&gt;, cashChange &lt;dbl&gt;, cashFlow &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   cashFlowFinancing &lt;dbl&gt;, changesInInventories &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   changesInReceivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;, netBorrowings &lt;dbl&gt;, netIncome &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   reportDate &lt;dbl&gt;, totalInvestingCashFlows &lt;dbl&gt;, key &lt;chr&gt;, subkey &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 100 × 2</span></span></span>
+<span><span class="co">#&gt;        x z    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 a    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 b    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 c    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 d    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 e    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 f    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 g    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 h    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 i    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 j    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 90 more rows</span></span></span></code></pre></div>
 <p>If more than one files are given, the data frames are combined
 together. This is done in a way such that all data is preserved and the
 function never errors.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 6</span></span></span>
-<span><span class="co">#&gt;        x     y `&lt;?xml`                                   versi…¹ encod…² stand…³</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1  <span style="color: #BB0000;">NA</span>                                        <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>&lt;Types<span style="color: #949494;">"</span>                                  <span style="color: #949494;">"</span>xmlns… <span style="color: #949494;">"</span>Exten… <span style="color: #949494;">"</span>Conte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>ContentType=\"application/xml\"/&gt;&lt;Overr… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> <span style="color: #949494;">"</span>PartName=\"/xl/styles.xml\"<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Conte… <span style="color: #949494;">"</span>PartN… <span style="color: #949494;">"</span>Conte…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​`version="1.0"`, ²​`encoding="UTF-8"`,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ³​`standalone="yes"?&gt;`</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 100 × 3</span></span></span>
+<span><span class="co">#&gt;        x     y z    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 a    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 b    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 c    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 d    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 e    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 f    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 g    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 h    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 i    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 j    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 90 more rows</span></span></span></code></pre></div>
 <p>The function also has a <code>combine</code> argument, which allows
 you to combine your data with the default stock data. This is useful if
 you want to add more rows or columns to the data.</p>
@@ -231,27 +218,26 @@ you want to add more rows or columns to the data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   depreciation &lt;dbl&gt;, filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   netBorrowings &lt;dbl&gt;, netIncome &lt;dbl&gt;, reportDate &lt;dbl&gt;, …</span></span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span>, combine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Multiple files in zip: reading '[Content_Types].xml'</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 510 × 112</span></span></span>
-<span><span class="co">#&gt;        x     y `&lt;?xml` version=…¹ encod…² stand…³ symbol compa…⁴ excha…⁵ indus…⁶</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 500 more rows, 102 more variables: website &lt;chr&gt;, description &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   CEO &lt;chr&gt;, securityName &lt;chr&gt;, sector &lt;chr&gt;, primarySicCode &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   employees &lt;dbl&gt;, address &lt;chr&gt;, address2 &lt;chr&gt;, state &lt;chr&gt;, city &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   zip &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;, capitalExpenditures &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   cashChange &lt;dbl&gt;, cashFlow &lt;dbl&gt;, cashFlowFinancing &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   changesInInventories &lt;dbl&gt;, changesInReceivables &lt;dbl&gt;, currency &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   depreciation &lt;dbl&gt;, filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 597 × 109</span></span></span>
+<span><span class="co">#&gt;        x     y z     symbol companyName exchange industry website descri…¹ CEO  </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 a     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 b     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 c     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 d     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 e     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 f     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 g     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 h     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 i     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 j     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 587 more rows, 99 more variables: securityName &lt;chr&gt;, sector &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   primarySicCode &lt;dbl&gt;, employees &lt;dbl&gt;, address &lt;chr&gt;, address2 &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, zip &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   capitalExpenditures &lt;dbl&gt;, cashChange &lt;dbl&gt;, cashFlow &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cashFlowFinancing &lt;dbl&gt;, changesInInventories &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   changesInReceivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;, netBorrowings &lt;dbl&gt;, netIncome &lt;dbl&gt;, …</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="scoring-data">Scoring data<a class="anchor" aria-label="anchor" href="#scoring-data"></a>
@@ -634,34 +620,34 @@ argument.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 62 × 2</span></span></span>
 <span><span class="co">#&gt;    ref_date   .pred</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-24  75.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-11-25  74.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-11-26  63.9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-11-27  64.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-11-28  75.4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-11-29  74.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-11-30  73.3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-12-01  72.7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-12-02  71.8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-12-03  62.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-25  74.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-11-26  63.9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-11-27  64.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-11-28  75.4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-11-29  74.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-11-30  73.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-12-01  72.7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-12-02  71.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-12-03  62.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-12-04  61.4</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 52 more rows</span></span></span>
 <span><span class="va">predictions_monthly</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span></span>
 <span><span class="co">#&gt;    ref_date   .pred</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-24  137.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-12-24  128.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2023-01-24  136.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2023-02-24  142.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2023-03-24  139.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2023-04-24  133.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2023-05-24  148.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2023-06-24  158.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2023-07-24  148.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2023-08-24  146.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2023-09-24  179.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2023-10-24  177.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2023-11-24  180.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-11-25  137.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-12-25  128.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2023-01-25  136.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2023-02-25  142.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2023-03-25  139.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2023-04-25  133.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2023-05-25  148.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2023-06-25  158.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2023-07-25  148.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2023-08-25  146.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2023-09-25  179.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2023-10-25  177.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2023-11-25  180.</span></span></code></pre></div>
 <p>Make a graph of these predictions using the
 <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
@@ -701,7 +687,7 @@ function.</p>
 function.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/score_distributions.html">score_distributions</a></span><span class="op">(</span><span class="va">actual_scores</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 38 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 39 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
 <p><img src="prototype2_files/figure-html/score_distributions-1.png" width="700"></p>
 <p>Here we can see that most of the column values produced a single
 score, so we may want to change our score specifications to be more
