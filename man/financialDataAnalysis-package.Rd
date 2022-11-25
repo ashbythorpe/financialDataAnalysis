@@ -4,7 +4,7 @@
 \name{financialDataAnalysis-package}
 \alias{financialDataAnalysis-package}
 \alias{_PACKAGE}
-\title{financialDataAnalysis: A shiny app for scoring, viewing and plotting financial data.}
+\title{financialDataAnalysis: A shiny app for scoring, viewing and plotting financial data}
 \description{
 Score, view and plot data. The package includes a rich default dataset of stock data, but allows the user to upload their own data. A predictive model is included to forecast the price of a stock over time.
 }

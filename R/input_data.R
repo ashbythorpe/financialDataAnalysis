@@ -15,9 +15,10 @@
 #' @seealso [default_stock_data]
 #' 
 #' @examples 
-#' file <- tempfile(fileext = "csv")
+#' file <- tempfile(fileext = ".csv")
 #' data <- tibble::tibble(
-#'   x = 1:100
+#'   x = 1:100,
+#'   y = 100:1
 #' )
 #' readr::write_csv(data, file)
 #' 

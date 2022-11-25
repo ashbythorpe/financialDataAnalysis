@@ -9,7 +9,7 @@
 #' @returns The file path that was written to.
 #' 
 #' @examples 
-#' file <- tempfile(fileext = "csv")
+#' file <- tempfile(fileext = ".csv")
 #' data <- tibble::tibble(
 #'   x = 1:10
 #' )

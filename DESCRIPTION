@@ -52,6 +52,7 @@ Imports:
     utils,
     vctrs,
     vroom,
+    waiter,
     withr,
     workflows,
     writexl

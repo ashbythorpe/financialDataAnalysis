@@ -20,7 +20,7 @@ The file path that was written to.
 Take a data frame and write it to a CSV (.csv) or Excel (.xlsx) file.
 }
 \examples{
-file <- tempfile(fileext = "csv")
+file <- tempfile(fileext = ".csv")
 data <- tibble::tibble(
   x = 1:10
 )

@@ -39,14 +39,14 @@ data_1 <- tibble(
   x = 1:10,
   y = 10:1
 )
-file_1 <- tempfile(fileext = "csv")
+file_1 <- tempfile(fileext = ".csv")
 write_csv(data_1, file_1)
 
 data_2 <- tibble(
   x = 1:100,
   z = letters[1:100]
 )
-file_2 <- tempfile(fileext = "xlsx")
+file_2 <- tempfile(fileext = ".xlsx")
 write_xlsx(data_2, file_2)
 ```
 

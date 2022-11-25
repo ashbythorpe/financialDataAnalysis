@@ -8,7 +8,8 @@ predict_price(
   stock,
   start_date = lubridate::today(),
   end_date = lubridate::today() + lubridate::days(60),
-  freq = c("daily", "monthly")
+  freq = c("daily", "monthly"),
+  hostess = dummy_hostess()
 )
 }
 \arguments{
@@ -19,6 +20,9 @@ predict_price(
 \item{end_date}{The final date of the predictions.}
 
 \item{freq}{the frequency of the predictions.}
+
+\item{hostess}{A loader to show the progress of the predictions. A
+\link[waiter:hostess]{waiter::Hostess} object.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}} of stock predictions.

@@ -8,6 +8,10 @@
 \alias{scatter_graph_server}
 \alias{histogram_ui}
 \alias{histogram_server}
+\alias{smooth_graph_ui}
+\alias{smooth_graph_server}
+\alias{area_graph_ui}
+\alias{area_graph_server}
 \title{Input arguments for different custom plots}
 \usage{
 line_graph_ui(id)
@@ -17,6 +21,18 @@ line_graph_server(id, data)
 scatter_graph_ui(id)
 
 scatter_graph_server(id, data)
+
+histogram_ui(id)
+
+histogram_server(id, data)
+
+smooth_graph_ui(id)
+
+smooth_graph_server(id, data)
+
+area_graph_ui(id)
+
+area_graph_server(id, data)
 
 histogram_ui(id)
 
