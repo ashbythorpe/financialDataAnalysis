@@ -4,7 +4,7 @@
 \alias{custom_plot}
 \title{Create a customisable plot}
 \usage{
-custom_plot(df, plotting_method, ...)
+custom_plot(df, plotting_method, ..., .interactive = TRUE)
 }
 \arguments{
 \item{df}{The data to plot.}
@@ -13,9 +13,14 @@ custom_plot(df, plotting_method, ...)
 or "histogram")}
 
 \item{...}{A set of arguments mapping certain variables to aesthetics. Each
-argument should be specified in the format \code{aesthetic = "column_name"}, where
-\code{aesthetic} is a visual property that a variable can be mapped to (e.g. x,
-colour), and \code{column_name} is the name of a column in your data.}
+argument should be specified in the format \code{aesthetic = "column_name"},
+where \code{aesthetic} is a visual property that a variable can be mapped to
+(e.g. x, colour), and \code{column_name} is the name of a column in your data.}
+
+\item{.interactive}{Whether the plot is going to be transformed into an
+interactive graph using \code{\link[plotly:ggplotly]{plotly::ggplotly()}}. If \code{TRUE}, and the \code{alpha}
+aesthetic is used, the alpha variable will be transformed using \code{\link[=factor]{factor()}},
+since \code{\link[plotly:ggplotly]{plotly::ggplotly()}} errors when it encounters a continuous alpha.}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.

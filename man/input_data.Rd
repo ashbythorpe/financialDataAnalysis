@@ -29,7 +29,7 @@ data <- tibble::tibble(
   x = 1:100,
   y = 100:1
 )
-readr::write_csv(data, file)
+vroom::vroom_write(data, file, ",")
 
 input_data(file)
 

@@ -14,7 +14,7 @@ test_that("download_df works", {
   download_df(df, "CSV", NULL) %>%
     expect_null()
   download_df(df, "CSV", csv_file)
-  readr::read_csv(csv_file) %>%
+  vroom::vroom(csv_file) %>%
     expect_equal(df)
   download_df(df, "Excel", excel_file)
   readxl::read_excel(excel_file) %>%

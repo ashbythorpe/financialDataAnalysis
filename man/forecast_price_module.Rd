@@ -8,10 +8,12 @@
 \usage{
 forecast_price_ui(id)
 
-forecast_price_server(id)
+forecast_price_server(id, interactive)
 }
 \arguments{
 \item{id}{The namespace of the module.}
+
+\item{interactive}{Whether any plots created should be interactive.}
 }
 \description{
 A shiny module which contains the Forecast Price page. Allows the user to

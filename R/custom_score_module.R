@@ -19,6 +19,14 @@ custom_score_ui <- function(id){
   ns <- NS(id)
   tagList(
     div(
+      class = "box_row info_row",
+      tags$label("X coordinate", `for` = "custom_row_container") %>%
+        add_info("x_coord", class = "info_item"),
+      tags$label("Y coordinate", `for` = "custom_row_container") %>%
+        add_info("y_coord", class = "info_item"),
+      div(style = "width:80px;")
+    ),
+    div(
       id = "custom_row_container",
       # Start with two "default" rows
       custom_row_ui(ns("row_1"), 1),
@@ -230,6 +238,10 @@ custom_row_ui <- function(id, n, x = 0, y = 0) {
 #' @export
 custom_row_server <- function(id) {
   moduleServer(id, function(input, output, session) {
+    p_ns <- session$ns("") %>%
+      stringr::str_remove(paste0("\\Q", ns.sep, "\\E$")) %>%
+      parent_ns()
+    
     # Create a row with the specified x and y coordinates
     row <- reactive({
       req(input$x, input$y)
@@ -241,6 +253,12 @@ custom_row_server <- function(id) {
         y <- input$y
       }
       tibble::tibble_row(x = input$x, y = y)
+    })
+    
+    observe({
+      if(isTruthy(input$x) && isTruthy(input$y)) {
+        session$sendCustomMessage("custom_update", p_ns("update"))
+      }
     })
     
     # Return the row

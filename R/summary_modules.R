@@ -39,6 +39,7 @@ col_summary_server <- function(id, column) {
 #' @param id The namespace of the module.
 #' @param column The column being scored.
 #' @param score_spec The score currently being created.
+#' @param interactive Whether the created plot should be interactive.
 #' 
 #' @seealso [score_summary()]
 #' 
@@ -46,13 +47,50 @@ col_summary_server <- function(id, column) {
 #' @export
 score_summary_ui <- function(id) {
   ns <- NS(id)
-  plotly::plotlyOutput(ns("plot"))
+  tabsetPanel(
+    type = "hidden", id = ns("wizard"),
+    tabPanelBody(
+      "interactive",
+      div(
+        id = "summary_waiter",
+        plotly::plotlyOutput(ns("plot"))
+      )
+    ),
+    tabPanelBody(
+      "normal",
+      waiter::withWaiter(
+        plotOutput(ns("normal_plot")),
+        waiter::spin_three_bounce(), color = "white"
+      )
+    )
+  )
 }
 
 #' @name score_summary_module
 #' @export
-score_summary_server <- function(id, column, score_spec) {
+score_summary_server <- function(id, column, score_spec, interactive) {
   moduleServer(id, function(input, output, session) {
+    interactive_value <- reactive({
+      x <- tryCatch(interactive(), error = function(c) TRUE)
+      if(!is.logical(x)) {
+        x <- TRUE
+      }
+      x
+    })
+    
+    observe({
+      if(!interactive_value()) {
+        updateTabsetPanel(session, "wizard", selected = "normal")
+      } else {
+        updateTabsetPanel(session, "wizard", selected = "interactive")
+      }
+    })
+    
+    waiter <- waiter::Waiter$new(
+      id = "summary_waiter", color = "white",
+      waiter::spin_three_bounce()
+    )
+    
     # Make sure the plot doesn't generate unnecessarily
     spec <- debounce(score_spec, 1200)
     
@@ -75,8 +113,9 @@ score_summary_server <- function(id, column, score_spec) {
     })
     
     # Create the plot summarising the score
-    output$plot <- plotly::renderPlotly({
+    plot <- reactive({
       req(column(), score())
+      waiter$show()
       
       data <- tibble::tibble(
         column = column(),
@@ -84,14 +123,35 @@ score_summary_server <- function(id, column, score_spec) {
       )
       
       # Create the plot
-      p <- ggplot2::ggplot(data, ggplot2::aes(x = column, y = score)) +
+      ggplot2::ggplot(data, ggplot2::aes(x = column, y = score)) +
         ggplot2::geom_line() +
         ggplot2::ylim(0,1) + # Make sure the y axis always has the same scale
         ggplot2::labs(x = "Column value", y = "Score") +
         ggplot2::ggtitle("Score distribution")
-      
-      plotly::ggplotly(p) # Makes the plot interactive
     })
+    
+    output$plot <- plotly::renderPlotly({
+      req(plot(), !identical(interactive_value(), FALSE))
+      p <- plotly::ggplotly(plot(), source = "summary") # Makes the plot interactive
+      plotly::event_register(p, "plotly_afterplot")
+      p
+    }) %>%
+      bindEvent(plot())
+    
+    observe({
+      waiter$hide()
+    }) %>%
+      bindEvent({
+        req(plot(), !identical(interactive_value(), FALSE))
+        plotly::event_data("plotly_afterplot", source = "summary", 
+                           priority = "event")
+      })
+    
+    output$normal_plot <- renderPlot({
+      req(plot(), identical(interactive_value(), FALSE))
+      plot()
+    }) %>%
+      bindEvent(plot())
   })
 }
 

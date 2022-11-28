@@ -15,41 +15,72 @@
 #'   plot.
 #' @param create The button input that specifies that a plot should be 
 #'   generated.
+#' @param interactive Whether the created plot should be interactive.
 #'   
 #' @name plot_module
 #' @export
 plot_ui <- function(id) {
   ns <- NS(id)
-  div(
-    id = "plot_waiter", 
-    plotly::plotlyOutput(ns("plot"))
+  tabsetPanel(
+    type = "hidden", id = ns("wizard"),
+    tabPanelBody(
+      "interactive",
+      div(
+        id = "plot_waiter", 
+        plotly::plotlyOutput(ns("plot"))
+      )
+    ),
+    tabPanelBody(
+      "normal",
+      waiter::withWaiter(
+        plotOutput(ns("normal_plot")),
+        waiter::spin_three_bounce(), color = "white"
+      )
+    )
   )
 }
 
 #' @name plot_module
 #' @export
-plot_server <- function(id, type, data, scores, performance_col, custom_type, 
-                        custom_args, create) {
+plot_server <- function(id, type, data, scores, performance_col, show_text, 
+                        custom_type, custom_args, create, interactive) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
-    values <- reactiveValues()
-    values$update_counter <- 0
-    
     waiter <- waiter::Waiter$new(
-      id = "plot_waiter", 
-      html = waiter::spin_three_bounce()
+      id = "plot_waiter", color = "white",
+      waiter::spin_three_bounce()
     )
     
+    interactive_value <- reactive({
+      x <- tryCatch(interactive(), error = function(c) TRUE)
+      if(!is.logical(x)) {
+        x <- TRUE
+      }
+      x
+    })
+    
+    observe({
+      if(!interactive_value()) {
+        updateTabsetPanel(session, "wizard", selected = "normal")
+      } else {
+        updateTabsetPanel(session, "wizard", selected = "interactive")
+      }
+    })
+    
     plot <- reactive({
-      waiter$show()
       req(type())
+      if(isTruthy(type())) {
+        waiter$show()
+      }
       if(type() == "Score distributions") {
         score_distributions(get_scores(data(), scores()))
       } else if(type() == "Score performance") {
         req(performance_col())
         score_performance(data(), performance_col(),
-                               get_scores(data(), scores()))
+                          get_scores(data(), scores()))
+      } else if(type() == "Correlation heatmap") {
+        correlation_plot(data(), show_text())
       } else {
         custom_plot(data(), custom_type(), !!!custom_args())
       }
@@ -57,20 +88,37 @@ plot_server <- function(id, type, data, scores, performance_col, custom_type,
       bindEvent(create())
     
     output$plot <- plotly::renderPlotly({
-      req(plot())
+      req(plot(), !identical(interactive_value(), FALSE))
       p <- plotly::ggplotly(plot(), source = "plot")
       plotly::event_register(p, "plotly_afterplot")
-      build_plot(p)
+      if(type() == "Custom") {
+        build_plot(p)
+      } else {
+        p
+      }
+    }) %>%
+      bindEvent(plot())
+    
+    observe({
+      if(!isTruthy(tryCatch(plot(), error = function(c) FALSE))) {
+        waiter$hide()
+      }
     })
     
     observe({
-      req(plot())
-      plotly::event_data("plotly_afterplot", source = "plot", priority = "event")
-      
-      # Plot will always update twice due to use of build_plot()
-      values$update_counter <- isolate((values$update_counter + 1) %% 2)
-      if(isolate(values$update_counter) == 0) {
-        waiter$hide()
+      waiter$hide()
+    }) %>%
+      bindEvent({
+        req(plot(), !identical(interactive_value(), FALSE))
+        plotly::event_data("plotly_afterplot", source = "plot", 
+                           priority = "event")
+      })
+    
+    output$normal_plot <- renderPlot({
+      if(type() == "Custom") {
+        print_plot(plot())
+      } else {
+        plot()
       }
     })
   })

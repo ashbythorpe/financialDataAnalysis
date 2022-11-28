@@ -5,6 +5,7 @@
 #' of a stock over time.
 #' 
 #' @param id The namespace of the module.
+#' @param interactive Whether any plots created should be interactive.
 #' 
 #' @name forecast_price_module
 #' @export
@@ -27,12 +28,12 @@ forecast_price_ui <- function(id) {
 
 #' @name forecast_price_module
 #' @export
-forecast_price_server <- function(id) {
+forecast_price_server <- function(id, interactive) {
   moduleServer(id, function(input, output, session) {
     selected_stock <- search_bar_server("search_bar")
     
     stock_summary_server("stock_summary", selected_stock)
     
-    predict_price_server("predict_price", selected_stock)
+    predict_price_server("predict_price", selected_stock, interactive)
   })
 }

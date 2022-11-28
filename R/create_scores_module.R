@@ -6,6 +6,7 @@
 #' 
 #' @param id The namespace of the module.
 #' @param data The data to score.
+#' @param interactive Whether any plots created should be interactive.
 #' 
 #' @returns 
 #' The server returns the table of score specifications that the user has 
@@ -32,7 +33,7 @@ create_scores_ui <- function(id){
           tabPanelBody("Custom coordinates", custom_score_ui(ns("custom_score")))
         ),
         exponential_score_ui(ns("exponential_score")),
-        actionButton(ns("create_score"), "Create score")
+        actionButton(ns("create_score"), "Create score", icon = icon("square-plus"))
       )
     ),
     column(
@@ -52,7 +53,7 @@ create_scores_ui <- function(id){
 
 #' @name create_scores_module
 #' @export
-create_scores_server <- function(id, data){
+create_scores_server <- function(id, data, interactive){
   moduleServer(id, function(input, output, session){
     values <- reactiveValues()
     
@@ -206,7 +207,7 @@ create_scores_server <- function(id, data){
       bindEvent(stop_editing())
     
     # Create a graphical visualisation of the score being created currently
-    score_summary_server("score_summary", column, final_row)
+    score_summary_server("score_summary", column, final_row, interactive)
     
     # Return the table of scores
     reactive(values$scores)

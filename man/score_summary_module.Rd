@@ -8,7 +8,7 @@
 \usage{
 score_summary_ui(id)
 
-score_summary_server(id, column, score_spec)
+score_summary_server(id, column, score_spec, interactive)
 }
 \arguments{
 \item{id}{The namespace of the module.}
@@ -16,6 +16,8 @@ score_summary_server(id, column, score_spec)
 \item{column}{The column being scored.}
 
 \item{score_spec}{The score currently being created.}
+
+\item{interactive}{Whether the created plot should be interactive.}
 }
 \description{
 A shiny module that allows the user to view a plot of how the score they are

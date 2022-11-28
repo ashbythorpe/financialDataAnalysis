@@ -14,9 +14,11 @@ plot_server(
   data,
   scores,
   performance_col,
+  show_text,
   custom_type,
   custom_args,
-  create
+  create,
+  interactive
 )
 }
 \arguments{
@@ -40,6 +42,8 @@ plot.}
 
 \item{create}{The button input that specifies that a plot should be
 generated.}
+
+\item{interactive}{Whether the created plot should be interactive.}
 }
 \description{
 A shiny module which creates and shows the plot that the user has specified.

@@ -12,9 +12,12 @@
 #' 
 #' @export
 server <- function(input, output, session) {
+  settings <- settings_server("settings")
+  
   data <- data_input_server("data_input")
   
-  scores <- create_scores_server("create_scores", data = data)
+  scores <- create_scores_server("create_scores", data = data, 
+                                 interactive = settings$interactive)
   
   scored_data <- reactive({
     apply_scores(data(), scores()) %>%
@@ -23,7 +26,7 @@ server <- function(input, output, session) {
   
   view_data_server("view_data", scored_data, scores)
   
-  forecast_price_server("forecast_price")
+  forecast_price_server("forecast_price", settings$interactive)
   
-  plot_data_server("plot_data", scored_data, scores)
+  plot_data_server("plot_data", scored_data, scores, settings$interactive)
 }

@@ -31,7 +31,7 @@ search_stocks <- function(x, pattern){
 search_pattern <- function(x, pattern){
   stringr::str_detect(paste0("\\Q", stringr::str_to_lower(x$symbol), "\\E"), 
                       stringr::str_to_lower(pattern)) |
-    stringr::str_detect(paste0("\\Q", stringr::str_to_lower(x$companyName), "\\E"), 
+    stringr::str_detect(paste0("\\Q", stringr::str_to_lower(x$company_name), "\\E"), 
                         stringr::str_to_lower(pattern))
 }
 
@@ -40,5 +40,5 @@ search_results <- function(x){
     return(x)
   }
   dplyr::arrange(x, dplyr::desc(favourite)) %>%
-    dplyr::select(symbol, companyName)
+    dplyr::select(symbol, company_name)
 }

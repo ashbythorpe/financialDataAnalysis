@@ -27,3 +27,13 @@ makeReactiveTrigger <- function() {
     }
   )
 }
+
+add_info <- function(tag, id, ...) {
+  ns_id <- paste0("tooltip-", id)
+  div(class = "box_row info_row", tag, icon("circle-info", id = ns_id), ...)
+}
+
+add_info_to_label <- function(tag, id, ...) {
+  tag$children[[1]] <- add_info(tag$children[[1]], id, ...)
+  tag
+}

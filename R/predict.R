@@ -46,10 +46,8 @@ predict_price <- function(stock, start_date = lubridate::today(),
     pred <- predict_price_monthly(stock, dates, hostess)
   }
   
-  tibble::tibble(
-    ref_date = dates,
-    .pred = pred
-  )
+  pred$ref_date <- dates
+  pred
 }
 
 predict_price_daily <- function(stock, dates, hostess) {
@@ -61,8 +59,14 @@ predict_price_daily <- function(stock, dates, hostess) {
       data
     ) %>%
       dplyr::pull(price_adjusted)
+    
     hostess$set(90)
-    x
+    
+    tibble::tibble(
+      yhat = x,
+      yhat_lower = x,
+      yhat_upper = x
+    )
   } else if(min(dates) <= max(daily_training_data$ref_date)) {
     dates_before <- dates[dates <= max(daily_training_data$ref_date)]
     dates_after <- dates[dates > max(daily_training_data$ref_date)]
@@ -73,8 +77,11 @@ predict_price_daily <- function(stock, dates, hostess) {
     ) %>%
       dplyr::pull(price_adjusted)
     
-    prophet_model <- dplyr::filter(daily_prophet_model, ticker == stock)$fit[[1]]
-    pred_data <- tibble::tibble(ds = dates_after)
+    known_data <- tibble::tibble(
+      yhat = known_prices,
+      yhat_lower = known_prices,
+      yhat_upper = known_prices
+    )
     
     hostess$set(5)
     
@@ -82,46 +89,29 @@ predict_price_daily <- function(stock, dates, hostess) {
     prophet_r <- r * 0.85
     lightgbm_r <- (1 - r) * 0.85
     
-    preds <- withr::with_package("prophet", {
-      stats::predict(prophet_model, pred_data) %>%
-        dplyr::select(ds, yhat) %>%
-        dplyr::mutate(ds = lubridate::date(ds))
-    })
+    preds <- predict_with_cache_daily(stock, dates_after)
     
     hostess$inc(unname(prophet_r * 100))
     
-    residuals <- withr::with_package("workflows", {
-      predict_residuals_daily(stock, dates_after, preds, hostess, lightgbm_r)
-    })
+    residuals <- predict_residuals_daily(stock, dates_after, hostess, 
+                                         lightgbm_r)
     
-    hostess$set(90)
-    
-    c(known_prices, preds$yhat + residuals)
+    preds$yhat <- preds$yhat + residuals
+    dplyr::bind_rows(known_data, preds)
   } else {
-    prophet_model <- dplyr::filter(daily_prophet_model, ticker == stock)$fit[[1]]
-    pred_data <- tibble::tibble(ds = dates)
-    
     r <- get_model_ratio_daily(dates)
     prophet_r <- r * 0.9
     lightgbm_r <- (1 - r) * 0.9
     
-    preds <- withr::with_package("prophet", {
-      stats::predict(prophet_model, pred_data) %>%
-        dplyr::select(ds, yhat) %>%
-        dplyr::mutate(ds = lubridate::date(ds))
-    })
-    
-    print(round(prophet_r * 100))
+    preds <- predict_with_cache_daily(stock, dates)
     
     hostess$set(unname(prophet_r * 100))
     
-    residuals <- withr::with_package("workflows", {
-      predict_residuals_daily(stock, dates, preds, hostess, lightgbm_r)
-    })
+    residuals <- predict_residuals_daily(stock, dates, hostess, 
+                                         lightgbm_r)
     
-    hostess$set(90)
-    
-    preds$yhat + residuals
+    preds$yhat <- preds$yhat + residuals
+    preds
   }
 }
 
@@ -137,8 +127,14 @@ predict_price_monthly <- function(stock, dates, hostess) {
       data
     ) %>%
       dplyr::pull(price_adjusted)
+    
     hostess$set(90)
-    x
+    
+    tibble::tibble(
+      yhat = x,
+      yhat_lower = x,
+      yhat_upper = x
+    )
   } else if(min(dates) <= max(monthly_training_data$ref_date)) {
     dates_before <- dates[dates <= max(monthly_training_data$ref_date)]
     dates_after <- dates[dates > max(monthly_training_data$ref_date)]
@@ -149,8 +145,11 @@ predict_price_monthly <- function(stock, dates, hostess) {
     ) %>%
       dplyr::pull(price_adjusted)
     
-    prophet_model <- dplyr::filter(monthly_prophet_model, ticker == stock)$fit[[1]]
-    pred_data <- tibble::tibble(ds = dates_after)
+    known_data <- tibble::tibble(
+      yhat = known_prices,
+      yhat_lower = known_prices,
+      yhat_upper = known_prices
+    )
     
     hostess$set(5)
     
@@ -158,42 +157,29 @@ predict_price_monthly <- function(stock, dates, hostess) {
     prophet_r <- r * 0.85
     lightgbm_r <- (1 - r) * 0.85
     
-    preds <- withr::with_package("prophet", {
-      stats::predict(prophet_model, pred_data) %>%
-        dplyr::select(ds, yhat) %>%
-        dplyr::mutate(ds = lubridate::date(ds))
-    })
+    preds <- predict_with_cache_monthly(stock, dates_after)
     
     hostess$inc(unname(prophet_r * 100))
     
-    residuals <- predict_residuals_monthly(stock, dates_after, preds, hostess,
+    residuals <- predict_residuals_monthly(stock, dates_after, hostess,
                                            lightgbm_r)
     
-    hostess$set(90)
-    
-    c(known_prices, preds$yhat + residuals)
+    preds$yhat <- preds$yhat + residuals
+    dplyr::bind_rows(known_data, preds)
   } else {
-    prophet_model <- dplyr::filter(monthly_prophet_model, ticker == stock)$fit[[1]]
-    pred_data <- tibble::tibble(ds = dates)
-    
     r <- get_model_ratio_monthly(dates)
     prophet_r <- r * 0.9
     lightgbm_r <- (1 - r) * 0.9
     
-    preds <- withr::with_package("prophet", {
-      stats::predict(prophet_model, pred_data) %>%
-        dplyr::select(ds, yhat) %>%
-        dplyr::mutate(ds = lubridate::date(ds))
-    })
+    preds <- predict_with_cache_monthly(stock, dates)
     
     hostess$set(unname(prophet_r * 100))
     
-    residuals <- predict_residuals_monthly(stock, dates, preds, hostess, 
+    residuals <- predict_residuals_monthly(stock, dates, hostess, 
                                            lightgbm_r)
     
-    hostess$set(90)
-    
-    preds$yhat + residuals
+    preds$yhat <- preds$yhat + residuals
+    preds
   }
 }
 
@@ -213,15 +199,15 @@ plot_predictions <- function(predicted){
   if(is.null(predicted)){
     return(NULL)
   }
-  ggplot2::ggplot(na.omit(predicted), ggplot2::aes(x = ref_date, y = .pred)) +
-    ggplot2::geom_line()
-}
-
-dummy_hostess <- function() {
-  list(
-    set = function(x) NULL,
-    inc = function(x) NULL
-  )
+  ggplot2::ggplot(na.omit(predicted), ggplot2::aes(x = ref_date, y = yhat,
+                                                   ymin = yhat_lower, 
+                                                   ymax = yhat_upper)) +
+    ggplot2::geom_ribbon(alpha = 0.5) +
+    ggplot2::geom_line(ggplot2::aes(y = yhat_lower), colour = "grey") +
+    ggplot2::geom_line(ggplot2::aes(y = yhat_upper), colour = "grey") +
+    ggplot2::geom_line(colour = "red") +
+    ggplot2::ylab("Predicted price") +
+    ggthemes::theme_clean()
 }
 
 get_model_ratio_daily <- function(dates) {
@@ -254,4 +240,11 @@ get_model_ratio_monthly <- function(dates) {
   lightgbm_time <- times[3] * lightgbm_length + times[4]
   
   prophet_time / (prophet_time + lightgbm_time)
+}
+
+dummy_hostess <- function() {
+  list(
+    set = function(x) NULL,
+    inc = function(x) NULL
+  )
 }

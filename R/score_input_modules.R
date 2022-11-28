@@ -18,7 +18,8 @@ score_type_ui <- function(id){
   ns <- NS(id)
   selectInput(ns("score_type"), "Score type", choices = c(
     "Linear", "Peak", "Custom coordinates"
-  ))
+  )) %>%
+    add_info_to_label("score_type")
 }
 
 #' @name score_type_module
@@ -64,10 +65,13 @@ score_type_server <- function(id, reset, editing_row){
 universal_score_ui <- function(id){
   ns <- NS(id)
   tagList(
-    selectInput(ns("colname"), "Column", choices = c("")),
+    selectInput(ns("colname"), "Column", choices = c("")) %>%
+      add_info_to_label("colname"),
     col_summary_ui(ns("col_summary")),
-    textInput(ns("score_name"), "Score name", value = "Default"),
-    numericInput(ns("weight"), "Weight", value = 1)
+    textInput(ns("score_name"), "Score name", value = "Default") %>%
+      add_info_to_label("score_name"),
+    numericInput(ns("weight"), "Weight", value = 1) %>%
+      add_info_to_label("weight")
   )
 }
 
@@ -137,8 +141,10 @@ universal_score_server <- function(id, data, reset, editing_row){
 linear_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    numericInput(ns("lb"), "Lower bound", value = 0),
-    numericInput(ns("ub"), "Upper bound", value = 0)
+    numericInput(ns("lb"), "Lower bound", value = 0) %>%
+      add_info_to_label("linear_lb"),
+    numericInput(ns("ub"), "Upper bound", value = 0) %>%
+      add_info_to_label("linear_ub")
   )
 }
 
@@ -200,10 +206,14 @@ linear_score_server <- function(id, column, reset, editing_row) {
 peak_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    numericInput(ns("lb"), "Lower bound", value = 0),
-    numericInput(ns("ub"), "Upper bound", value = 0),
-    numericInput(ns("centre"), "Centre", value = 0),
-    shinyWidgets::prettySwitch(ns("inverse"), "Inverse") # Defaults to FALSE
+    numericInput(ns("lb"), "Lower bound", value = 0) %>%
+      add_info_to_label("peak_lb"),
+    numericInput(ns("ub"), "Upper bound", value = 0) %>%
+      add_info_to_label("peak_ub"),
+    numericInput(ns("centre"), "Centre", value = 0) %>%
+      add_info_to_label("centre"),
+    shinyWidgets::prettySwitch(ns("inverse"), "Inverse") %>% # Defaults to FALSE
+      add_info("inverse")
   )
 }
 
@@ -289,12 +299,15 @@ peak_score_server <- function(id, column, reset, editing_row) {
 exponential_score_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    shinyWidgets::prettySwitch(ns("exponential"), "Exponential transformation"),
+    shinyWidgets::prettySwitch(ns("exponential"), "Exponential transformation") %>%
+      add_info("exponential"),
     # Show the rest of the inputs if exponential is TRUE
     conditionalPanel(
       "input.exponential", ns = ns,
-      shinyWidgets::prettySwitch(ns("logarithmic"), "Logarithmic"),
-      numericInput(ns("magnitude"), "Magnitude", value = 1)
+      shinyWidgets::prettySwitch(ns("logarithmic"), "Logarithmic") %>%
+        add_info("logarithmic"),
+      numericInput(ns("magnitude"), "Magnitude", value = 1) %>%
+        add_info_to_label("magnitude")
     )
   )
 }

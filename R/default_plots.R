@@ -47,7 +47,8 @@ score_distributions <- function(scores){
     ggplot2::facet_grid(.~name) +
     ggplot2::scale_x_discrete(breaks = NULL, position = "top") +
     ggplot2::labs(x = "Score name", y = "Score") +
-    ggplot2::ylim(0, 1)
+    ggplot2::ylim(0, 1) +
+    ggthemes::theme_clean()
 }
 
 #' Compare a set of scores to a column
@@ -99,5 +100,49 @@ score_performance <- function(df, colname, scores){
     ggplot2::ggplot(ggplot2::aes(x = value, y = .data[[colname]], 
                                  color = name)) +
     ggplot2::geom_line() +
-    ggplot2::ylim(0, 1)
+    ggplot2::ylim(0, 1) +
+    ggthemes::theme_clean()
+}
+
+#' See the measure of correlation between each column in a data frame
+#' 
+#' Create a heatmap of the correlation matrix of a data frame, created using
+#' [cor()].
+#' 
+#' @param data The data to plot
+#' @param show_text Whether to show the correlation number over each panel in
+#'   the heatmap.
+#' 
+#' @returns A [ggplot2::ggplot()] object.
+#' 
+#' @examples 
+#' correlation_plot(mtcars)
+#' correlation_plot(mtcars, show_text = TRUE)
+#' 
+#' @export
+correlation_plot <- function(data, show_text = FALSE) {
+  if(is.null(data) || is.null(show_text)) {
+    return(NULL)
+  }
+  
+  x <- cor(data[,purrr::map_lgl(data, is.numeric)], use = "complete.obs") %>%
+    as.data.frame() %>%
+    tibble::rownames_to_column() %>%
+    tibble::as_tibble() %>%
+    tidyr::pivot_longer(-rowname)
+  
+  if(show_text) {
+    ggplot2::ggplot(x, ggplot2::aes(x = rowname, y = name, fill = value)) +
+      ggplot2::geom_bin_2d() +
+      ggplot2::geom_text(ggplot2::aes(label = round(value, 2)), size = 10/20 * 4) +
+      ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(angle = 90)) +
+      ggplot2::scale_fill_viridis_c(guide = "none") +
+      ggplot2::labs(x = NULL, y = NULL)
+  } else {
+    ggplot2::ggplot(x, ggplot2::aes(x = rowname, y = name, fill = value)) +
+      ggplot2::geom_bin_2d() +
+      ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(angle = 90)) +
+      ggplot2::scale_fill_viridis_c() +
+      ggplot2::labs(x = NULL, y = NULL)
+  }
 }

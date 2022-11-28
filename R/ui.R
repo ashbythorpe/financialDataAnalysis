@@ -17,7 +17,10 @@ ui <- function() {
       menuItem("View data", tabName = "view_data", icon = icon("table")),
       menuItem("Forecast prices", tabName = "forecast_price", 
                icon = icon("chart-line")),
-      menuItem("Plot data", tabName = "plot_data", icon = icon("chart-simple"))
+      menuItem("Plot data", tabName = "plot_data", icon = icon("chart-simple")),
+      menuItem("Settings", tabName = "settings", icon = icon("gear")),
+      menuItem("Source code", icon = icon("code"),
+               href = "https://github.com/ashbythorpe/financialDataAnalysis")
     )),
     dashboardBody(
       tabItems(
@@ -32,7 +35,9 @@ ui <- function() {
         tabItem("forecast_price",
                 forecast_price_ui("forecast_price")),
         tabItem("plot_data",
-                plot_data_ui("plot_data"))
+                plot_data_ui("plot_data")),
+        tabItem("settings",
+                settings_ui("settings"))
       )),
-  ), fDA_dependencies(), waiter::waiterPreloader(waiter::spin_loaders(12)))
+  ), fDA_dependencies())
 }

@@ -26,7 +26,7 @@ The demonstration of this project also loads the following packages (although th
 
 ```{r setup2, message = FALSE}
 library(tibble)
-library(readr)
+library(vroom)
 library(writexl)
 library(lubridate)
 ```
@@ -40,7 +40,7 @@ data_1 <- tibble(
   y = 10:1
 )
 file_1 <- tempfile(fileext = ".csv")
-write_csv(data_1, file_1)
+vroom_write(data_1, file_1, ",")
 
 data_2 <- tibble(
   x = 1:100,

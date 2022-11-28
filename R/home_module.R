@@ -17,8 +17,8 @@ home_ui <- function(){
       p("Email: ashbythorpe@gmail.com")
     ),
     box(
-      a("Source code", 
-        href = "https://github.com/ashbythorpe/financialDataAnalysis")
-    )
+      a("Report an issue", 
+        href = "https://github.com/ashbythorpe/financialDataAnalysis/issues")
+    ),
   )
 }

@@ -8,17 +8,17 @@ test_that("input_data works", {
   example_invalid_data_path <- tempfile("invalid", fileext = ".csv")
   withr::local_file(example_invalid_data_path)
   example_invalid_data <- tibble::tibble(x = 1, y = 1)
-  readr::write_csv(example_invalid_data, example_invalid_data_path)
+  vroom::vroom_write(example_invalid_data, example_invalid_data_path, ",")
 
   example_invalid_data2_path <- tempfile("invalid2", fileext = ".csv")
   withr::local_file(example_invalid_data2_path)
   example_invalid_data2 <- tibble::tibble(x = c(1,2))
-  readr::write_csv(example_invalid_data2, example_invalid_data2_path)
+  vroom::vroom_write(example_invalid_data2, example_invalid_data2_path, ",")
 
   example_valid_data_path <- tempfile("valid", fileext = ".csv")
   withr::local_file(example_valid_data_path)
   example_valid_data <- tibble::tibble(x = c(1,2), y = c(2,1))
-  readr::write_csv(example_valid_data, example_valid_data_path)
+  vroom::vroom_write(example_valid_data, example_valid_data_path, ",")
 
   example_excel_path <- tempfile("valid_excel", fileext = ".xlsx")
   withr::local_file(example_excel_path)
@@ -67,11 +67,11 @@ test_that("input_data works", {
 test_that("read_files works", {
   example_invalid_data_path <- tempfile("invalid", fileext = ".csv")
   example_invalid_data <- tibble::tibble(x = 1, y = 1)
-  readr::write_csv(example_invalid_data, example_invalid_data_path)
+  vroom::vroom_write(example_invalid_data, example_invalid_data_path, ",")
 
   example_valid_data_path <- tempfile("valid", fileext = ".csv")
   example_valid_data <- tibble::tibble(x = c(1,2), y = c(2,1))
-  readr::write_csv(example_valid_data, example_valid_data_path)
+  vroom::vroom_write(example_valid_data, example_valid_data_path, ",")
 
   example_excel_path <- tempfile("valid_excel", fileext = ".xlsx")
   example_excel <- tibble::tibble(x = c(1,2), y = c(2,1))
@@ -92,18 +92,18 @@ test_that("read_files works", {
 test_that("read_file works", {
   example_valid_data_path <- tempfile("valid", fileext = ".csv")
   example_valid_data <- tibble::tibble(x = c(1,2), y = c(2,1))
-  readr::write_csv(example_valid_data, example_valid_data_path)
+  vroom::vroom_write(example_valid_data, example_valid_data_path, ",")
 
   example_excel_path <- tempfile("excel", fileext = ".xlsx")
   writexl::write_xlsx(example_valid_data, example_excel_path)
 
   example_invalid_excel_path <- tempfile("invalid", fileext = ".xlsx")
-  readr::write_csv(example_valid_data, example_invalid_excel_path)
+  vroom::vroom_write(example_valid_data, example_invalid_excel_path, ",")
 
   example_invalid_path <- tempfile("invalid2")
   glue::glue_safe("{example_valid_data}") %>%
     {rlang::inject(paste0(!!!.))} %>%
-    readr::write_file(example_invalid_path)
+    vroom::vroom_write(example_invalid_path, "")
 
   read_file(NA) %>%
     expect_null()

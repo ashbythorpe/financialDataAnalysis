@@ -18,7 +18,7 @@ search_bar_ui <- function(id) {
       liveSearch = TRUE, liveSearchPlaceholder = "Select a stock"
     ),
     choicesOpt = list(
-      tokens = paste(default_stock_data$symbol, default_stock_data$companyName)
+      tokens = paste(default_stock_data$symbol, default_stock_data$company_name)
     ),
   )
 }

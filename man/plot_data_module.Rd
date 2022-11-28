@@ -8,7 +8,7 @@
 \usage{
 plot_data_ui(id)
 
-plot_data_server(id, data, scores)
+plot_data_server(id, data, scores, interactive)
 }
 \arguments{
 \item{id}{The namespace of the module.}
@@ -17,6 +17,8 @@ plot_data_server(id, data, scores)
 
 \item{scores}{The data frame of score specifications created by the user. See
 \link{scores_init}.}
+
+\item{interactive}{Whether any plots created should be interactive.}
 }
 \description{
 A shiny module that contains the Plot Data page, which allows the user to

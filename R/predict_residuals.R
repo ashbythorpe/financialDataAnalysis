@@ -1,4 +1,4 @@
-predict_residuals_daily <- function(stock, dates, preds, hostess, r) {
+predict_residuals_daily <- function(stock, dates, hostess, r) {
   data <- dplyr::filter(daily_training_data, ticker == stock) %>%
     dplyr::rename(ds = "ref_date")
   
@@ -21,7 +21,7 @@ predict_residuals_daily <- function(stock, dates, preds, hostess, r) {
     dplyr::pull(residuals)
 }
 
-predict_residuals_monthly <- function(stock, dates, preds, hostess, r) {
+predict_residuals_monthly <- function(stock, dates, hostess, r) {
   # Make sure dates line up correctly
   data <- dplyr::filter(monthly_training_data, ticker == stock) %>%
     dplyr::rename(ds = "ref_date")

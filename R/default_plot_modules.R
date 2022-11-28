@@ -36,3 +36,35 @@ score_performance_server <- function(id, data, scores) {
     reactive(input$colname)
   })
 }
+
+#' Decide whether to show text in a correlation heatmap plot
+#' 
+#' A shiny module that allows the user to decide the value of the `show_text`
+#' argument to [correlation_plot()].
+#' 
+#' @param id The namespace of the module.
+#' 
+#' @returns The server returns the user's input.
+#' 
+#' @seealso [correlation_plot()]
+#' 
+#' @name correlation_plot_module
+#' @export
+correlation_plot_ui <- function(id) {
+  ns <- NS(id)
+  shinyWidgets::prettySwitch(ns("show_text"), "Show numbers as text") %>%
+    add_info("show_text")
+}
+
+#' @name correlation_plot_module
+#' @export
+correlation_plot_server <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    show_text <- reactive({
+      req(is.logical(input$show_text))
+      input$show_text
+    })
+    
+    show_text
+  })
+}

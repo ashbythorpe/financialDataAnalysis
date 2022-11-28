@@ -6,9 +6,13 @@
 #' @param plotting_method The type of plot to create (either "line", "scatter"
 #'   or "histogram")
 #' @param ... A set of arguments mapping certain variables to aesthetics. Each
-#' argument should be specified in the format `aesthetic = "column_name"`, where
-#' `aesthetic` is a visual property that a variable can be mapped to (e.g. x, 
-#' colour), and `column_name` is the name of a column in your data.
+#'   argument should be specified in the format `aesthetic = "column_name"`, 
+#'   where `aesthetic` is a visual property that a variable can be mapped to 
+#'   (e.g. x, colour), and `column_name` is the name of a column in your data.
+#' @param .interactive Whether the plot is going to be transformed into an 
+#'   interactive graph using [plotly::ggplotly()]. If `TRUE`, and the `alpha`
+#'   aesthetic is used, the alpha variable will be transformed using [factor()],
+#'   since [plotly::ggplotly()] errors when it encounters a continuous alpha.
 #' 
 #' @details 
 #' # Line graphs
@@ -64,7 +68,7 @@
 #' custom_plot(data, "line", x = "a", y = "b")
 #' 
 #' @export
-custom_plot <- function(df, plotting_method, ...){
+custom_plot <- function(df, plotting_method, ..., .interactive = TRUE){
   plot_args <- rlang::list2(...)
   
   method <- validate_plotting_method(plotting_method)
@@ -94,7 +98,8 @@ custom_plot <- function(df, plotting_method, ...){
   # The plot only errors when it is printed: assign the result of this function
   # to a variable and it won't produce an error.
   rlang::inject(
-    create_plot(df, method = method, args = args, !!!other)
+    create_plot(df, method = method, args = args, !!!other, 
+                .interactive = .interactive)
   )
 }
 
@@ -300,10 +305,10 @@ validate_hex_args <- function(args, data) {
   )
 }
 
-create_plot <- function(df, args, method, ...){
+create_plot <- function(df, args, method, ..., .interactive){
   # Fix alpha aesthetic for plotly
   extra_layers <- list()
-  if("alpha" %in% names(args) && is.character(args["alpha"])) {
+  if(.interactive && "alpha" %in% names(args) && is.character(args["alpha"])) {
     alpha <- call("factor", rlang::data_sym(args["alpha"]))
     
     other_args <- args[names(args) != "alpha"]
@@ -314,7 +319,7 @@ create_plot <- function(df, args, method, ...){
       
       aesthetics <- other_args %>%
         rlang::data_syms() %>%
-        ggplot2::aes(,,!!!., alpha = !!alpha)
+        ggplot2::aes(!!!., alpha = !!alpha)
       
       extra_layers <- ggplot2::scale_alpha_manual(
         guide = "none", values = unique(scaled_col)
@@ -322,12 +327,12 @@ create_plot <- function(df, args, method, ...){
     } else {
       aesthetics <- other_args %>%
         rlang::data_syms() %>%
-        ggplot2::aes(,,!!!., alpha = !!alpha)
+        ggplot2::aes(!!!., alpha = !!alpha)
     }
   } else {
     aesthetics <- args %>%
       rlang::data_syms() %>%
-      ggplot2::aes(,,!!!.)
+      ggplot2::aes(!!!.)
   }
   
   # Use frequency density rather than count
@@ -352,7 +357,8 @@ create_plot <- function(df, args, method, ...){
   
   ggplot2::ggplot(data = df, aesthetics) +
     layer +
-    extra_layers
+    extra_layers +
+    ggthemes::theme_clean()
 }
 
 remove_invalid_args <- function(x) {

@@ -2,12 +2,12 @@ test_that("data_input_server works", {
   example_invalid_data_path <- tempfile("invalid", fileext = ".csv")
   withr::local_file(example_invalid_data_path)
   example_invalid_data <- tibble::tibble(x = 1, y = 1)
-  readr::write_csv(example_invalid_data, example_invalid_data_path)
+  vroom::vroom_write(example_invalid_data, example_invalid_data_path, ",")
   
   example_valid_data_path <- tempfile("valid", fileext = ".csv")
   withr::local_file(example_valid_data_path)
   example_valid_data <- tibble::tibble(x = c(1,2), y = c(2,1))
-  readr::write_csv(example_valid_data, example_valid_data_path)
+  vroom::vroom_write(example_valid_data, example_valid_data_path, ",")
   
   testServer(data_input_server, {
     session$setInputs(combine = FALSE)

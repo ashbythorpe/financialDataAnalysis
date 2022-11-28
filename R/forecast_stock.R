@@ -9,22 +9,26 @@ forecast_stock_daily <- function(object, stock, horizon, training_data,
   
   inc <- r / iterations
   
-  inc <- c(inc[1], diff(round(cumsum(inc), 2)))
-  
   data <- training_data %>%
     dplyr::filter(ticker == stock) %>%
     dplyr::arrange(ds)
   
   purrr::reduce(
     seq_len(iterations), .init = data,
-    predict_iteration_daily, object = object,
+    daily_iteration_wrapper, object = object,
     hostess = hostess, inc = inc
   ) %>%
     dplyr::slice(-1:-nrow(data)) %>%
     dplyr::slice_head(n = -remove_from_end)
 }
 
-predict_iteration_daily <- function(data, n, object, hostess, inc) {
+daily_iteration_wrapper <- function(..., hostess, inc) {
+  hostess$inc(unname(inc * 100))
+  
+  predict_iteration_daily(...)
+}
+
+predict_iteration_daily <- function(data, n, object) {
   ticker <- data$ticker[1]
   max <- max(data$ds)
   
@@ -38,8 +42,6 @@ predict_iteration_daily <- function(data, n, object, hostess, inc) {
     dplyr::slice_tail(n = 7)
   
   pred <- stats::predict(object, pred_data)
-  
-  hostess$inc(unname(inc * 100))
   
   dplyr::add_row(
     data,
@@ -60,22 +62,26 @@ forecast_stock_monthly <- function(object, stock, horizon, training_data,
   
   inc <- r / iterations
   
-  inc <- c(inc[1], diff(round(cumsum(inc))))
-  
   data <- training_data %>%
     dplyr::filter(ticker == stock) %>%
     dplyr::arrange(ds)
   
   purrr::reduce(
     seq_len(iterations), .init = data,
-    predict_iteration_monthly, object = object,
+    monthly_iteration_wrapper, object = object,
     hostess = hostess, inc = inc
   ) %>%
     dplyr::slice(-1:-nrow(data)) %>%
     dplyr::slice_head(n = -remove_from_end)
 }
 
-predict_iteration_monthly <- function(data, n, object, hostess, inc) {
+monthly_iteration_wrapper <- function(..., hostess, inc) {
+  hostess$inc(unname(inc * 100))
+  
+  predict_iteration_monthly(...)
+}
+
+predict_iteration_monthly <- function(data, n, object) {
   ticker <- data$ticker[1]
   max <- max(data$ds)
   
@@ -92,8 +98,6 @@ predict_iteration_monthly <- function(data, n, object, hostess, inc) {
   
   pred <- stats::predict(object, pred_data)
   
-  hostess$inc(unname(inc * 100))
-  
   dplyr::add_row(
     data,
     ticker = ticker,
@@ -106,10 +110,18 @@ predict_iteration_monthly <- function(data, n, object, hostess, inc) {
 
 create_price_features_daily <- function(x) {
   x %>%
-    timetk::tk_augment_lags(residuals, .lags = 8:90)
+    dplyr::mutate(
+      purrr::map(8:90, dplyr::lag, x = residuals) %>%
+        rlang::set_names(paste0("residuals_lag", 8:90)) %>%
+        tibble::as_tibble()
+    )
 }
 
 create_price_features_monthly <- function(x) {
   x %>%
-    timetk::tk_augment_lags(residuals, .lags = 7:60)
+    dplyr::mutate(
+      purrr::map(7:60, dplyr::lag, x = residuals) %>%
+        rlang::set_names(paste0("residuals_lag", 7:60)) %>%
+        tibble::as_tibble()
+    )
 }

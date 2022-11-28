@@ -8,12 +8,14 @@
 \usage{
 create_scores_ui(id)
 
-create_scores_server(id, data)
+create_scores_server(id, data, interactive)
 }
 \arguments{
 \item{id}{The namespace of the module.}
 
 \item{data}{The data to score.}
+
+\item{interactive}{Whether any plots created should be interactive.}
 }
 \value{
 The server returns the table of score specifications that the user has

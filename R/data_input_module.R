@@ -27,7 +27,8 @@ data_input_ui <- function(id){
               accept = accepted_files) %>%
       format_file_input(ns), # Add cancel button
     shinyWidgets::prettySwitch(ns("combine"),
-                               label = "Combine files with default data?"),
+                               label = "Combine files with default data?") %>%
+      add_info("combine"),
     textOutput(ns("fatal")) %>%
       tagAppendAttributes(class = "error"),
     textOutput(ns("nonfatal")) %>%
@@ -59,7 +60,7 @@ data_input_server <- function(id){
     
     # Reset the look of the file input and the value of values$files
     observe({
-      shinyjs::reset("files")
+      session$sendCustomMessage("files_reset", session$ns("files"))
       values$files <- NULL
     }) %>%
       bindEvent(input$reset)

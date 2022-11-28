@@ -156,4 +156,36 @@ default_stock_data <- joined %>%
   mutate(across(where(is.timepoint), as.numeric)) %>%
   mutate(favourite = FALSE)
 
+colnames(default_stock_data) <- 
+  janitor::make_clean_names(colnames(default_stock_data))
+
+default_stock_data <- default_stock_data %>%
+  rename(ZIP = "zip",
+         EBIT = "ebit",
+         market_capitalization = "marketcap",
+         `52_week_low` = "week52low",
+         `52_week_high` = "week52high",
+         `52_week_high_split_adjust_only` = "week52high_split_adjust_only",
+         `52_week_low_split_adjust_only` = "week52low_split_adjust_only",
+         `52_week_change` = "week52change",
+         average_10_day_volume = "avg10volume",
+         average_30_day_volume = "avg30volume",
+         `200_day_moving_average` = "day200moving_avg",
+         `50_day_moving_average` = "day50moving_avg",
+         TTM_EPS = "ttm_eps",
+         TTM_dividend_rate = "ttm_dividend_rate",
+         PE_ratio = "pe_ratio",
+         `5_year_change_percent` = "year5change_percent",
+         `2_year_change_percent` = "year2change_percent",
+         `1_year_change_percent` = "year1change_percent",
+         YTD_change_percent = "ytd_change_percent",
+         `6_month_change_percent` = "month6change_percent",
+         `3_month_change_percent` = "month3change_percent",
+         `1_month_change_percent` = "month1change_percent",
+         `30_day_change_percent` = "day30change_percent",
+         `5_day_change_percent` = "day5change_percent",
+         ) %>%
+  mutate(address = paste(address, address2)) %>%
+  select(-key, -subkey, -date, -next_dividend_date, -next_earnings_date)
+
 usethis::use_data(default_stock_data, overwrite = TRUE)

@@ -81,6 +81,7 @@ reference:
 - contents:
   - plot_data_module
   - score_performance_module
+  - correlation_plot_module
   - custom_plot_module
   - custom_plot_modules
   - plot_module
@@ -88,8 +89,14 @@ reference:
 - contents:
   - score_distributions
   - score_performance
+  - correlation_plot
   - custom_plot
   - print_plot
+- title: Settings
+  desc: Allows the user to specify a set of settings
+- subtitle: Modules
+- contents:
+  - settings_module
 - title: Other functions
 - contents:
   - fDA_dependencies

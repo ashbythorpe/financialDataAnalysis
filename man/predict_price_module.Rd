@@ -8,12 +8,14 @@
 \usage{
 predict_price_ui(id)
 
-predict_price_server(id, stock)
+predict_price_server(id, stock, interactive)
 }
 \arguments{
 \item{id}{The namespace of the module.}
 
 \item{stock}{The selected stock to generate predictions for.}
+
+\item{interactive}{Whether the created plot should be interactive.}
 }
 \description{
 Allows the user to specify a start date and an end date, then predicts the

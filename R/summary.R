@@ -60,7 +60,8 @@ score_summary <- function(x, ...){
   tibble::tibble(column_value = x, score = rlang::inject(score_column(x, !!!score_spec))) %>%
     ggplot2::ggplot(ggplot2::aes(x = column_value, y = score)) +
     ggplot2::geom_line() +
-    ggplot2::ylim(0,1)
+    ggplot2::ylim(0,1) +
+    ggthemes::theme_clean()
 }
 
 #' Create a summary of a stock

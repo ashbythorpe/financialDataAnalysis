@@ -12,16 +12,36 @@
   align-items: center;
 }
 
+.info_row {
+  justify-content: space-between;
+}
+
 /* Override/reset default formatting for a file input */
 .formatted_file_input { 
   width: auto !important;
   margin-bottom: auto !important;
 }
 
+.info_item {
+  flex-grow: 1;
+  padding: 0px 4px;
+}
+
+/* Override format for slider input */
 .filter_update {
   width: auto;
 }
 
 .unused_label {
   display: inline !important;
+}
+
+/* Override format for waiter loader */
+.bounce1, .bounce2, .bounce3 {
+  background-color: #333e48 !important;
+}
+
+.tippy-box[data-theme~="FDA"] {
+  background-color: #33A2FF;
+  font-family: Arial;
 }
