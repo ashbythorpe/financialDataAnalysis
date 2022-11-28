@@ -41,7 +41,13 @@
   background-color: #333e48 !important;
 }
 
+/* Custom theme for tooltips */
 .tippy-box[data-theme~="FDA"] {
   background-color: #33A2FF;
   font-family: Arial;
+}
+
+/* Make sure loading screens don't cover everything (tooltips + shiny disconnect screen) */
+.waiter-overlay {
+  z-index: 10 !important;
 }

@@ -101,8 +101,7 @@ test_that("read_file works", {
   vroom::vroom_write(example_valid_data, example_invalid_excel_path, ",")
 
   example_invalid_path <- tempfile("invalid2")
-  glue::glue_safe("{example_valid_data}") %>%
-    {rlang::inject(paste0(!!!.))} %>%
+  example_valid_data %>%
     vroom::vroom_write(example_invalid_path, "")
 
   read_file(NA) %>%
@@ -112,8 +111,7 @@ test_that("read_file works", {
   read_file(example_excel_path) %>%
     expect_equal(example_valid_data)
   read_file(example_invalid_path) %>%
-    {nrow(.) == 0} %>%
-    expect_true()
+    expect_null()
   read_file(example_invalid_excel_path) %>%
     expect_null()
 })

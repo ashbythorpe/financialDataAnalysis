@@ -15,9 +15,9 @@ forecast_price_ui <- function(id) {
     style = "overflow-y: scroll", # Make this page scrollable
     box(
       width = 12,
-      search_bar_ui(ns("search_bar")),
-      stock_summary_ui(ns("stock_summary"))
+      search_bar_ui(ns("search_bar"))
     ),
+    stock_summary_ui(ns("stock_summary")),
     box(
       title = "Predictions",
       width = 12,

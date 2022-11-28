@@ -185,7 +185,11 @@ default_stock_data <- default_stock_data %>%
          `30_day_change_percent` = "day30change_percent",
          `5_day_change_percent` = "day5change_percent",
          ) %>%
-  mutate(address = paste(address, address2)) %>%
-  select(-key, -subkey, -date, -next_dividend_date, -next_earnings_date)
+  mutate(address = paste(address, address2)%>%
+           str_remove_all("NA") %>%
+           str_remove_all(" $") %>%
+           na_if("")) %>%
+  select(-key, -subkey, -date, -next_dividend_date, -next_earnings_date, 
+         -address2)
 
 usethis::use_data(default_stock_data, overwrite = TRUE)

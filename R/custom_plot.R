@@ -305,7 +305,7 @@ validate_hex_args <- function(args, data) {
   )
 }
 
-create_plot <- function(df, args, method, ..., .interactive){
+create_plot <- function(df, args, method, ..., .interactive = TRUE){
   # Fix alpha aesthetic for plotly
   extra_layers <- list()
   if(.interactive && "alpha" %in% names(args) && is.character(args["alpha"])) {

@@ -169,7 +169,13 @@ score_summary_server <- function(id, column, score_spec, interactive) {
 #' @export
 stock_summary_ui <- function(id) {
   ns <- NS(id)
-  reactable::reactableOutput(ns("summary"))
+  tabBox(
+    title = "Stock information",
+    width = 12,
+    selected = "Summary",
+    tabPanel("Summary", uiOutput(ns("summary"))),
+    tabPanel("Statistics", reactable::reactableOutput(ns("stats")))
+  )
 }
 
 #' @name stock_summary_module
@@ -181,15 +187,39 @@ stock_summary_server <- function(id, stock) {
       default_stock_data[default_stock_data$symbol == stock(),]
     })
     
-    output$summary <- reactable::renderReactable({
+    output$summary <- renderUI({
+      req(stock_row(), nrow(stock_row()))
+      tagList(
+        h3(paste0(stock_row()$company_name, " (", stock_row()$symbol, ")")),
+        a("Website", href = paste0("https://", stock_row()$website)),
+        br(),
+        p(stock_row()$description),
+        p(paste("CEO:", stock_row()$ceo)),
+        p(paste("Sector:", stock_row()$sector)),
+        p(paste("Industry", stock_row()$industry)),
+        p(paste("SIC code:", stock_row()$primary_sic_code)),
+        p(paste("Employees:", stock_row()$employees)),
+        p(paste0("Address: ", stock_row()$address, ", ", stock_row()$city, ", ", 
+                stock_row()$state, ", ", stock_row()$country)),
+        p(paste("ZIP code:", stock_row()$ZIP)),
+        p(paste("Phone number:", stock_row()$phone)),
+      )
+    })
+    
+    output$stats <- reactable::renderReactable({
       req(stock_row())
+      data <-
+        stock_row()[,purrr::map_lgl(stock_row(), is.numeric)] %>%
+        tidyr::pivot_longer(dplyr::everything(),
+                            names_to = "Name",
+                            values_to = "Value") %>%
+        dplyr::mutate(Name = Name %>%
+                        stringr::str_replace_all("_", " ") %>%
+                        stringr::str_to_sentence())
       reactable::reactable(
-        stock_row(), sortable = FALSE, pagination = FALSE,
-        columns <- list(
-          description = reactable::colDef(
-            minWidth = 1000
-          )
-        )
+        data, 
+        sortable = FALSE, 
+        pagination = TRUE
       )
     })
   })

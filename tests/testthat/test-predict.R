@@ -1,5 +1,6 @@
 test_that("predict_price + plot_predictions works", {
   skip_on_ci()
+  withr::local_seed(42)
   
   date <- lubridate::ymd("2022-8", truncated = 1)
   predict_price("GOOGL", start_date = date, end_date = date + months(6)) %>%

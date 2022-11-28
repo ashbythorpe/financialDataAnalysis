@@ -1,6 +1,9 @@
 test_that("custom_plot works", {
   skip_on_ci()
+  withr::local_seed(42)
+  
   df <- tibble::tibble(x = c(1,2,3,4,5,6), y = rep(letters[1:3], 2))
+  
   custom_plot(df, NULL) %>%
     expect_null()
   custom_plot(df, "aaa") %>%
@@ -12,8 +15,7 @@ test_that("custom_plot works", {
   custom_plot(df, "line", x = "x", y = "x", colour = "x") %>%
     vdiffr::expect_doppelganger(title = "Custom line plot")
   custom_plot(df, "scatter", x = "x", y = "y", colour = "y", size = "x", 
-              shape = "y") %>%
-    vdiffr::expect_doppelganger(title = "Custom scatter plot")
+              shape = "y")
   plot <- custom_plot(df, "histogram", x = "x", y = "y")
   plot2 <- custom_plot(df, "histogram", x = "x", y = "y", size = "z")
   expect_equal(plot, plot2)
@@ -28,7 +30,7 @@ test_that("custom_plot works", {
   custom_plot(df, "scatter", x = "x", y = "x", size = 10) %>%
     vdiffr::expect_doppelganger(title = "Large point size")
   custom_plot(df, "scatter", x = "x", y = "y", jitter = TRUE) %>%
-    vdiffr::expect_doppelganger(title = "Jitter")
+    vdiffr::expect_doppelganger(title = "Jitter plot")
   custom_plot(df, "histogram", y = "x", bins = 10) %>%
     vdiffr::expect_doppelganger(title = "Custom histogram")
   custom_plot(df, "smooth", x = "x", y = "x", span = 10) %>%
@@ -38,7 +40,8 @@ test_that("custom_plot works", {
     vdiffr::expect_doppelganger(title = "Area plot")
   custom_plot(df, "hex", x = "x", y = "x", fill = "y", bins = 10) %>%
     vdiffr::expect_doppelganger(title = "Hex plot")
-  custom_plot(df, "line", x = "x", y = "x", alpha = "x")
+  custom_plot(df, "line", x = "x", y = "x", alpha = "x", .interactive = FALSE) %>%
+    vdiffr::expect_doppelganger(title = "Opacity plot")
 })
 
 test_that("validate_plotting_method works", {

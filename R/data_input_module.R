@@ -32,7 +32,8 @@ data_input_ui <- function(id){
     textOutput(ns("fatal")) %>%
       tagAppendAttributes(class = "error"),
     textOutput(ns("nonfatal")) %>%
-      tagAppendAttributes(class = "warning")
+      tagAppendAttributes(class = "warning"),
+    textOutput(ns("summary"))
   )
 }
 
@@ -103,6 +104,13 @@ data_input_server <- function(id){
       } else {
         validate_df(transformed_df(), default_stock_data, error()$fatal)
       }
+    })
+    
+    output$summary <- reactive({
+      paste("The current data has", nrow(final_df()), "rows and", 
+            ncol(final_df()), "columns,", 
+            sum(purrr::map_lgl(final_df(), is.numeric)),
+            "of which are numeric.")
     })
     
     final_df

@@ -173,7 +173,7 @@ $(function() {
   
   create_tooltip(
     "show_text",
-    "Useful for data with a small number of columns, but can cause clutter otherwise"
+    "Useful for data with a small number of columns, but can cause clutter otherwise. Can also fix small issues, such as the x axis in the correlation heatmap plot."
   )
 });
 

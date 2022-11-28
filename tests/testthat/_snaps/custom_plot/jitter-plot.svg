@@ -29,12 +29,12 @@
 <polyline points='28.31,447.11 714.02,447.11 ' style='stroke-width: 1.16; stroke: #BEBEBE; stroke-dasharray: 1.55,4.66; stroke-linecap: butt;' />
 <polyline points='28.31,284.56 714.02,284.56 ' style='stroke-width: 1.16; stroke: #BEBEBE; stroke-dasharray: 1.55,4.66; stroke-linecap: butt;' />
 <polyline points='28.31,122.02 714.02,122.02 ' style='stroke-width: 1.16; stroke: #BEBEBE; stroke-dasharray: 1.55,4.66; stroke-linecap: butt;' />
-<circle cx='59.48' cy='419.54' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='241.75' cy='255.23' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='348.57' cy='113.03' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='475.38' cy='409.35' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='623.99' cy='286.77' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='682.85' cy='84.56' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='59.48' cy='466.36' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='154.25' cy='346.80' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='322.89' cy='59.02' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='392.30' cy='430.02' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='506.80' cy='282.17' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='682.85' cy='81.63' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <polyline points='28.31,544.63 28.31,24.50 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
@@ -45,20 +45,14 @@
 <polyline points='25.32,284.56 28.31,284.56 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
 <polyline points='25.32,122.02 28.31,122.02 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
 <polyline points='28.31,544.63 714.02,544.63 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='63.00,547.62 63.00,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<polyline points='192.25,547.62 192.25,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<polyline points='321.49,547.62 321.49,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<polyline points='450.73,547.62 450.73,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<polyline points='579.97,547.62 579.97,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<polyline points='709.21,547.62 709.21,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
-<text x='63.00' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>1</text>
-<text x='192.25' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='321.49' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>3</text>
-<text x='450.73' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='579.97' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>5</text>
-<text x='709.21' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>6</text>
+<polyline points='178.01,547.62 178.01,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
+<polyline points='409.05,547.62 409.05,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
+<polyline points='640.09,547.62 640.09,544.63 ' style='stroke-width: 1.16; stroke-linecap: butt;' />
+<text x='178.01' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='409.05' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='640.09' y='556.21' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>6</text>
 <text x='371.17' y='567.95' text-anchor='middle' style='font-size: 10.00px; font-family: sans;' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>x</text>
 <text transform='translate(12.86,284.56) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: sans;' textLength='5.00px' lengthAdjust='spacingAndGlyphs'>y</text>
-<text x='28.31' y='15.61' style='font-size: 14.00px; font-weight: bold; font-family: sans;' textLength='30.34px' lengthAdjust='spacingAndGlyphs'>Jitter</text>
+<text x='28.31' y='15.61' style='font-size: 14.00px; font-weight: bold; font-family: sans;' textLength='56.80px' lengthAdjust='spacingAndGlyphs'>Jitter plot</text>
 </g>
 </svg>

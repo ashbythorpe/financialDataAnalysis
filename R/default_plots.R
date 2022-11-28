@@ -47,7 +47,7 @@ score_distributions <- function(scores){
     ggplot2::facet_grid(.~name) +
     ggplot2::scale_x_discrete(breaks = NULL, position = "top") +
     ggplot2::labs(x = "Score name", y = "Score") +
-    ggplot2::ylim(0, 1) +
+    ggplot2::coord_cartesian(ylim = c(0, 1)) +
     ggthemes::theme_clean()
 }
 
@@ -100,7 +100,7 @@ score_performance <- function(df, colname, scores){
     ggplot2::ggplot(ggplot2::aes(x = value, y = .data[[colname]], 
                                  color = name)) +
     ggplot2::geom_line() +
-    ggplot2::ylim(0, 1) +
+    ggplot2::coord_cartesian(xlim = c(0, 1)) +
     ggthemes::theme_clean()
 }
 
@@ -131,10 +131,13 @@ correlation_plot <- function(data, show_text = FALSE) {
     tibble::as_tibble() %>%
     tidyr::pivot_longer(-rowname)
   
+  columns <- sum(purrr::map_lgl(data, is.numeric))
+  
   if(show_text) {
     ggplot2::ggplot(x, ggplot2::aes(x = rowname, y = name, fill = value)) +
       ggplot2::geom_bin_2d() +
-      ggplot2::geom_text(ggplot2::aes(label = round(value, 2)), size = 10/20 * 4) +
+      ggplot2::geom_text(ggplot2::aes(label = round(value, 2)), 
+                         size = 10/columns * 4) +
       ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(angle = 90)) +
       ggplot2::scale_fill_viridis_c(guide = "none") +
       ggplot2::labs(x = NULL, y = NULL)
