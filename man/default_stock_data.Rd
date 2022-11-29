@@ -5,7 +5,7 @@
 \alias{default_stock_data}
 \title{A large table of stock data}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 497 rows and 101 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 497 rows and 100 columns.
 }
 \usage{
 default_stock_data

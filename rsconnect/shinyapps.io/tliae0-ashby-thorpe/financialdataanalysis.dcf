@@ -5,7 +5,7 @@ account: tliae0-ashby-thorpe
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7743856
-bundleId: 6560553
+bundleId: 6564914
 url: https://ashbythorpe.shinyapps.io/financialdataanalysis/
-when: 1669600166.43915
-lastSyncTime: 1669600166.43921
+when: 1669678469.21608
+lastSyncTime: 1669678469.21614
