@@ -215,7 +215,8 @@ stock_summary_server <- function(id, stock) {
                             values_to = "Value") %>%
         dplyr::mutate(Name = Name %>%
                         stringr::str_replace_all("_", " ") %>%
-                        stringr::str_to_sentence())
+                        gsub("(^[a-z])", "\\U\\1\\L", ., perl = TRUE))
+      # Replace _ with spaces and capitalize each field.
       reactable::reactable(
         data, 
         sortable = FALSE, 

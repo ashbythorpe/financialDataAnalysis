@@ -7,6 +7,7 @@
 #' @export
 ui <- function() {
   tagList(dashboardPage(
+    title = "Financial Data Analysis",
     dashboardHeader(title = span("Financial Data Analysis", 
                                  style = "font-size: 18px")),
     dashboardSidebar(sidebarMenu(
@@ -39,5 +40,5 @@ ui <- function() {
         tabItem("settings",
                 settings_ui("settings"))
       )),
-  ), fDA_dependencies())
+  ), fDA_dependencies(), favicon())
 }
