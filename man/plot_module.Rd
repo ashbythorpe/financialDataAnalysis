@@ -34,6 +34,8 @@ plot_server(
 \item{performance_col}{If \code{type} is "Score performance", the column to plot
 against the scores.}
 
+\item{show_text}{Passed into \code{\link[=correlation_plot]{correlation_plot()}}.}
+
 \item{custom_type}{If \code{type} is "Custom", the plotting method of the custom
 plot.}
 

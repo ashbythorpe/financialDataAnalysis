@@ -21,6 +21,7 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     bonsai,
+    cachem,
     dplyr,
     generics,
     ggplot2,
@@ -32,6 +33,7 @@ Imports:
     lightgbm,
     lubridate,
     magrittr,
+    memoise,
     plotly,
     prophet,
     purrr,

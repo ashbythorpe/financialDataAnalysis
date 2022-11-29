@@ -9,6 +9,7 @@
 #'   [scores_init].
 #' @param performance_col If `type` is "Score performance", the column to plot
 #'   against the scores.
+#' @param show_text Passed into [correlation_plot()].
 #' @param custom_type If `type` is "Custom", the plotting method of the custom
 #'   plot.
 #' @param custom_args If `type` is "Custom", the arguments to create the custom
