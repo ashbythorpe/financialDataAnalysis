@@ -87,8 +87,8 @@ the stock name and ticker.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">search_stocks</span><span class="op">(</span><span class="va">default_stock_data</span>, <span class="st">"Al p"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 59 × 106</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    symbol company…¹ excha…² indus…³ website descr…⁴ CEO   secur…⁵ sector prima…⁶</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 59 × 100</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> APD    Air Prod… NEW YO… <span style="color: #949494;">"</span>Indus… www.ai… <span style="color: #949494;">"</span>Air P… Seif… Air Pr… Manuf…    <span style="text-decoration: underline;">2</span>813</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ALK    Alaska A… NEW YO… <span style="color: #949494;">"</span>Sched… www.al… <span style="color: #949494;">"</span>Alask… Brad… Alaska… Trans…    <span style="text-decoration: underline;">4</span>512</span>
@@ -100,13 +100,13 @@ the stock name and ticker.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> MO     Altria G… NEW YO… <span style="color: #949494;">"</span>Tobac… https:… <span style="color: #949494;">"</span>Altri… Will… Altria… Manuf…    <span style="text-decoration: underline;">2</span>111</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> AAL    American… NASDAQ  <span style="color: #949494;">"</span>Sched… www.aa… <span style="color: #949494;">"</span>Ameri… Thom… Americ… Trans…    <span style="text-decoration: underline;">4</span>512</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> AIG    American… NEW YO… <span style="color: #949494;">"</span>Third… www.ai… <span style="color: #949494;">"</span>Ameri… Bria… Americ… Finan…    <span style="text-decoration: underline;">6</span>331</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 49 more rows, 96 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   address2 &lt;chr&gt;, state &lt;chr&gt;, city &lt;chr&gt;, zip &lt;chr&gt;, country &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   phone &lt;dbl&gt;, capitalExpenditures &lt;dbl&gt;, cashChange &lt;dbl&gt;, cashFlow &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cashFlowFinancing &lt;dbl&gt;, changesInInventories &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   changesInReceivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   filingType &lt;chr&gt;, fiscalDate &lt;dbl&gt;, netBorrowings &lt;dbl&gt;, netIncome &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   reportDate &lt;dbl&gt;, totalInvestingCashFlows &lt;dbl&gt;, key &lt;chr&gt;, subkey &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 49 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -43,6 +43,12 @@
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/col_summary_module.html</loc>
   </url>
   <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/correlation_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/correlation_plot_module.html</loc>
+  </url>
+  <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/create_filter_module.html</loc>
   </url>
   <url>
@@ -197,6 +203,9 @@
   </url>
   <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/server.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/settings_module.html</loc>
   </url>
   <url>
     <loc>https://ashbythorpe.github.io/financialDataAnalysis/reference/sort_df.html</loc>
