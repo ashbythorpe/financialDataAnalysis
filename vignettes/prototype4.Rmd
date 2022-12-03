@@ -1,0 +1,82 @@
+---
+title: "Review of prototype 4"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Review of prototype 4}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is a demonstration of prototype 4 of the 'financialDataAnalysis' project.
+
+```{r setup}
+library(financialDataAnalysis)
+```
+
+There were quite a few changes made in this prototype. First of all, the website is now hosted online, meaning that you no longer have to download the package to use it:
+https://ashbythorpe.shinyapps.io/financialDataAnalysis/
+
+# Stock data
+
+Some work was done to make the default stock data easier to use. A few unnecessary or non-useful columns were removed, and the columns were renamed to make it easier to understand what each one represents. The names of all the columns are now in [snake case](https://en.wikipedia.org/wiki/Snake_case)
+
+```{r}
+default_stock_data
+```
+
+# Price predictions
+
+Previously, the price prediction process did not give great results. A lot of time has been spent ensuring that the predictions are now very accurate. The `predict_price()` function can be used as before.
+
+# Data input
+
+The file input feature now accepts a much larger range of file types:
+
+* Rectangular files - CSV, TSV and FWF.
+* Excel files - XLS, XLSX, XLSM, XLTX and XLTM.
+* Stata files - DTA.
+* SPSS files - SAV, ZSAV and POR.
+* SAS files - SAS7BDAT, SAS7BCAT and XPT.
+
+Compressed files - GX, BZ2, XZ and ZIP - can also be read. However, they must make their uncompressed format clear through the file name (e.g. myfile.csv.zip).
+
+The data input section of the website also provides a short text summary of the current data.
+
+# Stock summary
+
+The summary of the selected stock in the predict price section has been drastically improved.
+
+# Plots
+
+A lot of work has been done to improve the plot section.
+
+First of all, a new default plot has been created: a correlation heatmap:
+
+```{r}
+correlation_plot(mtcars, show_text = TRUE)
+```
+
+Secondly, the custom plot feature has been made much more useful. There are now 6 different types of plots that you can create, and each one has a much larger number of arguments to customise the plot than before.
+
+# Settings
+
+A settings menu was added. Admittedly, this only has one changeable setting, which allows the user to switch from interactive plots to static ones.
+
+# Minor changes
+
+There are also a few minor changes that, while not super noticeable at first, I believe will benefit the overall user experience.
+
+Certain aspects of the website's look and feel were modified slightly.
+
+Changes were made to improve the performance and speed of the website.
+
+Tooltips were added to give information about important and/or complicated inputs.
+
+Loading bars and spinners were added to all graphs.

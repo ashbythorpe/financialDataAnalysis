@@ -1,7 +1,10 @@
 #' A large table of stock data
 #' 
 #' A large amount of data fetched from 'iex.cloud' about almost 500 stocks.
-#' Each row represents a stock
+#' Each row represents a stock.
+#' 
+#' @format 
+#' A tibble with 497 rows and 100 variables.
 #' 
 #' @examples 
 #' default_stock_data

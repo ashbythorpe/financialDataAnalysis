@@ -83,7 +83,8 @@ plot_server <- function(id, type, data, scores, performance_col, show_text,
       } else if(type() == "Correlation heatmap") {
         correlation_plot(data(), show_text())
       } else {
-        custom_plot(data(), custom_type(), !!!custom_args())
+        custom_plot(data(), custom_type(), !!!custom_args(),
+                    .interactive = interactive_value())
       }
     }) %>%
       bindEvent(create())

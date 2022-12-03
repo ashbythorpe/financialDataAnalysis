@@ -190,8 +190,8 @@ test_that("transform_df works", {
   default <- tibble::tibble(x = 1, y = 2)
   transform_df(NULL, default = default) %>%
     expect_equal(NULL)
-  transform_df(tibble::tibble(x = 1, y = 2), default = default) %>%
-    expect_equal(tibble::tibble(x = 1, y = 2))
+  transform_df(default, default = default) %>%
+    expect_equal(default)
   transform_df(tibble::tibble(x = c(1,2,3,3,NA), y = 1, z = "1"), default = default) %>%
     expect_equal(tibble::tibble(x = c(1,2,3,NA), y = 1, z = 1))
   transform_df(tibble::tibble(x = "a", y = "b"), default = default) %>%

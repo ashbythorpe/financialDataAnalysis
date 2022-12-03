@@ -62,6 +62,7 @@ Depends:
 LazyData: true
 LazyDataCompression: xz
 URL: https://github.com/ashbythorpe/financialDataAnalysis,
-    https://ashbythorpe.github.io/financialDataAnalysis/
+    https://ashbythorpe.github.io/financialDataAnalysis/,
+    https://ashbythorpe.shinyapps.io/financialDataAnalysis/
 BugReports: https://github.com/ashbythorpe/financialDataAnalysis/issues
 VignetteBuilder: knitr

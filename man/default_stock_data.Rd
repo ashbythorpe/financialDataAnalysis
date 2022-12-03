@@ -5,14 +5,14 @@
 \alias{default_stock_data}
 \title{A large table of stock data}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 497 rows and 100 columns.
+A tibble with 497 rows and 100 variables.
 }
 \usage{
 default_stock_data
 }
 \description{
 A large amount of data fetched from 'iex.cloud' about almost 500 stocks.
-Each row represents a stock
+Each row represents a stock.
 }
 \examples{
 default_stock_data
