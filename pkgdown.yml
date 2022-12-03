@@ -5,7 +5,8 @@ articles:
   prototype1: prototype1.html
   prototype2: prototype2.html
   prototype3: prototype3.html
-last_built: 2022-11-29T18:49Z
+  prototype4: prototype4.html
+last_built: 2022-12-03T19:00Z
 urls:
   reference: https://ashbythorpe.github.io/financialDataAnalysis/reference
   article: https://ashbythorpe.github.io/financialDataAnalysis/articles

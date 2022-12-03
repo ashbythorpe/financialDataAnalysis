@@ -43,7 +43,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/prototype1.html">Review of prototype 1</a>
     <a class="dropdown-item" href="../articles/prototype2.html">Review of prototype 2</a>
-    <a class="dropdown-item" href="../articles/prototype3.html">prototype3</a>
+    <a class="dropdown-item" href="../articles/prototype3.html">Review of prototype 3</a>
+    <a class="dropdown-item" href="../articles/prototype4.html">Review of prototype 4</a>
   </div>
 </li>
       </ul>
@@ -117,13 +118,13 @@ monthly predictions, going 6 months ahead.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 2</span></span></span>
 <span><span class="co">#&gt;   ticker ref_date  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> GOOGL  2022-11-29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> GOOGL  2022-12-29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> GOOGL  2023-01-29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> GOOGL  2023-03-01</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> GOOGL  2023-03-29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> GOOGL  2023-04-29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> GOOGL  2023-05-29</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> GOOGL  2022-12-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> GOOGL  2023-01-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> GOOGL  2023-02-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> GOOGL  2023-03-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> GOOGL  2023-04-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> GOOGL  2023-05-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> GOOGL  2023-06-03</span></span></code></pre></div>
 <p>Now lets make predictions on the data using the monthly model.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">monthly_stock_model</span>, <span class="va">data</span><span class="op">)</span></span></code></pre></div>
