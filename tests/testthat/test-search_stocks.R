@@ -13,7 +13,7 @@ test_that("search_pattern works", {
     symbol = c("MMM", "AOS", "ABT"),
     company_name = c("3M Co.", "A.O. Smith Corp.", "Abbott Laboratories")
   ), pattern = "") %>%
-    expect_equal(c(T, T, T))
+    expect_equal(TRUE)
 })
 
 test_that("search_stocks works", {

@@ -29,6 +29,9 @@ search_stocks <- function(x, pattern){
 }
 
 search_pattern <- function(x, pattern){
+  if(pattern == "") {
+    return(TRUE)
+  }
   stringr::str_detect(paste0("\\Q", stringr::str_to_lower(x$symbol), "\\E"), 
                       stringr::str_to_lower(pattern)) |
     stringr::str_detect(paste0("\\Q", stringr::str_to_lower(x$company_name), "\\E"), 
