@@ -153,8 +153,7 @@ default_stock_data <- joined %>%
                 milliseconds_to_datetime)) %>%
   rename(EBIT = "ebit") %>%
   filter(default_stock_data, !duplicated(symbol)) %>%
-  mutate(across(where(is.timepoint), as.numeric)) %>%
-  mutate(favourite = FALSE)
+  mutate(across(where(is.timepoint), as.numeric))
 
 colnames(default_stock_data) <- 
   janitor::make_clean_names(colnames(default_stock_data))
@@ -184,11 +183,12 @@ default_stock_data <- default_stock_data %>%
          `1_month_change_percent` = "month1change_percent",
          `30_day_change_percent` = "day30change_percent",
          `5_day_change_percent` = "day5change_percent",
-         ) %>%
-  mutate(address = paste(address, address2)%>%
+  ) %>%
+  mutate(address = paste(address, address2) %>%
            str_remove_all("NA") %>%
            str_remove_all(" $") %>%
-           na_if("")) %>%
+           na_if("")
+  ) %>%
   select(-key, -subkey, -date, -next_dividend_date, -next_earnings_date, 
          -address2)
 

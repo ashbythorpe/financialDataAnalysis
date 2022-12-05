@@ -70,7 +70,7 @@ filters_server <- function(id, data, add) {
       removeUI(".filter", multiple = TRUE)
       
       purrr::walk(as.character(values$rows), ~ {
-        module_outputs[[.]] <- NULL
+        filter_outputs[[.]] <- NULL
       })
       values$rows <- numeric()
     }) %>%
@@ -78,7 +78,9 @@ filters_server <- function(id, data, add) {
     
     filter_vals <- reactive({
       purrr::map(as.character(values$rows), ~ {filter_outputs[[.]]}) %>%
-        purrr::map(rlang::exec) %>%
+        purrr::map(~ {
+          tryCatch(rlang::exec(.), error = function(c) NULL)
+        }) %>% # Get the values from the expressions
         dplyr::bind_rows()
     }) %>%
       bindEvent(input$update, values$rows) %>%

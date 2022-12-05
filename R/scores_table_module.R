@@ -48,7 +48,11 @@ scores_table_server <- function(id, scores) {
     output$scores <- reactable::renderReactable({
       scores() %>%
         dplyr::select(score_name, score_type, colname) %>%
-        dplyr::rename(Column = "colname") %>%
+        dplyr::rename(
+          `Score name` = "score_name",
+          `Score type` = "score_type",
+          Column = "colname"
+        ) %>%
         reactable::reactable(sortable = FALSE, pagination = FALSE, 
                              selection = "multiple", onClick = "select",
                              highlight = TRUE)

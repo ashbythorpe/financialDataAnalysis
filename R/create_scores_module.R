@@ -106,7 +106,7 @@ create_scores_server <- function(id, data, interactive){
     # Get the column from the specified column name
     column <- reactive({
       column <- data()[[universal_score_vals$colname()]]
-      req(column)
+      req(column, is.numeric(column))
       column
     })
     
@@ -148,7 +148,7 @@ create_scores_server <- function(id, data, interactive){
     # Add the score to the scores table
     observe({
       # Only add the score if it is not invalid
-      if(!is.null(final_row())) {
+      if(!is.null(final_row()) && is.numeric(column())) {
         .f <- get_score_function(values$editing)
         values$scores <- .f(values$scores, final_row()) %>%
           replace_score_names()

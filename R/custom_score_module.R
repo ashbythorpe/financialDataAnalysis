@@ -158,7 +158,9 @@ custom_score_server <- function(id, column, reset, editing_row){
     
     custom_args <- reactive({
       purrr::map(as.character(values$rows), ~ {module_outputs[[.]]}) %>%
-        purrr::map(rlang::exec) %>% # Get the values from the expressions
+        purrr::map(~ {
+          tryCatch(rlang::exec(.), error = function(c) NULL)
+        }) %>% # Get the values from the expressions
         dplyr::bind_rows() # Combine them
     }) %>%
       bindEvent(values$rows, input$update)

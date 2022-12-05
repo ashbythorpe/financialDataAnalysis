@@ -152,6 +152,7 @@ predict_price_server <- function(id, stock, interactive) {
           hostess$set_active(2)
         }
         
+        hostess$start()
         hostess$set(0)
         
         preds <- predict_price(

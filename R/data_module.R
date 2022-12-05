@@ -54,21 +54,21 @@ data_server <- function(id, data) {
     })
     
     output$download_csv <- downloadHandler(
-      filename = "stock_data.csv",
+      filename = "FDA_data.csv",
       content = function(file) {
         vroom::vroom_write(selected_data(), file, delim = ",")
       }
     )
     
     output$download_tsv <- downloadHandler(
-      filename = "stock_data.tsv",
+      filename = "FDA_data.tsv",
       content = function(file) {
         vroom::vroom_write(selected_data(), file)
       }
     )
     
     output$download_excel <- downloadHandler(
-      filename = "stock_data.xlsx",
+      filename = "FDA_data.xlsx",
       content = function(file) {
         writexl::write_xlsx(selected_data(), file)
       }

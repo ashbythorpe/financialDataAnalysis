@@ -54,7 +54,7 @@ predict_with_cache_monthly <- function(stock, dates) {
       dplyr::select(ds, yhat, yhat_lower, yhat_upper)
     
     cache$set(key, preds)
-  } else if(!any(cached_values$ds) %in% dates) {
+  } else if(!any(cached_values$ds %in% dates)) {
     pred_data <- tibble::tibble(ds = dates)
     preds <- stats::predict(prophet_model, pred_data) %>%
       dplyr::select(ds, yhat, yhat_lower, yhat_upper)

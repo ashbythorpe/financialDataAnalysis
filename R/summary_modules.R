@@ -52,6 +52,7 @@ score_summary_ui <- function(id) {
     tabPanelBody(
       "interactive",
       div(
+        style = "width:100%; height:100%; display:block;",
         id = "summary_waiter",
         plotly::plotlyOutput(ns("plot"))
       )
@@ -151,7 +152,10 @@ score_summary_server <- function(id, column, score_spec, interactive) {
       req(plot(), identical(interactive_value(), FALSE))
       plot()
     }) %>%
-      bindEvent(plot())
+      bindEvent({
+        req(plot(), isolate(identical(interactive_value(), FALSE)))
+        plot()
+      })
   })
 }
 
