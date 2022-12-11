@@ -11,3 +11,4 @@
 ^Meta$
 ^LICENSE\.md$
 _\.new\.png$
+^app\.R$

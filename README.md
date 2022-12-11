@@ -10,11 +10,15 @@
 coverage](https://codecov.io/gh/ashbythorpe/financialDataAnalysis/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ashbythorpe/financialDataAnalysis?branch=master)
 <!-- badges: end -->
 
-financialDataAnalysis is a website which allows users to upload, score
-and plot data (financial or otherwise). It provides a rich default
-dataset describing nearly 500 stocks and over 100 features. It’s
-forecasting section uses an advanced machine learning algorithm trained
-on daily and monthly data to forecast the price of a stock over time.
+[financialDataAnalysis](https://ashbythorpe.shinyapps.io/financialDataAnalysis/)
+is a website which allows users to upload, score and plot data
+(financial or otherwise). It provides a rich default dataset describing
+nearly 500 stocks and over 100 features. It’s forecasting section uses
+an advanced machine learning algorithm trained on daily and monthly data
+to forecast the price of a stock over time.
+
+The website is hosted using [shinyapps.io](https://www.shinyapps.io/):
+<https://ashbythorpe.shinyapps.io/financialDataAnalysis/>
 
 ## Installation
 

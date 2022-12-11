@@ -27,7 +27,9 @@ filters_server <- function(id, data, add) {
     ns <- session$ns
     values <- reactiveValues()
     values$rows <- numeric()
-    filter_outputs <- reactiveValues()
+    
+    # Container for filter module outputs
+    filter_outputs <- list()
 
     observe({
       values$filters <- filters_init

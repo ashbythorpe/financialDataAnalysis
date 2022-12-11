@@ -44,7 +44,7 @@ custom_score_server <- function(id, column, reset, editing_row) {
     values <- reactiveValues()
 
     # Container for module outputs
-    module_outputs <- reactiveValues()
+    module_outputs <- list()
 
     # A vector of row numbers
     # Each number corresponds to an `n` in the custom_row_ui() function

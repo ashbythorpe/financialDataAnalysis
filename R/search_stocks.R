@@ -18,7 +18,7 @@ search_stocks <- function(x, pattern) {
     return(x)
   }
   final_data <-
-    stringr::str_split(pattern, " ")[[1]] %>%
+    stringr::str_split_1(pattern, " ") %>%
     purrr::map(search_pattern, x = x) %>%
     purrr::reduce(`&`) %>%
     {
