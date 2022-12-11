@@ -362,11 +362,13 @@ the ‘y’ column.</p>
 function. Lets create a linear and a peak score.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_score.html">create_score</a></span><span class="op">(</span></span>
-<span>  <span class="va">scores_init</span>, score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>, </span>
+<span>  <span class="va">scores_init</span>,</span>
+<span>  score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>,</span>
 <span>  weight <span class="op">=</span> <span class="fl">1</span>, lb <span class="op">=</span> <span class="fl">0</span>, ub <span class="op">=</span> <span class="fl">10</span>, exponential <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_score.html">create_score</a></span><span class="op">(</span></span>
-<span>  <span class="va">scores</span>, score_type <span class="op">=</span> <span class="st">"Peak"</span>, colname <span class="op">=</span> <span class="st">"y"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>, </span>
+<span>  <span class="va">scores</span>,</span>
+<span>  score_type <span class="op">=</span> <span class="st">"Peak"</span>, colname <span class="op">=</span> <span class="st">"y"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>,</span>
 <span>  weight <span class="op">=</span> <span class="fl">5</span>, lb <span class="op">=</span> <span class="fl">0</span>, ub <span class="op">=</span> <span class="fl">20</span>, centre <span class="op">=</span> <span class="fl">5</span>, inverse <span class="op">=</span> <span class="cn">FALSE</span>, exponential <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  logarithmic <span class="op">=</span> <span class="cn">FALSE</span>, magnitude <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span>
@@ -384,7 +386,8 @@ linear score to change the weight. Note that the arguments you give must
 always be valid for the score to be added or edited.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_score.html">create_score</a></span><span class="op">(</span></span>
-<span>  <span class="va">scores</span>, editing <span class="op">=</span> <span class="fl">1</span>, score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, </span>
+<span>  <span class="va">scores</span>,</span>
+<span>  editing <span class="op">=</span> <span class="fl">1</span>, score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>,</span>
 <span>  score_name <span class="op">=</span> <span class="st">"Default"</span>, weight <span class="op">=</span> <span class="fl">2</span>, lb <span class="op">=</span> <span class="fl">0</span>, ub <span class="op">=</span> <span class="fl">10</span>, exponential <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">scores</span></span>
@@ -406,7 +409,7 @@ scores.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Linear     x       Score 1:…      2     0    10     <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>      FALSE   <span style="color: #BB0000;">NA</span>     </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: magnitude &lt;dbl&gt;, custom_args &lt;list&gt;, and abbreviated</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   variable names ¹​score_name, ²​exponential, ³​logarithmic</span></span></span>
-<span><span class="fu"><a href="../reference/delete_scores.html">delete_scores</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/delete_scores.html">delete_scores</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 12</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 12 variables: score_type &lt;chr&gt;, colname &lt;chr&gt;, score_name &lt;glue&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   weight &lt;dbl&gt;, lb &lt;dbl&gt;, ub &lt;dbl&gt;, centre &lt;dbl&gt;, inverse &lt;lgl&gt;,</span></span></span>
@@ -512,7 +515,7 @@ function.</p>
 <p>You can then apply these filters with the
 <code><a href="../reference/apply_filters.html">apply_filters()</a></code> function.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">filtered_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_filters.html">apply_filters</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="va">filters</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">filtered_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_filters.html">apply_filters</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="va">filters</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">filtered_data</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
 <span><span class="co">#&gt;        x     y z     `Score 1: x` `Score 2: y` final_score</span></span>
@@ -609,11 +612,13 @@ monthly predictions, specify this using the <code>freq</code>
 argument.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">predictions_daily</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_price.html">predict_price</a></span><span class="op">(</span></span>
-<span>  <span class="st">"GOOGL"</span>, start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  <span class="st">"GOOGL"</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  end_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://lubridate.tidyverse.org/reference/mplus.html" class="external-link">%m+%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html" class="external-link">months</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, freq <span class="op">=</span> <span class="st">"daily"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">predictions_monthly</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_price.html">predict_price</a></span><span class="op">(</span></span>
-<span>  <span class="st">"GOOGL"</span>, start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  <span class="st">"GOOGL"</span>,</span>
+<span>  start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  end_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, freq <span class="op">=</span> <span class="st">"monthly"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -621,34 +626,34 @@ argument.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 63 × 4</span></span></span>
 <span><span class="co">#&gt;     yhat yhat_lower yhat_upper ref_date  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  58.1      -<span style="color: #BB0000;">12.1</span>       136. 2022-12-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  68.5      -<span style="color: #BB0000;">15.8</span>       163. 2022-12-12</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  67.6      -<span style="color: #BB0000;">18.5</span>       163. 2022-12-13</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  67.5      -<span style="color: #BB0000;">19.5</span>       164. 2022-12-14</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  67.5      -<span style="color: #BB0000;">21.9</span>       163. 2022-12-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  66.9      -<span style="color: #BB0000;">23.4</span>       165. 2022-12-16</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  57.0      -<span style="color: #BB0000;">22.9</span>       144. 2022-12-17</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  56.3      -<span style="color: #BB0000;">23.4</span>       144. 2022-12-18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  65.4      -<span style="color: #BB0000;">28.9</span>       167. 2022-12-19</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  64.5      -<span style="color: #BB0000;">30.9</span>       170. 2022-12-20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  58.1      -<span style="color: #BB0000;">13.5</span>       129. 2022-12-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  68.5      -<span style="color: #BB0000;">17.0</span>       153. 2022-12-12</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  67.6      -<span style="color: #BB0000;">19.5</span>       153. 2022-12-13</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  67.5      -<span style="color: #BB0000;">22.4</span>       154. 2022-12-14</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  67.5      -<span style="color: #BB0000;">24.0</span>       155. 2022-12-15</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  66.9      -<span style="color: #BB0000;">26.3</span>       156. 2022-12-16</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  57.0      -<span style="color: #BB0000;">23.4</span>       134. 2022-12-17</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  56.3      -<span style="color: #BB0000;">25.5</span>       135. 2022-12-18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  65.4      -<span style="color: #BB0000;">31.6</span>       159. 2022-12-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  64.5      -<span style="color: #BB0000;">31.8</span>       159. 2022-12-20</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 53 more rows</span></span></span>
 <span><span class="va">predictions_monthly</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 4</span></span></span>
 <span><span class="co">#&gt;     yhat yhat_lower yhat_upper ref_date  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  137.       140.       162. 2022-12-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  128.       128.       150. 2023-01-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  136.       138.       160. 2023-02-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  142.       144.       168. 2023-03-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  137.       141.       163. 2022-12-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  128.       128.       151. 2023-01-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  136.       137.       160. 2023-02-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  142.       145.       167. 2023-03-11</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  139.       134.       156. 2023-04-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  133.       126.       147. 2023-05-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  148.       141.       163. 2023-06-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  158.       147.       170. 2023-07-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  148.       136.       159. 2023-08-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  146.       136.       159. 2023-09-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  179.       167.       190. 2023-10-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>  177.       166.       188. 2023-11-11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>  180.       166.       190. 2023-12-11</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  133.       125.       148. 2023-05-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  148.       139.       163. 2023-06-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  158.       147.       171. 2023-07-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  148.       136.       158. 2023-08-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  146.       136.       158. 2023-09-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  179.       167.       189. 2023-10-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>  177.       165.       189. 2023-11-11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>  180.       166.       189. 2023-12-11</span></span></code></pre></div>
 <p>Make a graph of these predictions using the
 <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">

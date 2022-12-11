@@ -94,18 +94,20 @@ the actual scores.</p></dd>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_score.html">create_score</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">scores_init</span>, score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>,</span></span>
+<span class="r-in"><span>  <span class="va">scores_init</span>,</span></span>
+<span class="r-in"><span>  score_type <span class="op">=</span> <span class="st">"Linear"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Default"</span>,</span></span>
 <span class="r-in"><span>  weight <span class="op">=</span> <span class="fl">1</span>, lb <span class="op">=</span> <span class="fl">1</span>, ub <span class="op">=</span> <span class="fl">6</span>, exponential <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_score.html">create_score</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">scores</span>, score_type <span class="op">=</span> <span class="st">"Peak"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Peak score"</span>,</span></span>
+<span class="r-in"><span>  <span class="va">scores</span>,</span></span>
+<span class="r-in"><span>  score_type <span class="op">=</span> <span class="st">"Peak"</span>, colname <span class="op">=</span> <span class="st">"x"</span>, score_name <span class="op">=</span> <span class="st">"Peak score"</span>,</span></span>
 <span class="r-in"><span>  weight <span class="op">=</span> <span class="fl">2</span>, lb <span class="op">=</span> <span class="fl">2</span>, ub <span class="op">=</span> <span class="fl">8</span>, centre <span class="op">=</span> <span class="fl">5</span>, inverse <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>  exponential <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">scored</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_scores.html">apply_scores</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">scores</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">score_performance</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">scored</span>, </span></span>
+<span class="r-in"><span>  <span class="va">scored</span>,</span></span>
 <span class="r-in"><span>  colname <span class="op">=</span> <span class="st">"x"</span>,</span></span>
 <span class="r-in"><span>  scores <span class="op">=</span> <span class="fu"><a href="get_scores.html">get_scores</a></span><span class="op">(</span><span class="va">scored</span>, <span class="va">scores</span>, final_score <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
