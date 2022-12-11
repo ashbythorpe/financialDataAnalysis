@@ -1,12 +1,14 @@
 $(function() {
   $(".v_numeric_input").on("shiny:inputchanged", debounce(function(event) {
-    const min = $(this).attr('min');
-    const max = $(this).attr('max');
-    const val = event.value
+    const min = Number(event.el.min);
+    const max = Number(event.el.max);
+    const val = Number(event.value);
     if(val < min) {
-      $(this).val(min).trigger('change');
+      $(event.el).val(min).trigger('change');
+      event.val = min;
     } else if(val > max) {
-      $(this).val(max).trigger('change');
+      $(event.el).val(max).trigger('change');
+      event.val = max;
     };
   }, 1000));
   
@@ -35,7 +37,7 @@ $(function() {
   
   // Callback when the minimum value of a filter is changed
   $("#filter_container").on("shiny:inputchanged", ".filter_min", function(event) {
-    var min = event.value;
+    let min = event.value;
     const n = $(this).attr("data-n");
     const slider_selector = ".filter_range[data-n = " + n + "]";
     const max_selector = ".filter_max[data-n = " + n + "]";
@@ -56,7 +58,7 @@ $(function() {
   });
   
   $("#filter_container").on("shiny:inputchanged", ".filter_max", function(event) {
-    var max = event.value;
+    let max = event.value;
     const n = $(this).attr("data-n");
     const slider_selector = ".filter_range[data-n = " + n + "]";
     const min_selector = ".filter_min[data-n = " + n + "]";
@@ -230,7 +232,7 @@ function debounce(callback, wait) {
   let timeout;
   return (...args) => {
       clearTimeout(timeout);
-      timeout = setTimeout(function () { callback.apply(this, args); }, wait);
+      timeout = setTimeout(function () { callback.apply($(this), args); }, wait);
   };
 };
 

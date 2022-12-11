@@ -71,12 +71,6 @@ create_scores_server <- function(id, data, interactive){
     }) %>%
       bindEvent(data())
     
-    # Reset inputs when data is changed, not when it is initiated
-    observe({
-      values$trigger_reset <- isolate(!values$trigger_reset)
-    }, priority = 100) %>%
-      bindEvent(data(), ignoreInit = TRUE)
-    
     # Get the score that is currently being edited
     editing_row <- reactive({
       if(!is.na(values$editing) && values$editing <= nrow(values$scores)) {

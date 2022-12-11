@@ -21,7 +21,7 @@ editing_ui <- function(id) {
     tabPanelBody(
       "editing",
       div(
-        class = "box_row",
+        class = "box_row editing_row",
         textOutput(ns("editing")),
         actionButton(ns("stop_editing"), "Stop editing", icon = icon("xmark"))
       )

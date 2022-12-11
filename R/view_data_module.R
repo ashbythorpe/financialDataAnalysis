@@ -43,10 +43,6 @@ view_data_server <- function(id, data, scores) {
     
     filters <- filters_server("filters", data, add)
 
-    filtered_data <- reactive({
-      apply_filters(data(), filters())
-    })
-
-    data_server("data", filtered_data)
+    data_server("data", data, filters)
   })
 }

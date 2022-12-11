@@ -128,7 +128,8 @@ score_summary_server <- function(id, column, score_spec, interactive) {
         ggplot2::geom_line() +
         ggplot2::ylim(0,1) + # Make sure the y axis always has the same scale
         ggplot2::labs(x = "Column value", y = "Score") +
-        ggplot2::ggtitle("Score distribution")
+        ggplot2::ggtitle("Score distribution") +
+        ggthemes::theme_clean()
     })
     
     output$plot <- plotly::renderPlotly({

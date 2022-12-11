@@ -210,7 +210,7 @@ peak_score_ui <- function(id) {
       add_info_to_label("peak_lb"),
     numericInput(ns("ub"), "Upper bound", value = 0) %>%
       add_info_to_label("peak_ub"),
-    numericInput(ns("centre"), "Centre", value = 0) %>%
+    v_numeric_input(ns("centre"), "Centre", value = 0) %>%
       add_info_to_label("centre"),
     shinyWidgets::prettySwitch(ns("inverse"), "Inverse") %>% # Defaults to FALSE
       add_info("inverse")
@@ -231,7 +231,8 @@ peak_score_server <- function(id, column, reset, editing_row) {
     observe({
       updateNumericInput(session, "lb", value = minc())
       updateNumericInput(session, "ub", value = maxc())
-      updateNumericInput(session, "centre", value = (minc() + maxc())/2)
+      updateNumericInput(session, "centre", value = (minc() + maxc())/2,
+                         min = minc(), max = maxc())
     })
     
     # Reset all inputs when reset() changes
@@ -255,22 +256,13 @@ peak_score_server <- function(id, column, reset, editing_row) {
     # Perform client side validation to stop the user inputting an invalid
     # value for input$centre
     observe({
-      req(input$lb, input$ub, input$centre)
       if(input$lb <= input$ub) {
-        if(input$centre < input$lb) {
-          updateNumericInput(session, "centre", value = input$lb)
-        } else if(input$centre > input$ub) {
-          updateNumericInput(session, "centre", value = input$ub)
-        }
+        updateNumericInput(session, "centre", min = input$lb, max = input$ub)
       } else {
-        if(input$centre < input$ub) {
-          updateNumericInput(session, "centre", value = input$ub)
-        } else if(input$centre > input$lb) {
-          updateNumericInput(session, "centre", value = input$lb)
-        }
+        updateNumericInput(session, "centre", min = input$ub, max = input$lb)
       }
     }) %>%
-      debounce(1000) # Wait a second after the user has finished typing
+      bindEvent(combine_events(input$lb, input$ub, .reject_invalid = "any"))
     
     # Validate the lower bound, upper bound, centre and inverse
     peak_row <- reactive({

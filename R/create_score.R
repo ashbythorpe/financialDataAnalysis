@@ -173,6 +173,8 @@ validate_universal_score <- function(colname, score_name, weight){
       score_name = 
         if(stringr::str_to_lower(score_name) %in% c("", "default")) {
           NA_character_
+        } else if(stringr::str_length(score_name) > 100){
+          stringr::str_sub(score_name, end = 100L)
         } else {
           score_name
         },

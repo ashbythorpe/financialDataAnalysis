@@ -5,7 +5,8 @@
 #' although the number of columns are limited to 15.
 #' 
 #' @param id The namespace of the module.
-#' @param data The data to be viewed.
+#' @param data The data to be viewed, filtered and sorted.
+#' @param filters A table of filters to apply to the data.
 #' 
 #' @details 
 #' The data is displayed using [reactable::reactable()], and the columns are
@@ -17,12 +18,15 @@ data_ui <- function(id) {
   ns <- NS(id)
   tagList(
     div(
-      class = "box_row",
+      class = "box_row view_data_row",
       selectizeInput(ns("columns"), "Columns", choices = c(""), multiple = TRUE,
-                     width = "80%", options = list(maxItems = 15)),
-      downloadButton(ns("download_csv"), "Download CSV"),
-      downloadButton(ns("download_tsv"), "Download TSV"),
-      downloadButton(ns("download_excel"), "Download Excel")
+                     width = "60%", options = list(maxItems = 15)),
+      div(
+        class = "box_row",
+        downloadButton(ns("download_csv"), "Download CSV"),
+        downloadButton(ns("download_tsv"), "Download TSV"),
+        downloadButton(ns("download_excel"), "Download Excel")
+      )
     ),
     reactable::reactableOutput(ns("data"))
   )
@@ -30,7 +34,7 @@ data_ui <- function(id) {
 
 #' @name data_module
 #' @export
-data_server <- function(id, data) {
+data_server <- function(id, data, filters) {
   moduleServer(id, function(input, output, session) {
     observe({
       updateSelectInput(
@@ -39,12 +43,17 @@ data_server <- function(id, data) {
       )
     })
     
+    filtered_data <- reactive({
+      apply_filters(data(), filters())
+    })
+    
     selected_data <- reactive({
       req(data())
-      if(length(input$columns) < 1 || !any(input$columns %in% colnames(data()))) {
+      if(length(input$columns) < 1 || 
+         !any(input$columns %in% colnames(filtered_data()))) {
         NULL
       } else {
-        data()[,input$columns]
+        filtered_data()[,input$columns]
       }
     })
     

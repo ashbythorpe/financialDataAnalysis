@@ -27,6 +27,10 @@
   padding: 0px 4px;
 }
 
+.editing_row {
+  justify-content: space-between;
+}
+
 /* Override format for slider input */
 .filter_update {
   width: auto;
@@ -34,6 +38,11 @@
 
 .unused_label {
   display: inline !important;
+}
+
+.view_data_row {
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 /* Override format for waiter loader */

@@ -80,10 +80,10 @@ data_input_server <- function(id){
     
     # Detect if any errors have occurred in the process
     error <- reactive({
-      if(is.null(dfs()) || is.null(transformed_df())) {
+      if(!isTruthy(values$files)) {
         list(fatal = "", nonfatal = "")
       } else {
-        get_error(input$files$datapath, dfs(), transformed_df())
+        get_error(values$files$datapath, dfs(), transformed_df())
       }
     })
     

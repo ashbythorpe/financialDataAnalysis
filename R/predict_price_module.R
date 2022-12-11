@@ -142,7 +142,9 @@ predict_price_server <- function(id, stock, interactive) {
           to <- input$dates_monthly[2]
         }
         
-        req(from >= min(monthly_training_data$ref_date, na.rm = TRUE))
+        req(from >= lubridate::round_date(
+          min(monthly_training_data$ref_date, na.rm = TRUE), "month"
+        ))
         
         if(interactive_value()) {
           waiter$show()
