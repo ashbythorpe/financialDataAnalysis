@@ -1,20 +1,20 @@
 #' Input the arguments for a custom plot
-#' 
+#'
 #' A shiny module that allows the user to input the arguments in order to create
 #' a custom plot.
-#' 
+#'
 #' @param id The namespace of the module.
 #' @param custom Whether the user wants to make a custom plot.
 #' @param data The data that is being plotted.
-#' 
-#' @returns 
+#'
+#' @returns
 #' The server returns a list of validated arguments, along with the inputted
 #' plot type.
-#' 
-#' @seealso 
+#'
+#' @seealso
 #' * [custom_plot()]
 #' * The modules for the different custom plot types: [custom_plot_modules]
-#' 
+#'
 #' @name custom_plot_module
 #' @export
 custom_plot_ui <- function(id) {
@@ -60,34 +60,32 @@ custom_plot_server <- function(id, custom, data) {
   moduleServer(id, function(input, output, session) {
     type <- reactive({
       req(input$type, custom())
-      switch(
-        input$type,
+      switch(input$type,
         "Line graph" = "line",
         "Scatter graph" = "scatter",
         "Histogram" = "histogram",
         "Smoothed line graph" = "smooth",
-        "Area graph" = "area", 
+        "Area graph" = "area",
         "Hexagon heatmap" = "hex",
         NULL
       )
     })
-    
+
     observe({
       updateTabsetPanel(session, "wizard", type())
     }) %>%
       bindEvent(type())
-    
+
     line_args <- line_graph_server("line", data)
     scatter_args <- scatter_graph_server("scatter", data)
     histogram_args <- histogram_server("histogram", data)
     smooth_args <- smooth_graph_server("smooth", data)
     area_args <- smooth_graph_server("area", data)
     hex_args <- smooth_graph_server("hex", data)
-    
+
     args <- reactive({
       req(type())
-      switch(
-        type(),
+      switch(type(),
         line = line_args(),
         scatter = scatter_args(),
         histogram = histogram_args(),
@@ -96,7 +94,7 @@ custom_plot_server <- function(id, custom, data) {
         hex = hex_args()
       )
     })
-    
+
     list(
       type = type,
       args = args
@@ -105,18 +103,18 @@ custom_plot_server <- function(id, custom, data) {
 }
 
 #' Input arguments for different custom plots
-#' 
+#'
 #' A set of shiny modules that allow the user to input a set of arguments
 #' depending on the plot type.
-#' 
+#'
 #' @param id The namespace of the module.
 #' @param data The data that is being plotted
-#' 
+#'
 #' @returns
 #' Each module's server returns a list of validated arguments.
-#' 
+#'
 #' @seealso [custom_plot_module]
-#' 
+#'
 #' @name custom_plot_modules
 #' @export
 line_graph_ui <- function(id) {
@@ -139,19 +137,29 @@ line_graph_server <- function(id, data) {
     observe({
       df_names <- colnames(data())
       numeric_names <- df_names[purrr::map_lgl(data(), is.numeric)]
-      updateSelectInput(session, "x", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "alpha", choices = c("None", df_names),
-                        selected = "None")
-      updateSelectInput(session, "colour", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "linewidth", choices = c("None", numeric_names),
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "colour",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "linewidth",
+        choices = c("None", numeric_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
@@ -159,12 +167,12 @@ line_graph_server <- function(id, data) {
         alpha = input$alpha,
         colour = input$colour,
         linewidth = input$linewidth,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        size = if(isTRUE(input$size < 0)) 0 else input$size
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        size = if (isTRUE(input$size < 0)) 0 else input$size
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }
@@ -196,21 +204,33 @@ scatter_graph_server <- function(id, data) {
       shape_names <- df_names[purrr::map_lgl(data(), ~ {
         length(unique(.)) <= 6
       })]
-      updateSelectInput(session, "x", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "alpha", choices = c("None", df_names),
-                        selected = "None")
-      updateSelectInput(session, "colour", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "size", choices = c("None", numeric_names),
-                        selected = "None")
-      updateSelectInput(session, "shape", choices = c("None", shape_names),
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "colour",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "size",
+        choices = c("None", numeric_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "shape",
+        choices = c("None", shape_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
@@ -219,12 +239,12 @@ scatter_graph_server <- function(id, data) {
         colour = input$colour,
         size = input$size,
         shape = input$shape,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        pointsize = if(isTRUE(input$pointsize < 0)) 0 else input$pointsize
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        pointsize = if (isTRUE(input$pointsize < 0)) 0 else input$pointsize
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }
@@ -251,39 +271,49 @@ histogram_server <- function(id, data) {
     observe({
       df_names <- colnames(data())
       numeric_names <- df_names[purrr::map_lgl(data(), is.numeric)]
-      updateSelectInput(session, "x", choices = c("None", df_names), 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "alpha", choices = c("None", df_names),
-                        selected = "None")
-      updateSelectInput(session, "colour", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "fill", choices = c("None", df_names), 
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = c("None", df_names),
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "colour",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "fill",
+        choices = c("None", df_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     observe({
       df_names <- colnames(data())
-      if(input$x == "None" && input$y == "None") {
+      if (input$x == "None" && input$y == "None") {
         updateSelectInput(session, "y", selected = df_names[1])
-      } else if(input$x != "None" && input$y != "None") {
+      } else if (input$x != "None" && input$y != "None") {
         updateSelectInput(session, "y", selected = "None")
       }
     }) %>%
       bindEvent(input$x)
-    
+
     observe({
       df_names <- colnames(data())
-      if(input$y == "None" && input$x == "None") {
+      if (input$y == "None" && input$x == "None") {
         updateSelectInput(session, "x", selected = df_names[1])
-      } else if(input$y != "None" && input$x != "None") {
+      } else if (input$y != "None" && input$x != "None") {
         updateSelectInput(session, "x", selected = "None")
       }
     }) %>%
       bindEvent(input$y)
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
@@ -291,12 +321,12 @@ histogram_server <- function(id, data) {
         alpha = input$alpha,
         colour = input$colour,
         size = input$size,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        bins = if(isTRUE(input$bins < 1)) 1 else round(input$bins),
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        bins = if (isTRUE(input$bins < 1)) 1 else round(input$bins),
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }
@@ -321,26 +351,32 @@ smooth_graph_server <- function(id, data) {
     observe({
       df_names <- colnames(data())
       numeric_names <- df_names[purrr::map_lgl(data(), is.numeric)]
-      updateSelectInput(session, "x", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "alpha", choices = c("None", df_names),
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", df_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
         y = input$y,
         alpha = input$alpha,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        span = if(isTRUE(input$span < 0)) 0 else input$span
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        span = if (isTRUE(input$span < 0)) 0 else input$span
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }
@@ -368,21 +404,33 @@ area_graph_server <- function(id, data) {
     observe({
       df_names <- colnames(data())
       numeric_names <- df_names[purrr::map_lgl(data(), is.numeric)]
-      updateSelectInput(session, "x", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = df_names, 
-                        selected = df_names[1])
-      updateSelectInput(session, "alpha", choices = c("None", numeric_names),
-                        selected = "None")
-      updateSelectInput(session, "colour", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "fill", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "linewidth", choices = c("None", numeric_names),
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = df_names,
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", numeric_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "colour",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "fill",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "linewidth",
+        choices = c("None", numeric_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
@@ -391,12 +439,12 @@ area_graph_server <- function(id, data) {
         colour = input$colour,
         fill = input$fill,
         linewidth = input$linewidth,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        size = if(isTRUE(input$size < 0)) 0 else input$size
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        size = if (isTRUE(input$size < 0)) 0 else input$size
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }
@@ -423,39 +471,49 @@ histogram_server <- function(id, data) {
     observe({
       df_names <- colnames(data())
       numeric_names <- df_names[purrr::map_lgl(data(), is.numeric)]
-      updateSelectInput(session, "x", choices = c("None", df_names), 
-                        selected = df_names[1])
-      updateSelectInput(session, "y", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "alpha", choices = c("None", df_names),
-                        selected = "None")
-      updateSelectInput(session, "colour", choices = c("None", df_names), 
-                        selected = "None")
-      updateSelectInput(session, "fill", choices = c("None", df_names), 
-                        selected = "None")
+      updateSelectInput(session, "x",
+        choices = c("None", df_names),
+        selected = df_names[1]
+      )
+      updateSelectInput(session, "y",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "alpha",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "colour",
+        choices = c("None", df_names),
+        selected = "None"
+      )
+      updateSelectInput(session, "fill",
+        choices = c("None", df_names),
+        selected = "None"
+      )
     }) %>%
       bindEvent(data())
-    
+
     observe({
       df_names <- colnames(data())
-      if(input$x == "None" && input$y == "None") {
+      if (input$x == "None" && input$y == "None") {
         updateSelectInput(session, "y", selected = df_names[1])
-      } else if(input$x != "None" && input$y != "None") {
+      } else if (input$x != "None" && input$y != "None") {
         updateSelectInput(session, "y", selected = "None")
       }
     }) %>%
       bindEvent(input$x)
-    
+
     observe({
       df_names <- colnames(data())
-      if(input$y == "None" && input$x == "None") {
+      if (input$y == "None" && input$x == "None") {
         updateSelectInput(session, "x", selected = df_names[1])
-      } else if(input$y != "None" && input$x != "None") {
+      } else if (input$y != "None" && input$x != "None") {
         updateSelectInput(session, "x", selected = "None")
       }
     }) %>%
       bindEvent(input$y)
-    
+
     args <- reactive({
       x <- list(
         x = input$x,
@@ -463,12 +521,12 @@ histogram_server <- function(id, data) {
         alpha = input$alpha,
         colour = input$colour,
         size = input$size,
-        opacity = if(isTRUE(input$opacity < 0)) 0 else input$opacity,
-        bins = if(isTRUE(input$bins < 1)) 1 else round(input$bins),
+        opacity = if (isTRUE(input$opacity < 0)) 0 else input$opacity,
+        bins = if (isTRUE(input$bins < 1)) 1 else round(input$bins),
       )
       x[!purrr::map_lgl(x, identical, "None")]
     })
-    
+
     args
   })
 }

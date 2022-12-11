@@ -1,7 +1,7 @@
 test_that("predict_price_server works", {
   skip_on_ci()
   withr::local_seed(42)
-  
+
   testServer(predict_price_server, args = list(
     stock = reactive("GOOGL"), interactive = reactive(TRUE)
   ), {
@@ -12,7 +12,7 @@ test_that("predict_price_server works", {
       ),
       predict = 1
     )
-    
+
     vdiffr::expect_doppelganger(title = "price_predictions", plot())
   })
 })

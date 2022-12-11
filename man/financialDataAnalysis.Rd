@@ -18,7 +18,7 @@ Run the project as a Shiny application. The function calls
 }
 \examples{
 \dontrun{
-  financialDataAnalysis()
+financialDataAnalysis()
 }
 
 }

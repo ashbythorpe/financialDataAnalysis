@@ -1,12 +1,15 @@
 test_that("filter_column works", {
   filter_column(c("aaaaaaaa", "aaaa.1www", "a.", ".1", "a1", "aa1", "", NA),
-                type = "character", pattern = "a.1", min = NA, max = NA) %>%
+    type = "character", pattern = "a.1", min = NA, max = NA
+  ) %>%
     expect_equal(c(F, T, F, F, F, F, F, NA))
   filter_column(c("aaaaaaaa", "aaaa.1www", "a.", ".1", "a1", "aa1", "", NA),
-                type = "character", pattern = "", min = NA, max = NA) %>%
+    type = "character", pattern = "", min = NA, max = NA
+  ) %>%
     expect_equal(c(rep(T, 7), NA))
   filter_column(c("aaaaaaaa", "aaaa.1www", "a.", ".1", "a1", "aa1", "", NA),
-                type = "character", pattern = "b", min = NA, max = NA) %>%
+    type = "character", pattern = "b", min = NA, max = NA
+  ) %>%
     expect_equal(c(rep(F, 7), NA))
   filter_column(c(1:10, NA), type = "numeric", pattern = NA, min = 3, max = 7) %>%
     expect_equal(c(F, F, T, T, T, T, T, F, F, F, NA))
@@ -21,8 +24,10 @@ test_that("filter_column works", {
 })
 
 test_that("apply_filters works", {
-  df <- tibble::tibble(x = c(1:7, NA), y = c("aaaaaaaa", "aaaa.1www", "a.", ".1", 
-                                             "a1", "aa1", "", NA))
+  df <- tibble::tibble(x = c(1:7, NA), y = c(
+    "aaaaaaaa", "aaaa.1www", "a.", ".1",
+    "a1", "aa1", "", NA
+  ))
   apply_filters(df, tibble::tibble()) %>%
     expect_equal(df)
   apply_filters(df, tibble::tribble(
@@ -31,7 +36,7 @@ test_that("apply_filters works", {
     "numeric", "x", NA, 2, 8
   )) %>%
     expect_equal(tibble::tibble(
-      x = c(2,3,5,6),
+      x = c(2, 3, 5, 6),
       y = c("aaaa.1www", "a.", "a1", "aa1")
     ))
   apply_filters(df, tibble::tibble(
@@ -50,6 +55,7 @@ test_that("apply_filters works", {
     max = NA
   )) %>%
     expect_equal(
-      stats::na.omit(df), ignore_attr = T
+      stats::na.omit(df),
+      ignore_attr = T
     )
 })

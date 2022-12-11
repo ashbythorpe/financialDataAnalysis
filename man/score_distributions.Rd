@@ -28,11 +28,13 @@ data <- tibble::tibble(
 )
 
 scores <- create_score(
-  scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+  scores_init,
+  score_type = "Linear", colname = "x", score_name = "Default",
   weight = 1, lb = 1, ub = 6, exponential = FALSE
 )
 scores <- create_score(
-  scores, score_type = "Peak", colname = "x", score_name = "Peak score",
+  scores,
+  score_type = "Peak", colname = "x", score_name = "Peak score",
   weight = 2, lb = 2, ub = 8, centre = 5, inverse = FALSE,
   exponential = FALSE
 )

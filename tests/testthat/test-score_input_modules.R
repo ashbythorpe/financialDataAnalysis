@@ -3,7 +3,7 @@ test_that("score_type_server works", {
     reset = reactive(NULL), editing_row = reactive(NULL)
   ), {
     expect_equal(score_type(), NULL)
-    
+
     session$setInputs(score_type = "a")
 
     expect_equal(score_type(), NULL)
@@ -16,17 +16,17 @@ test_that("score_type_server works", {
 
 test_that("linear_score_server works", {
   testServer(linear_score_server, args = list(
-    column = reactive(1:100), reset = reactive(NULL), 
+    column = reactive(1:100), reset = reactive(NULL),
     editing_row = reactive(NULL)
   ), {
     expect_equal(linear_row(), NULL)
-    
+
     session$setInputs(lb = 1)
-    
+
     expect_equal(linear_row(), NULL)
-    
+
     session$setInputs(ub = 2)
-    
+
     expect_equal(linear_row(), tibble::tibble_row(
       lb = 1, ub = 2
     ))
@@ -35,11 +35,11 @@ test_that("linear_score_server works", {
 
 test_that("peak_score_server works", {
   testServer(peak_score_server, args = list(
-    column = reactive(1:100), reset = reactive(NULL), 
+    column = reactive(1:100), reset = reactive(NULL),
     editing_row = reactive(NULL)
   ), {
     expect_equal(peak_row(), NULL)
-    
+
     session$setInputs(lb = 1)
 
     expect_equal(peak_row(), NULL)

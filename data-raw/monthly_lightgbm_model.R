@@ -47,8 +47,10 @@ lightgbm_recipe <- recipes::recipe(data_tr, residuals ~ .) %>%
   recipes::step_date(ds, features = c(
     "month", "quarter", "semester", "year", "decimal"
   )) %>%
-  recipes::step_harmonic(ds, frequency = 1:4, cycle_size = 12,
-                         keep_original_cols = TRUE) %>%
+  recipes::step_harmonic(ds,
+    frequency = 1:4, cycle_size = 12,
+    keep_original_cols = TRUE
+  ) %>%
   recipes::step_rm(ds)
 
 lightgbm_recipe %>%
@@ -102,11 +104,13 @@ final_wf <- tune::finalize_workflow(lightgbm_wf, best)
 
 fit <- fit(final_wf, data_tr)
 
-pred <- forecast_stock_monthly(fit, "GOOGL", 36,
-                               rsample::training(initial_split) %>%
-                                 dplyr::group_by(ticker) %>%
-                                 clean_date() %>%
-                                 dplyr::ungroup())
+pred <- forecast_stock_monthly(
+  fit, "GOOGL", 36,
+  rsample::training(initial_split) %>%
+    dplyr::group_by(ticker) %>%
+    clean_date() %>%
+    dplyr::ungroup()
+)
 
 pred %>%
   ggplot2::ggplot(ggplot2::aes(x = ds, y = residuals)) +
@@ -120,13 +124,19 @@ data_tr %>%
 
 
 
-compared <- dplyr::left_join(data_tst %>%
-                               dplyr::mutate(ds = lubridate::round_date(ds, 
-                                                                        "month")), 
-                             pred %>%
-                               dplyr::rename(.pred = "residuals") %>%
-                               dplyr::mutate(ds = lubridate::round_date(ds,
-                                                                        "month")))
+compared <- dplyr::left_join(
+  data_tst %>%
+    dplyr::mutate(ds = lubridate::round_date(
+      ds,
+      "month"
+    )),
+  pred %>%
+    dplyr::rename(.pred = "residuals") %>%
+    dplyr::mutate(ds = lubridate::round_date(
+      ds,
+      "month"
+    ))
+)
 
 compared %>%
   dplyr::filter(ticker == "GOOGL") %>%
@@ -146,11 +156,13 @@ final_fit <- fit(final_wf, data_with_features) %>%
   butcher::butcher() # Drastically reduce the size of the workflow
 
 forecast_stock_monthly(final_fit, "GOOGL", 24, monthly_stock_data %>%
-                       dplyr::rename(ds = "ref_date") %>%
-                       dplyr::mutate(residuals = 1))
+  dplyr::rename(ds = "ref_date") %>%
+  dplyr::mutate(residuals = 1))
 
-lightgbm::saveRDS.lgb.Booster(final_fit$fit$fit$fit, 
-                              "data/monthly_lightgbm_inner_model.rds")
+lightgbm::saveRDS.lgb.Booster(
+  final_fit$fit$fit$fit,
+  "data/monthly_lightgbm_inner_model.rds"
+)
 
 final_fit$fit$fit$fit <- NULL
 

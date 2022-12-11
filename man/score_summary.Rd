@@ -20,7 +20,8 @@ comparing the column value and the corresponding score.
 }
 \examples{
 score_summary(
-  1:100, score_type = "Linear", lb = 15, ub = 70, exponential = FALSE
+  1:100,
+  score_type = "Linear", lb = 15, ub = 70, exponential = FALSE
 )
 
 }

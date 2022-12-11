@@ -13,8 +13,8 @@ data <- purrr::map(1:10, ~ {
 
 data$x <- rep(1:20, each = 21)
 
-data <- tibble::add_row(data, data[data$x == 1,] %>%
-                          dplyr::mutate(x = 21))
+data <- tibble::add_row(data, data[data$x == 1, ] %>%
+  dplyr::mutate(x = 21))
 
 ggplot2::ggplot(data, ggplot2::aes(x = x, y = value, fill = name)) +
   ggplot2::geom_area() +

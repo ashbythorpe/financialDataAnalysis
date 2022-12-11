@@ -8,12 +8,14 @@
 \usage{
 data_ui(id)
 
-data_server(id, data)
+data_server(id, data, filters)
 }
 \arguments{
 \item{id}{The namespace of the module.}
 
-\item{data}{The data to be viewed.}
+\item{data}{The data to be viewed, filtered and sorted.}
+
+\item{filters}{A table of filters to apply to the data.}
 }
 \description{
 A shiny module that allows the user to view some data, and download it in

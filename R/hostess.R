@@ -9,21 +9,21 @@ hostess_obj <- R6::R6Class(
       private$active <- x
     },
     set = function(x) {
-      if(private$active == 1) {
+      if (private$active == 1) {
         private$h1$set(x)
       } else {
         private$h2$set(x)
       }
     },
     inc = function(x) {
-      if(private$active == 1) {
+      if (private$active == 1) {
         private$h1$inc(x)
       } else {
         private$h2$inc(x)
       }
     },
     start = function() {
-      if(private$active == 1) {
+      if (private$active == 1) {
         private$h1$start()
       } else {
         private$h2$start()
@@ -31,7 +31,7 @@ hostess_obj <- R6::R6Class(
     },
     print = function() {
       cat(paste("Hostess", private$active, "is currently active:\n"))
-      if(private$active == 1) {
+      if (private$active == 1) {
         print(private$h1)
       } else {
         print(private$h2)

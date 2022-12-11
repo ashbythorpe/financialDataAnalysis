@@ -8,9 +8,10 @@ data <- daily_stock_data %>%
 
 fit <- data %>%
   tidyr::nest(data = -ticker) %>%
-  dplyr::mutate(fit = purrr::map(data, prophet::prophet, 
-                                 daily.seasonality = TRUE,
-                                 seasonality.mode = "multiplicative"))
+  dplyr::mutate(fit = purrr::map(data, prophet::prophet,
+    daily.seasonality = TRUE,
+    seasonality.mode = "multiplicative"
+  ))
 
 daily_prophet_model <- fit
 
@@ -19,7 +20,9 @@ usethis::use_data(daily_prophet_model, overwrite = TRUE)
 pred <- fit %>%
   dplyr::mutate(
     pred = purrr::pmap(
-      list(fit, data, cli::cli_progress_along(fit)), ~ {predict(.x, .y)}
+      list(fit, data, cli::cli_progress_along(fit)), ~ {
+        predict(.x, .y)
+      }
     )
   )
 

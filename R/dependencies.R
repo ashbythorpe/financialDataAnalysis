@@ -1,13 +1,13 @@
 #' Dependencies
-#' 
+#'
 #' Get a list of HTML dependencies to be embedded in the app. This includes the
 #' internal CSS and JavaScript files specific to this app, along with any other
 #' external HTML dependencies.
-#' 
+#'
 #' @returns A collection of HTML tags.
-#' 
+#'
 #' @export
-fDA_dependencies <- function(){
+fDA_dependencies <- function() {
   tagList(
     htmltools::htmlDependency(
       "popper",
@@ -33,4 +33,3 @@ fDA_dependencies <- function(){
     waiter::useHostess()
   )
 }
-

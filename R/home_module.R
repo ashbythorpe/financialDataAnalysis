@@ -1,10 +1,10 @@
 #' Introduction to the application
-#' 
+#'
 #' Returns the home page of the application
-#' 
+#'
 #' @name home_module
 #' @export
-home_ui <- function(){
+home_ui <- function() {
   tagList(
     box(
       p("Welcome to the Financial Data Analysis website!"),
@@ -17,8 +17,9 @@ home_ui <- function(){
       p("Email: ashbythorpe@gmail.com")
     ),
     box(
-      a("Report an issue", 
-        href = "https://github.com/ashbythorpe/financialDataAnalysis/issues")
+      a("Report an issue",
+        href = "https://github.com/ashbythorpe/financialDataAnalysis/issues"
+      )
     ),
   )
 }

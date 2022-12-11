@@ -20,7 +20,8 @@ score specification.
 }
 \examples{
 scores <- create_score(
-  scores_init, score_type = "Linear", colname = "x", score_name = "Default",
+  scores_init,
+  score_type = "Linear", colname = "x", score_name = "Default",
   weight = 1, lb = 1, ub = 6, exponential = FALSE
 )
 

@@ -4,7 +4,7 @@ test_that("download_df works", {
   withr::local_file(csv_file)
   excel_file <- tempfile(fileext = ".xlsx")
   withr::local_file(excel_file)
-  
+
   download_df(NULL, "CSV", csv_file) %>%
     expect_null()
   download_df(df, NULL, csv_file) %>%

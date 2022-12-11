@@ -112,13 +112,15 @@ The `logarithmic` argument defines whether the transformation is exponential or 
 The `magnitude` argument defines the magnitude of the transformation: a higher number means that the transformation will have a bigger effect.
 
 ```{r exponential, echo = FALSE}
-x <- 1:1000/1000
+x <- 1:1000 / 1000
 y <- financialDataAnalysis:::transform_exponential(x, T, F, 1)
 
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
   ggplot2::geom_line() +
-  ggplot2::labs(x = "score",
-                y = "transformed score") +
+  ggplot2::labs(
+    x = "score",
+    y = "transformed score"
+  ) +
   ggthemes::theme_clean()
 ```
 
@@ -137,11 +139,15 @@ x <- 1:100
 y <- financialDataAnalysis:::score_linear(x, 20, 80)
 
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
-  ggplot2::geom_line() + 
-  ggplot2::labs(x = "column value",
-                y = "score") + 
-  ggplot2::scale_x_continuous(breaks = c(20,80),
-                              labels = c("lb", "ub")) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(20, 80),
+    labels = c("lb", "ub")
+  ) +
   ggthemes::theme_clean()
 ```
 
@@ -151,11 +157,15 @@ If the `lb` argument is more than the `ub` argument, the score is inverted. This
 y <- financialDataAnalysis:::score_linear(x, 80, 20)
 
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
-  ggplot2::geom_line() + 
-  ggplot2::labs(x = "column value",
-                y = "score") + 
-  ggplot2::scale_x_continuous(breaks = c(20,80),
-                              labels = c("lb", "ub")) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(20, 80),
+    labels = c("lb", "ub")
+  ) +
   ggthemes::theme_clean()
 ```
 
@@ -174,11 +184,15 @@ If the column value is in between the `centre` and `ub` arguments, the score is 
 y <- financialDataAnalysis:::score_peak(x, 20, 80, 50, FALSE)
 
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
-  ggplot2::geom_line() + 
-  ggplot2::labs(x = "column value",
-                y = "score") + 
-  ggplot2::scale_x_continuous(breaks = c(20, 50, 80),
-                              labels = c("lb", "centre", "ub")) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(20, 50, 80),
+    labels = c("lb", "centre", "ub")
+  ) +
   ggthemes::theme_clean()
 ```
 
@@ -188,11 +202,15 @@ When `inverse` is `TRUE`, the score is inverted: the lower bound and upper bound
 y <- financialDataAnalysis:::score_peak(x, 20, 80, 50, TRUE)
 
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y)) +
-  ggplot2::geom_line() + 
-  ggplot2::labs(x = "column value",
-                y = "score") + 
-  ggplot2::scale_x_continuous(breaks = c(20, 50, 80),
-                              labels = c("lb", "centre", "ub")) +
+  ggplot2::geom_line() +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(20, 50, 80),
+    labels = c("lb", "centre", "ub")
+  ) +
   ggthemes::theme_clean()
 ```
 
@@ -207,8 +225,10 @@ label <- glue::glue("(x{1:5}, y{1:5})")
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y, label = label)) +
   ggplot2::geom_line() +
   ggplot2::geom_text(color = "grey") +
-  ggplot2::labs(x = "column value",
-       y = "score") +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
   ggplot2::scale_x_continuous(breaks = NULL, expand = ggplot2::expansion(add = 10)) +
   ggthemes::theme_clean()
 ```
@@ -223,8 +243,10 @@ label <- glue::glue("(x{1:5}, y{1:5})")
 ggplot2::ggplot(NULL, ggplot2::aes(x = x, y = y, label = label)) +
   ggplot2::geom_line() +
   ggplot2::geom_text(color = "grey") +
-  ggplot2::labs(x = "column value",
-       y = "score") +
+  ggplot2::labs(
+    x = "column value",
+    y = "score"
+  ) +
   ggplot2::scale_x_continuous(breaks = NULL, expand = ggplot2::expansion(add = 10)) +
   ggthemes::theme_clean()
 ```
@@ -233,11 +255,13 @@ To add a score to a table, use the `create_score()` function. Lets create a line
 
 ```{r create_scores}
 scores <- create_score(
-  scores_init, score_type = "Linear", colname = "x", score_name = "Default", 
+  scores_init,
+  score_type = "Linear", colname = "x", score_name = "Default",
   weight = 1, lb = 0, ub = 10, exponential = FALSE
 )
 scores <- create_score(
-  scores, score_type = "Peak", colname = "y", score_name = "Default", 
+  scores,
+  score_type = "Peak", colname = "y", score_name = "Default",
   weight = 5, lb = 0, ub = 20, centre = 5, inverse = FALSE, exponential = TRUE,
   logarithmic = FALSE, magnitude = 2
 )
@@ -248,7 +272,8 @@ The `create_score()` function also allows you to edit a score, using the `editin
 
 ```{r edit_scores}
 scores <- create_score(
-  scores, editing = 1, score_type = "Linear", colname = "x", 
+  scores,
+  editing = 1, score_type = "Linear", colname = "x",
   score_name = "Default", weight = 2, lb = 0, ub = 10, exponential = FALSE
 )
 scores
@@ -258,7 +283,7 @@ Scores can be deleted with the `delete_scores()` function. Enter a vector contai
 
 ```{r delete_scores}
 delete_scores(scores, 2)
-delete_scores(scores, c(1,2))
+delete_scores(scores, c(1, 2))
 ```
 
 You can observe how a score will be created using the `score_summary()` function. This is useful to check that the score you are going to create is what you expect.
@@ -320,7 +345,7 @@ filters
 You can then apply these filters with the `apply_filters()` function.
 
 ```{r apply_filters}
-filtered_data <- apply_filters(final_data, filters[2,])
+filtered_data <- apply_filters(final_data, filters[2, ])
 filtered_data
 ```
 
@@ -362,11 +387,13 @@ Finally, predictions can be made using the `predict_price()` function. Specify a
 
 ```{r predict_price}
 predictions_daily <- predict_price(
-  "GOOGL", start_date = today(), 
+  "GOOGL",
+  start_date = today(),
   end_date = today() %m+% months(2), freq = "daily"
 )
 predictions_monthly <- predict_price(
-  "GOOGL", start_date = today(), 
+  "GOOGL",
+  start_date = today(),
   end_date = today() + years(1), freq = "monthly"
 )
 

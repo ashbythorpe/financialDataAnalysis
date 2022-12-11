@@ -9,8 +9,9 @@ data <- monthly_stock_data %>%
 fit <- data %>%
   tidyr::nest(data = -ticker) %>%
   dplyr::mutate(
-    fit = purrr::map(data, prophet::prophet, 
-                     seasonality.mode = "multiplicative")
+    fit = purrr::map(data, prophet::prophet,
+      seasonality.mode = "multiplicative"
+    )
   )
 
 monthly_prophet_model <- fit
@@ -20,7 +21,9 @@ usethis::use_data(monthly_prophet_model, overwrite = TRUE)
 pred <- fit %>%
   dplyr::mutate(
     pred = purrr::pmap(
-      list(fit, data, cli::cli_progress_along(fit)), ~ {predict(.x, .y)}
+      list(fit, data, cli::cli_progress_along(fit)), ~ {
+        predict(.x, .y)
+      }
     )
   )
 
