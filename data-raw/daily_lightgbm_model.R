@@ -8,14 +8,8 @@ clean_date <- function(x) {
     dplyr::mutate(residuals = timetk::ts_impute_vec(residuals))
 }
 
-pred <- readRDS("daily_fit.rds")
-
-data <- pred %>%
-  dplyr::select(-fit) %>%
-  tidyr::unnest(c(data, pred), names_repair = "unique") %>%
-  dplyr::select(-ds...4) %>%
-  dplyr::rename(ds = "ds...2") %>%
-  dplyr::mutate(residuals = y - yhat) %>%
+data <- daily_training_data %>%
+  dplyr::rename(ds = "ref_date") %>%
   dplyr::select(ticker, ds, residuals) %>%
   dplyr::arrange(ds)
 
@@ -76,7 +70,7 @@ tune_res <- tune::tune_grid(
   control = tune::control_grid(verbose = TRUE)
 )
 
-saveRDS(tune_res, "tune_res.rds")
+saveRDS(bayes_res, "bayes_res.rds")
 tune_res <- readRDS("tune_res.rds")
 
 bayes_res <- tune::tune_bayes(
@@ -89,15 +83,17 @@ bayes_res <- tune::tune_bayes(
   )
 )
 
+autoplot(bayes_res)
+
 tune::show_best(bayes_res, "rmse")
 tune::show_best(bayes_res, "rsq")
 
 best <- tune::select_best(bayes_res, "rsq")
 
 best <- list(
-  min_n = 7,
-  tree_depth = 12,
-  learn_rate = 0.0398679046932473
+  min_n = 23,
+  tree_depth = 14,
+  learn_rate = 0.0387
 )
 
 final_wf <- tune::finalize_workflow(lightgbm_wf, best)
@@ -109,7 +105,9 @@ pred <- forecast_stock_daily(
   rsample::training(initial_split) %>%
     dplyr::group_by(ticker) %>%
     clean_date() %>%
-    dplyr::ungroup()
+    dplyr::ungroup(),
+  r = 0.5,
+  hostess = dummy_hostess()
 )
 
 pred %>%
@@ -141,9 +139,6 @@ data_with_features <- data %>%
 
 final_fit <- fit(final_wf, data_with_features) %>%
   butcher::butcher() # Drastically reduce the size of the workflow
-
-final_fit <- daily_lightgbm_model %>%
-  butcher::butcher()
 
 lightgbm::saveRDS.lgb.Booster(
   final_fit$fit$fit$fit,

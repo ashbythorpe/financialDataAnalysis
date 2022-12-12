@@ -7,14 +7,8 @@ clean_date <- function(x) {
     dplyr::mutate(residuals = timetk::ts_impute_vec(residuals))
 }
 
-pred <- readRDS("pred.rds")
-
-data <- pred %>%
-  dplyr::select(-fit) %>%
-  tidyr::unnest(c(data, pred), names_repair = "unique") %>%
-  dplyr::select(-ds...4) %>%
-  dplyr::rename(ds = "ds...2") %>%
-  dplyr::mutate(residuals = y - yhat) %>%
+data <- monthly_training_data %>%
+  dplyr::rename(ds = "ref_date") %>%
   dplyr::select(ticker, ds, residuals) %>%
   dplyr::arrange(ds)
 
@@ -45,7 +39,7 @@ splits <- timetk::time_series_cv(
 
 lightgbm_recipe <- recipes::recipe(data_tr, residuals ~ .) %>%
   recipes::step_date(ds, features = c(
-    "month", "quarter", "semester", "year", "decimal"
+    "month", "quarter", "semester", "year"
   )) %>%
   recipes::step_harmonic(ds,
     frequency = 1:4, cycle_size = 12,
@@ -55,7 +49,8 @@ lightgbm_recipe <- recipes::recipe(data_tr, residuals ~ .) %>%
 
 lightgbm_recipe %>%
   recipes::prep() %>%
-  recipes::bake(NULL)
+  recipes::bake(NULL) %>%
+  dplyr::select(-dplyr::matches("lag"))
 
 lightgbm_model <- boost_tree(
   mode = "regression",
@@ -95,9 +90,9 @@ tune::show_best(bayes_res, "rsq")
 best <- tune::select_best(bayes_res, "rsq")
 
 best <- list(
-  min_n = 10,
-  tree_depth = 5,
-  learn_rate = 0.00720474145142245
+  min_n = 8,
+  tree_depth = 10,
+  learn_rate = 0.07461936
 )
 
 final_wf <- tune::finalize_workflow(lightgbm_wf, best)
@@ -109,7 +104,9 @@ pred <- forecast_stock_monthly(
   rsample::training(initial_split) %>%
     dplyr::group_by(ticker) %>%
     clean_date() %>%
-    dplyr::ungroup()
+    dplyr::ungroup(),
+  r = 0.5,
+  hostess = dummy_hostess()
 )
 
 pred %>%
@@ -154,10 +151,6 @@ data_with_features <- data %>%
 
 final_fit <- fit(final_wf, data_with_features) %>%
   butcher::butcher() # Drastically reduce the size of the workflow
-
-forecast_stock_monthly(final_fit, "GOOGL", 24, monthly_stock_data %>%
-  dplyr::rename(ds = "ref_date") %>%
-  dplyr::mutate(residuals = 1))
 
 lightgbm::saveRDS.lgb.Booster(
   final_fit$fit$fit$fit,

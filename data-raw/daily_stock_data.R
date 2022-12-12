@@ -5,7 +5,7 @@ library(lubridate)
 sp500 <- yf_index_composition("SP500")
 symbols <- sp500$ticker
 
-daily_data <- yf_get(symbols,
+daily_stock_data <- yf_get(symbols,
   first_date = today() - months(6),
   last_date = today(),
   freq_data = "daily"
