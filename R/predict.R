@@ -12,7 +12,7 @@
 #'
 #' @details
 #' The prediction process involves using a Prophet model to generate
-#' predictions, then using a lightgbm model to predict the residuals and adding
+#' predictions, then using a LightGBM model to predict the residuals and adding
 #' the two together.
 #'
 #' @returns A [tibble::tibble()] of stock predictions.

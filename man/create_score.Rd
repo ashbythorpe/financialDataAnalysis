@@ -64,7 +64,7 @@ create the score.}
 }
 \value{
 If any required arguments are not valid, \code{scores} is returned as is.
-If \code{editing} is \code{NA}, \code{scores} is returned with an ectra row.
+If \code{editing} is \code{NA}, \code{scores} is returned with an extra row.
 If \code{editing} is a valid row number, \code{scores} with 1 edited row is returned.
 }
 \description{

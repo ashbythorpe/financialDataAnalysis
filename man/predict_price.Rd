@@ -33,7 +33,7 @@ Choose between daily or monthly predictions.
 }
 \details{
 The prediction process involves using a Prophet model to generate
-predictions, then using a lightgbm model to predict the residuals and adding
+predictions, then using a LightGBM model to predict the residuals and adding
 the two together.
 }
 \seealso{

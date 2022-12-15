@@ -59,6 +59,7 @@ Imports:
     writexl
 Depends: 
     R (>= 2.10)
+Language: en-GB
 LazyData: true
 LazyDataCompression: xz
 URL: https://github.com/ashbythorpe/financialDataAnalysis,

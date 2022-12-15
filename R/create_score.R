@@ -89,7 +89,7 @@
 #'
 #' @returns
 #' If any required arguments are not valid, `scores` is returned as is.
-#' If `editing` is `NA`, `scores` is returned with an ectra row.
+#' If `editing` is `NA`, `scores` is returned with an extra row.
 #' If `editing` is a valid row number, `scores` with 1 edited row is returned.
 #'
 #' @seealso
