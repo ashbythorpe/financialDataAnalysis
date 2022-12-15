@@ -98,34 +98,34 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $var_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 86 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type    role      source  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          nominal predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              date    predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 numeric predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type      role      source  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          <span style="color: #949494;">&lt;chr [3]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              <span style="color: #949494;">&lt;chr [1]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 76 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $term_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 86 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type    role      source  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          nominal predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              date    predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 numeric predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type      role      source  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          <span style="color: #949494;">&lt;chr [3]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              <span style="color: #949494;">&lt;chr [1]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 76 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $steps</span>
@@ -156,7 +156,25 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $locale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "en_US.UTF-8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $month</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "January"   "February"  "March"     "April"     "May"       "June"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "July"      "August"    "September" "October"   "November"  "December" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $month_abbrev</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $weekday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Saturday" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $weekday_abbrev</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $am_pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AM" "PM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "clock_labels"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
@@ -168,7 +186,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_seuTv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_0f4Em"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_date" "step"     </span>
@@ -206,7 +224,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "harmonic_27pMR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "harmonic_kPSmo"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_harmonic" "step"         </span>
@@ -232,7 +250,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "rm_RQuNv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "rm_C4Bik"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_rm" "step"   </span>
@@ -325,34 +343,34 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $recipe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $var_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 86 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type    role      source  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          nominal predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              date    predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 numeric predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type      role      source  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          <span style="color: #949494;">&lt;chr [3]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds              <span style="color: #949494;">&lt;chr [1]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag8  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag9  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag10 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag11 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag12 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag13 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag14 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag15 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 76 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $term_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type    role      source  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          nominal predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> residuals_lag8  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag9  numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag10 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag11 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag12 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag13 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag14 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag15 numeric predictor original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag16 numeric predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable        type      role      source  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ticker          <span style="color: #949494;">&lt;chr [3]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> residuals_lag8  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> residuals_lag9  <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> residuals_lag10 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> residuals_lag11 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> residuals_lag12 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> residuals_lag13 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> residuals_lag14 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> residuals_lag15 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> residuals_lag16 <span style="color: #949494;">&lt;chr [2]&gt;</span> predictor original</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $steps</span>
@@ -383,7 +401,25 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $locale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "en_US.UTF-8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $month</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "January"   "February"  "March"     "April"     "May"       "June"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "July"      "August"    "September" "October"   "November"  "December" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $month_abbrev</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $weekday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Saturday" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $weekday_abbrev</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $am_pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AM" "PM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "clock_labels"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ds </span>
@@ -396,7 +432,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_seuTv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_0f4Em"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_date" "step"     </span>
@@ -438,7 +474,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "harmonic_27pMR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "harmonic_kPSmo"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_harmonic" "step"         </span>
@@ -465,7 +501,7 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "rm_RQuNv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "rm_C4Bik"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "step_rm" "step"   </span>
@@ -474,62 +510,62 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $levels</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $levels$ticker</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $levels$ticker$values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "A"     "AAL"   "AAP"   "AAPL"  "ABBV"  "ABC"   "ABMD"  "ABT"   "ACN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "ADBE"  "ADI"   "ADM"   "ADP"   "ADSK"  "AEE"   "AEP"   "AES"   "AFL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "AIG"   "AIZ"   "AJG"   "AKAM"  "ALB"   "ALGN"  "ALK"   "ALL"   "ALLE" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "AMAT"  "AMCR"  "AMD"   "AME"   "AMGN"  "AMP"   "AMT"   "AMZN"  "ANET" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "ANSS"  "AON"   "AOS"   "APA"   "APD"   "APH"   "APTV"  "ARE"   "ATO"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "ATVI"  "AVB"   "AVGO"  "AVY"   "AWK"   "AXP"   "AZO"   "BA"    "BAC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "BALL"  "BAX"   "BBWI"  "BBY"   "BDX"   "BIIB"  "BIO"   "BK"    "BKNG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "BKR"   "BLK"   "BMY"   "BR"    "BRO"   "BSX"   "BWA"   "BXP"   "CAH"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "CARR"  "CAT"   "CBOE"  "CBRE"  "CCL"   "CDAY"  "CDNS"  "CDW"   "CE"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "CHRW"  "CNC"   "CNP"   "COF"   "CPB"   "CPT"   "CTLT"  "CZR"   "GOOG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "GOOGL" "KMX"   "LNT"   "MMM"   "MO"    "T"     "TECH"  "WRB"   "C"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "CAG"   "CB"    "CCI"   "CEG"   "CF"    "CFG"   "CHD"   "CHTR"  "CI"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "CINF"  "CL"    "CLX"   "CMA"   "CMCSA" "CME"   "CMG"   "CMI"   "CMS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "COO"   "COP"   "COST"  "CPRT"  "CRL"   "CSCO"  "CSX"   "CTAS"  "CTRA" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "CTSH"  "CTVA"  "CTXS"  "CVS"   "CVX"   "D"     "DAL"   "DD"    "DE"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "DFS"   "DG"    "DHI"   "DHR"   "DIS"   "DISH"  "DLR"   "DLTR"  "DOV"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "DOW"   "DPZ"   "DRE"   "DRI"   "DTE"   "DUK"   "DVA"   "DVN"   "DXC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "DXCM"  "EA"    "EBAY"  "ECL"   "ED"    "EFX"   "EIX"   "EL"    "ELV"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "EMN"   "EMR"   "ENPH"  "EOG"   "EPAM"  "EQIX"  "EQR"   "ES"    "ESS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "ETN"   "ETR"   "ETSY"  "EVRG"  "EW"    "EXC"   "EXPD"  "EXPE"  "EXR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "FANG"  "FAST"  "FDS"   "FDX"   "FE"    "FFIV"  "FIS"   "FITB"  "FRC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "FRT"   "GLW"   "KO"    "LLY"   "RE"    "SCHW"  "STZ"   "XOM"   "XRAY" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "BEN"   "F"     "FBHS"  "FCX"   "FISV"  "FLT"   "FMC"   "FOX"   "FOXA" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "FTNT"  "FTV"   "GD"    "GE"    "GILD"  "GIS"   "GL"    "GM"    "GNRC" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "GPC"   "GPN"   "GRMN"  "GS"    "HAL"   "HAS"   "HBAN"  "HCA"   "HD"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "HES"   "HIG"   "HII"   "HLT"   "HOLX"  "HON"   "HPE"   "HPQ"   "HRL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "HSIC"  "HST"   "HSY"   "HUM"   "HWM"   "IBM"   "ICE"   "IDXX"  "IEX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "IFF"   "ILMN"  "INCY"  "INTC"  "INTU"  "IP"    "IPG"   "IQV"   "IR"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "IRM"   "ISRG"  "IT"    "ITW"   "IVZ"   "J"     "JBHT"  "JCI"   "JKHY" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "JNJ"   "JNPR"  "JPM"   "K"     "KDP"   "KEY"   "KEYS"  "KHC"   "KIM"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "KLAC"  "KMB"   "KMI"   "KR"    "L"     "LDOS"  "LEN"   "LH"    "LHX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "LIN"   "LKQ"   "LMT"   "LNC"   "LOW"   "LRCX"  "LUMN"  "LVS"   "LW"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "LYB"   "LYV"   "MAR"   "MKTX"  "MLM"   "MMC"   "MPC"   "MRO"   "MTB"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "PEAK"  "DGX"   "MA"    "MAA"   "MAS"   "MCD"   "MCHP"  "MCK"   "MCO"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "MDLZ"  "MDT"   "MET"   "META"  "MGM"   "MHK"   "MKC"   "MNST"  "MOH"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "MOS"   "MPWR"  "MRK"   "MRNA"  "MS"    "MSCI"  "MSFT"  "MSI"   "MTCH" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "MTD"   "MU"    "NCLH"  "NDAQ"  "NDSN"  "NEE"   "NEM"   "NFLX"  "NI"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "NKE"   "NLOK"  "NLSN"  "NOC"   "NRG"   "NSC"   "NTAP"  "NTRS"  "NUE"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "NVDA"  "NVR"   "NWL"   "NWS"   "NWSA"  "NXPI"  "O"     "ODFL"  "OGN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "OKE"   "OMC"   "ON"    "ORCL"  "ORLY"  "OTIS"  "OXY"   "PARA"  "PAYC" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "PAYX"  "PCAR"  "PEG"   "PENN"  "PEP"   "PFE"   "PFG"   "PG"    "PGR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "PH"    "PHM"   "PKG"   "PKI"   "PLD"   "PM"    "PNC"   "PNR"   "PNW"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "POOL"  "PPG"   "PPL"   "PRU"   "PSA"   "PSX"   "PTC"   "PVH"   "PWR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "PXD"   "PYPL"  "QCOM"  "QRVO"  "REG"   "REGN"  "RF"    "RJF"   "RL"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "RTX"   "TAP"   "CRM"   "GWW"   "LUV"   "NOW"   "RCL"   "RHI"   "RMD"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "ROK"   "ROL"   "ROP"   "ROST"  "RSG"   "SBAC"  "SBNY"  "SBUX"  "SEDG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "SEE"   "SHW"   "SIVB"  "SJM"   "SLB"   "SNA"   "SNPS"  "SO"    "SPG"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "SPGI"  "SRE"   "STE"   "STT"   "STX"   "SWK"   "SWKS"  "SYF"   "SYK"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "SYY"   "TDG"   "TDY"   "TEL"   "TER"   "TFC"   "TFX"   "TGT"   "TJX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "TMO"   "TMUS"  "TPR"   "TRMB"  "TROW"  "TRV"   "TSCO"  "TSLA"  "TSN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "TT"    "TTWO"  "TWTR"  "TXN"   "TXT"   "TYL"   "UAL"   "UDR"   "UHS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "ULTA"  "UNH"   "UNP"   "UPS"   "URI"   "USB"   "V"     "VFC"   "VICI" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "VLO"   "VMC"   "VNO"   "VRSK"  "VRSN"  "VRTX"  "VTR"   "VTRS"  "VZ"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "WAB"   "WAT"   "WBA"   "WBD"   "WDC"   "WEC"   "WELL"  "WFC"   "WHR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "WM"    "WMB"   "WMT"   "WRK"   "WST"   "WTW"   "WY"    "WYNN"  "XEL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "XYL"   "YUM"   "ZBH"   "ZBRA"  "ZION"  "ZTS"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "A"     "AAL"   "AAP"   "AAPL"  "ABBV"  "ABC"   "ABMD"  "ABT"   "ACGL" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "ACN"   "ADBE"  "ADI"   "ADM"   "ADP"   "ADSK"  "AEE"   "AEP"   "AES"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "AFL"   "AIG"   "AIZ"   "AJG"   "AKAM"  "ALB"   "ALGN"  "ALK"   "ALL"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "ALLE"  "AMAT"  "AMCR"  "AMD"   "AME"   "AMGN"  "AMP"   "AMT"   "AMZN" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "ANET"  "ANSS"  "AON"   "AOS"   "APA"   "APD"   "APH"   "APTV"  "ARE"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "ATO"   "ATVI"  "AVB"   "AVGO"  "AVY"   "AWK"   "AXP"   "AZO"   "BA"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "BAC"   "BALL"  "BAX"   "BBWI"  "BBY"   "BDX"   "BEN"   "BF-B"  "BIIB" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "BIO"   "BK"    "BKNG"  "BKR"   "BLK"   "BMY"   "BR"    "BRO"   "BSX"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "BWA"   "BXP"   "C"     "CAG"   "CAH"   "CARR"  "CAT"   "CB"    "CBOE" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "CBRE"  "CCI"   "CCL"   "CDAY"  "CDNS"  "CDW"   "CE"    "CEG"   "CF"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "CFG"   "CHD"   "CHRW"  "CHTR"  "CI"    "CINF"  "CL"    "CLX"   "CMA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "CMCSA" "CME"   "CMG"   "CMI"   "CMS"   "CNC"   "CNP"   "COF"   "COO"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "COP"   "COST"  "CPB"   "CPRT"  "CPT"   "CRL"   "CRM"   "CSCO"  "CSGP" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "CSX"   "CTAS"  "CTLT"  "CTRA"  "CTSH"  "CTVA"  "CVS"   "CVX"   "CZR"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "D"     "DAL"   "DD"    "DE"    "DFS"   "DG"    "DGX"   "DHI"   "DHR"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "DIS"   "DISH"  "DLR"   "DLTR"  "DOV"   "DOW"   "DPZ"   "DRI"   "DTE"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "DUK"   "DVA"   "DVN"   "DXC"   "DXCM"  "EA"    "EBAY"  "ECL"   "ED"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "EFX"   "EIX"   "EL"    "ELV"   "EMN"   "EMR"   "ENPH"  "EOG"   "EPAM" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "EQIX"  "EQR"   "EQT"   "ES"    "ESS"   "ETN"   "ETR"   "ETSY"  "EVRG" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "EW"    "EXC"   "EXPD"  "EXPE"  "EXR"   "F"     "FANG"  "FAST"  "FBHS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "FCX"   "FDS"   "FDX"   "FE"    "FFIV"  "FIS"   "FISV"  "FITB"  "FLT"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "FMC"   "FOX"   "FOXA"  "FRC"   "FRT"   "FTNT"  "FTV"   "GD"    "GE"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "GEN"   "GILD"  "GIS"   "GL"    "GLW"   "GM"    "GNRC"  "GOOG"  "GOOGL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "GPC"   "GPN"   "GRMN"  "GS"    "GWW"   "HAL"   "HAS"   "HBAN"  "HCA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "HD"    "HES"   "HIG"   "HII"   "HLT"   "HOLX"  "HON"   "HPE"   "HPQ"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "HRL"   "HSIC"  "HST"   "HSY"   "HUM"   "HWM"   "IBM"   "ICE"   "IDXX" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "IEX"   "IFF"   "ILMN"  "INCY"  "INTC"  "INTU"  "INVH"  "IP"    "IPG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "IQV"   "IR"    "IRM"   "ISRG"  "IT"    "ITW"   "IVZ"   "J"     "JBHT" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "JCI"   "JKHY"  "JNJ"   "JNPR"  "JPM"   "K"     "KDP"   "KEY"   "KEYS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "KHC"   "KIM"   "KLAC"  "KMB"   "KMI"   "KMX"   "KO"    "KR"    "L"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "LDOS"  "LEN"   "LH"    "LHX"   "LIN"   "LKQ"   "LLY"   "LMT"   "LNC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "LNT"   "LOW"   "LRCX"  "LUMN"  "LUV"   "LVS"   "LW"    "LYB"   "LYV"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "MA"    "MAA"   "MAR"   "MAS"   "MCD"   "MCHP"  "MCK"   "MCO"   "MDLZ" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "MDT"   "MET"   "META"  "MGM"   "MHK"   "MKC"   "MKTX"  "MLM"   "MMC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "MMM"   "MNST"  "MO"    "MOH"   "MOS"   "MPC"   "MPWR"  "MRK"   "MRNA" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "MRO"   "MS"    "MSCI"  "MSFT"  "MSI"   "MTB"   "MTCH"  "MTD"   "MU"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "NCLH"  "NDAQ"  "NDSN"  "NEE"   "NEM"   "NFLX"  "NI"    "NKE"   "NOC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "NOW"   "NRG"   "NSC"   "NTAP"  "NTRS"  "NUE"   "NVDA"  "NVR"   "NWL"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "NWS"   "NWSA"  "NXPI"  "O"     "ODFL"  "OGN"   "OKE"   "OMC"   "ON"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "ORCL"  "ORLY"  "OTIS"  "OXY"   "PARA"  "PAYC"  "PAYX"  "PCAR"  "PCG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "PEAK"  "PEG"   "PEP"   "PFE"   "PFG"   "PG"    "PGR"   "PH"    "PHM"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "PKG"   "PKI"   "PLD"   "PM"    "PNC"   "PNR"   "PNW"   "POOL"  "PPG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "PPL"   "PRU"   "PSA"   "PSX"   "PTC"   "PWR"   "PXD"   "PYPL"  "QCOM" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "QRVO"  "RCL"   "RE"    "REG"   "REGN"  "RF"    "RHI"   "RJF"   "RL"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "RMD"   "ROK"   "ROL"   "ROP"   "ROST"  "RSG"   "RTX"   "SBAC"  "SBNY" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "SBUX"  "SCHW"  "SEDG"  "SEE"   "SHW"   "SIVB"  "SJM"   "SLB"   "SNA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "SNPS"  "SO"    "SPG"   "SPGI"  "SRE"   "STE"   "STT"   "STX"   "STZ"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "SWK"   "SWKS"  "SYF"   "SYK"   "SYY"   "T"     "TAP"   "TDG"   "TDY"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "TECH"  "TEL"   "TER"   "TFC"   "TFX"   "TGT"   "TJX"   "TMO"   "TMUS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "TPR"   "TRGP"  "TRMB"  "TROW"  "TRV"   "TSCO"  "TSLA"  "TSN"   "TT"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "TTWO"  "TXN"   "TXT"   "TYL"   "UAL"   "UDR"   "UHS"   "ULTA"  "UNH"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "UNP"   "UPS"   "URI"   "USB"   "V"     "VFC"   "VICI"  "VLO"   "VMC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "VNO"   "VRSK"  "VRSN"  "VRTX"  "VTR"   "VTRS"  "VZ"    "WAB"   "WAT"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "WBA"   "WBD"   "WDC"   "WEC"   "WELL"  "WFC"   "WHR"   "WM"    "WMB"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "WMT"   "WRB"   "WRK"   "WST"   "WTW"   "WY"    "WYNN"  "XEL"   "XOM"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "XRAY"  "XYL"   "YUM"   "ZBH"   "ZBRA"  "ZION"  "ZTS"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $levels$ticker$ordered</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
@@ -1347,67 +1383,67 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $tr_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   nrows ncomplete</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 92184     47094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 90360     45180</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $orig_lvls</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $orig_lvls$ticker</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $orig_lvls$ticker$values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "A"     "AAL"   "AAP"   "AAPL"  "ABBV"  "ABC"   "ABMD"  "ABT"   "ACN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "ADBE"  "ADI"   "ADM"   "ADP"   "ADSK"  "AEE"   "AEP"   "AES"   "AFL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "AIG"   "AIZ"   "AJG"   "AKAM"  "ALB"   "ALGN"  "ALK"   "ALL"   "ALLE" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "AMAT"  "AMCR"  "AMD"   "AME"   "AMGN"  "AMP"   "AMT"   "AMZN"  "ANET" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "ANSS"  "AON"   "AOS"   "APA"   "APD"   "APH"   "APTV"  "ARE"   "ATO"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "ATVI"  "AVB"   "AVGO"  "AVY"   "AWK"   "AXP"   "AZO"   "BA"    "BAC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "BALL"  "BAX"   "BBWI"  "BBY"   "BDX"   "BIIB"  "BIO"   "BK"    "BKNG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "BKR"   "BLK"   "BMY"   "BR"    "BRO"   "BSX"   "BWA"   "BXP"   "CAH"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "CARR"  "CAT"   "CBOE"  "CBRE"  "CCL"   "CDAY"  "CDNS"  "CDW"   "CE"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "CHRW"  "CNC"   "CNP"   "COF"   "CPB"   "CPT"   "CTLT"  "CZR"   "GOOG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "GOOGL" "KMX"   "LNT"   "MMM"   "MO"    "T"     "TECH"  "WRB"   "C"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "CAG"   "CB"    "CCI"   "CEG"   "CF"    "CFG"   "CHD"   "CHTR"  "CI"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "CINF"  "CL"    "CLX"   "CMA"   "CMCSA" "CME"   "CMG"   "CMI"   "CMS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "COO"   "COP"   "COST"  "CPRT"  "CRL"   "CSCO"  "CSX"   "CTAS"  "CTRA" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "CTSH"  "CTVA"  "CTXS"  "CVS"   "CVX"   "D"     "DAL"   "DD"    "DE"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "DFS"   "DG"    "DHI"   "DHR"   "DIS"   "DISH"  "DLR"   "DLTR"  "DOV"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "DOW"   "DPZ"   "DRE"   "DRI"   "DTE"   "DUK"   "DVA"   "DVN"   "DXC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "DXCM"  "EA"    "EBAY"  "ECL"   "ED"    "EFX"   "EIX"   "EL"    "ELV"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "EMN"   "EMR"   "ENPH"  "EOG"   "EPAM"  "EQIX"  "EQR"   "ES"    "ESS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "ETN"   "ETR"   "ETSY"  "EVRG"  "EW"    "EXC"   "EXPD"  "EXPE"  "EXR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "FANG"  "FAST"  "FDS"   "FDX"   "FE"    "FFIV"  "FIS"   "FITB"  "FRC"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "FRT"   "GLW"   "KO"    "LLY"   "RE"    "SCHW"  "STZ"   "XOM"   "XRAY" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "BEN"   "F"     "FBHS"  "FCX"   "FISV"  "FLT"   "FMC"   "FOX"   "FOXA" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "FTNT"  "FTV"   "GD"    "GE"    "GILD"  "GIS"   "GL"    "GM"    "GNRC" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "GPC"   "GPN"   "GRMN"  "GS"    "HAL"   "HAS"   "HBAN"  "HCA"   "HD"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "HES"   "HIG"   "HII"   "HLT"   "HOLX"  "HON"   "HPE"   "HPQ"   "HRL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "HSIC"  "HST"   "HSY"   "HUM"   "HWM"   "IBM"   "ICE"   "IDXX"  "IEX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "IFF"   "ILMN"  "INCY"  "INTC"  "INTU"  "IP"    "IPG"   "IQV"   "IR"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "IRM"   "ISRG"  "IT"    "ITW"   "IVZ"   "J"     "JBHT"  "JCI"   "JKHY" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "JNJ"   "JNPR"  "JPM"   "K"     "KDP"   "KEY"   "KEYS"  "KHC"   "KIM"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "KLAC"  "KMB"   "KMI"   "KR"    "L"     "LDOS"  "LEN"   "LH"    "LHX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "LIN"   "LKQ"   "LMT"   "LNC"   "LOW"   "LRCX"  "LUMN"  "LVS"   "LW"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "LYB"   "LYV"   "MAR"   "MKTX"  "MLM"   "MMC"   "MPC"   "MRO"   "MTB"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "PEAK"  "DGX"   "MA"    "MAA"   "MAS"   "MCD"   "MCHP"  "MCK"   "MCO"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "MDLZ"  "MDT"   "MET"   "META"  "MGM"   "MHK"   "MKC"   "MNST"  "MOH"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "MOS"   "MPWR"  "MRK"   "MRNA"  "MS"    "MSCI"  "MSFT"  "MSI"   "MTCH" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "MTD"   "MU"    "NCLH"  "NDAQ"  "NDSN"  "NEE"   "NEM"   "NFLX"  "NI"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "NKE"   "NLOK"  "NLSN"  "NOC"   "NRG"   "NSC"   "NTAP"  "NTRS"  "NUE"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "NVDA"  "NVR"   "NWL"   "NWS"   "NWSA"  "NXPI"  "O"     "ODFL"  "OGN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "OKE"   "OMC"   "ON"    "ORCL"  "ORLY"  "OTIS"  "OXY"   "PARA"  "PAYC" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "PAYX"  "PCAR"  "PEG"   "PENN"  "PEP"   "PFE"   "PFG"   "PG"    "PGR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "PH"    "PHM"   "PKG"   "PKI"   "PLD"   "PM"    "PNC"   "PNR"   "PNW"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "POOL"  "PPG"   "PPL"   "PRU"   "PSA"   "PSX"   "PTC"   "PVH"   "PWR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "PXD"   "PYPL"  "QCOM"  "QRVO"  "REG"   "REGN"  "RF"    "RJF"   "RL"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "RTX"   "TAP"   "CRM"   "GWW"   "LUV"   "NOW"   "RCL"   "RHI"   "RMD"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "ROK"   "ROL"   "ROP"   "ROST"  "RSG"   "SBAC"  "SBNY"  "SBUX"  "SEDG" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "SEE"   "SHW"   "SIVB"  "SJM"   "SLB"   "SNA"   "SNPS"  "SO"    "SPG"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "SPGI"  "SRE"   "STE"   "STT"   "STX"   "SWK"   "SWKS"  "SYF"   "SYK"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "SYY"   "TDG"   "TDY"   "TEL"   "TER"   "TFC"   "TFX"   "TGT"   "TJX"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "TMO"   "TMUS"  "TPR"   "TRMB"  "TROW"  "TRV"   "TSCO"  "TSLA"  "TSN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "TT"    "TTWO"  "TWTR"  "TXN"   "TXT"   "TYL"   "UAL"   "UDR"   "UHS"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "ULTA"  "UNH"   "UNP"   "UPS"   "URI"   "USB"   "V"     "VFC"   "VICI" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "VLO"   "VMC"   "VNO"   "VRSK"  "VRSN"  "VRTX"  "VTR"   "VTRS"  "VZ"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "WAB"   "WAT"   "WBA"   "WBD"   "WDC"   "WEC"   "WELL"  "WFC"   "WHR"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "WM"    "WMB"   "WMT"   "WRK"   "WST"   "WTW"   "WY"    "WYNN"  "XEL"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "XYL"   "YUM"   "ZBH"   "ZBRA"  "ZION"  "ZTS"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "A"     "AAL"   "AAP"   "AAPL"  "ABBV"  "ABC"   "ABMD"  "ABT"   "ACGL" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "ACN"   "ADBE"  "ADI"   "ADM"   "ADP"   "ADSK"  "AEE"   "AEP"   "AES"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "AFL"   "AIG"   "AIZ"   "AJG"   "AKAM"  "ALB"   "ALGN"  "ALK"   "ALL"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "ALLE"  "AMAT"  "AMCR"  "AMD"   "AME"   "AMGN"  "AMP"   "AMT"   "AMZN" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "ANET"  "ANSS"  "AON"   "AOS"   "APA"   "APD"   "APH"   "APTV"  "ARE"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "ATO"   "ATVI"  "AVB"   "AVGO"  "AVY"   "AWK"   "AXP"   "AZO"   "BA"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "BAC"   "BALL"  "BAX"   "BBWI"  "BBY"   "BDX"   "BEN"   "BF-B"  "BIIB" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "BIO"   "BK"    "BKNG"  "BKR"   "BLK"   "BMY"   "BR"    "BRO"   "BSX"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "BWA"   "BXP"   "C"     "CAG"   "CAH"   "CARR"  "CAT"   "CB"    "CBOE" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "CBRE"  "CCI"   "CCL"   "CDAY"  "CDNS"  "CDW"   "CE"    "CEG"   "CF"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "CFG"   "CHD"   "CHRW"  "CHTR"  "CI"    "CINF"  "CL"    "CLX"   "CMA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "CMCSA" "CME"   "CMG"   "CMI"   "CMS"   "CNC"   "CNP"   "COF"   "COO"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "COP"   "COST"  "CPB"   "CPRT"  "CPT"   "CRL"   "CRM"   "CSCO"  "CSGP" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "CSX"   "CTAS"  "CTLT"  "CTRA"  "CTSH"  "CTVA"  "CVS"   "CVX"   "CZR"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "D"     "DAL"   "DD"    "DE"    "DFS"   "DG"    "DGX"   "DHI"   "DHR"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "DIS"   "DISH"  "DLR"   "DLTR"  "DOV"   "DOW"   "DPZ"   "DRI"   "DTE"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "DUK"   "DVA"   "DVN"   "DXC"   "DXCM"  "EA"    "EBAY"  "ECL"   "ED"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "EFX"   "EIX"   "EL"    "ELV"   "EMN"   "EMR"   "ENPH"  "EOG"   "EPAM" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "EQIX"  "EQR"   "EQT"   "ES"    "ESS"   "ETN"   "ETR"   "ETSY"  "EVRG" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "EW"    "EXC"   "EXPD"  "EXPE"  "EXR"   "F"     "FANG"  "FAST"  "FBHS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "FCX"   "FDS"   "FDX"   "FE"    "FFIV"  "FIS"   "FISV"  "FITB"  "FLT"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "FMC"   "FOX"   "FOXA"  "FRC"   "FRT"   "FTNT"  "FTV"   "GD"    "GE"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "GEN"   "GILD"  "GIS"   "GL"    "GLW"   "GM"    "GNRC"  "GOOG"  "GOOGL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "GPC"   "GPN"   "GRMN"  "GS"    "GWW"   "HAL"   "HAS"   "HBAN"  "HCA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "HD"    "HES"   "HIG"   "HII"   "HLT"   "HOLX"  "HON"   "HPE"   "HPQ"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "HRL"   "HSIC"  "HST"   "HSY"   "HUM"   "HWM"   "IBM"   "ICE"   "IDXX" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "IEX"   "IFF"   "ILMN"  "INCY"  "INTC"  "INTU"  "INVH"  "IP"    "IPG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "IQV"   "IR"    "IRM"   "ISRG"  "IT"    "ITW"   "IVZ"   "J"     "JBHT" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "JCI"   "JKHY"  "JNJ"   "JNPR"  "JPM"   "K"     "KDP"   "KEY"   "KEYS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "KHC"   "KIM"   "KLAC"  "KMB"   "KMI"   "KMX"   "KO"    "KR"    "L"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "LDOS"  "LEN"   "LH"    "LHX"   "LIN"   "LKQ"   "LLY"   "LMT"   "LNC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "LNT"   "LOW"   "LRCX"  "LUMN"  "LUV"   "LVS"   "LW"    "LYB"   "LYV"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "MA"    "MAA"   "MAR"   "MAS"   "MCD"   "MCHP"  "MCK"   "MCO"   "MDLZ" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "MDT"   "MET"   "META"  "MGM"   "MHK"   "MKC"   "MKTX"  "MLM"   "MMC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "MMM"   "MNST"  "MO"    "MOH"   "MOS"   "MPC"   "MPWR"  "MRK"   "MRNA" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "MRO"   "MS"    "MSCI"  "MSFT"  "MSI"   "MTB"   "MTCH"  "MTD"   "MU"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "NCLH"  "NDAQ"  "NDSN"  "NEE"   "NEM"   "NFLX"  "NI"    "NKE"   "NOC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "NOW"   "NRG"   "NSC"   "NTAP"  "NTRS"  "NUE"   "NVDA"  "NVR"   "NWL"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "NWS"   "NWSA"  "NXPI"  "O"     "ODFL"  "OGN"   "OKE"   "OMC"   "ON"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "ORCL"  "ORLY"  "OTIS"  "OXY"   "PARA"  "PAYC"  "PAYX"  "PCAR"  "PCG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "PEAK"  "PEG"   "PEP"   "PFE"   "PFG"   "PG"    "PGR"   "PH"    "PHM"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "PKG"   "PKI"   "PLD"   "PM"    "PNC"   "PNR"   "PNW"   "POOL"  "PPG"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "PPL"   "PRU"   "PSA"   "PSX"   "PTC"   "PWR"   "PXD"   "PYPL"  "QCOM" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "QRVO"  "RCL"   "RE"    "REG"   "REGN"  "RF"    "RHI"   "RJF"   "RL"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "RMD"   "ROK"   "ROL"   "ROP"   "ROST"  "RSG"   "RTX"   "SBAC"  "SBNY" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "SBUX"  "SCHW"  "SEDG"  "SEE"   "SHW"   "SIVB"  "SJM"   "SLB"   "SNA"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "SNPS"  "SO"    "SPG"   "SPGI"  "SRE"   "STE"   "STT"   "STX"   "STZ"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "SWK"   "SWKS"  "SYF"   "SYK"   "SYY"   "T"     "TAP"   "TDG"   "TDY"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "TECH"  "TEL"   "TER"   "TFC"   "TFX"   "TGT"   "TJX"   "TMO"   "TMUS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "TPR"   "TRGP"  "TRMB"  "TROW"  "TRV"   "TSCO"  "TSLA"  "TSN"   "TT"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "TTWO"  "TXN"   "TXT"   "TYL"   "UAL"   "UDR"   "UHS"   "ULTA"  "UNH"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "UNP"   "UPS"   "URI"   "USB"   "V"     "VFC"   "VICI"  "VLO"   "VMC"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "VNO"   "VRSK"  "VRSN"  "VRTX"  "VTR"   "VTRS"  "VZ"    "WAB"   "WAT"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "WBA"   "WBD"   "WDC"   "WEC"   "WELL"  "WFC"   "WHR"   "WM"    "WMB"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "WMT"   "WRB"   "WRK"   "WST"   "WTW"   "WY"    "WYNN"  "XEL"   "XOM"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "XRAY"  "XYL"   "YUM"   "ZBH"   "ZBRA"  "ZION"  "ZTS"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $orig_lvls$ticker$ordered</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
@@ -2100,18 +2136,18 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $last_term_info</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 101 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   variable [101]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    variable   type    role      source   number skip </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ds         date    <span style="color: #949494;">&lt;chr [1]&gt;</span> original      2 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds_cos_1   numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ds_cos_2   numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ds_cos_3   numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ds_cos_4   numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ds_cos_5   numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ds_decimal numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ds_dow     nominal <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ds_month   nominal <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ds_quarter numeric <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable   type      role      source   number skip </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ds         <span style="color: #949494;">&lt;chr [1]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> original      2 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ds_cos_1   <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ds_cos_2   <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ds_cos_3   <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ds_cos_4   <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ds_cos_5   <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ds_decimal <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ds_dow     <span style="color: #949494;">&lt;chr [3]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ds_month   <span style="color: #949494;">&lt;chr [3]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ds_quarter <span style="color: #949494;">&lt;chr [2]&gt;</span> <span style="color: #949494;">&lt;chr [1]&gt;</span> derived       3 FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 91 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -2153,17 +2189,17 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$min_n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$tree_depth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$learn_rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0398679046932473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0387</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$loss_reduction</span>
@@ -2230,17 +2266,17 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$min_n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$tree_depth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$learn_rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0398679046932473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0387</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $args$loss_reduction</span>
@@ -2313,17 +2349,17 @@ for LightGBM models.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method$fit$args$min_data_in_leaf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method$fit$args$max_depth</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method$fit$args$learning_rate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0398679046932473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: ^0.0387</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> env:  empty</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method$fit$args$verbose</span>
