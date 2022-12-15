@@ -16,7 +16,7 @@ A tibble with 63,617 / 57,793 rows and 4 variables.
 price) of the Prophet model}
 }
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 57803 rows and 4 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 58056 rows and 4 columns.
 }
 \usage{
 daily_training_data

@@ -14,7 +14,7 @@ A tibble with 491 / 470 rows and 3 variables.
 \item{fit}{The fitted Prophet model object}
 }
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 480 rows and 3 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 482 rows and 3 columns.
 }
 \usage{
 daily_prophet_model

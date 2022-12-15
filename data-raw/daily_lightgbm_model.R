@@ -142,9 +142,9 @@ final_fit <- fit(final_wf, data_with_features) %>%
 
 lightgbm::saveRDS.lgb.Booster(
   final_fit$fit$fit$fit,
-  "data/daily_lightgbm_inner_model.rds"
+  "inst/extdata/daily_lightgbm_inner_model.rds"
 )
 
 final_fit$fit$fit$fit <- NULL
 
-saveRDS(final_fit, "data/daily_lightgbm_model.rds")
+saveRDS(final_fit, "inst/extdata/daily_lightgbm_model.rds")
