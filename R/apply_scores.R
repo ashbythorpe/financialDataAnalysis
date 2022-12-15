@@ -34,8 +34,10 @@ apply_scores <- function(df, scores) {
   if (nrow(scores) == 0) {
     return(df)
   }
+  
+  # Create scores, then add them to df
   purrr::pmap(scores, ~ score_column(df[[..2]], ...)) %>%
-    rlang::set_names(scores$score_name) %>%
+    rlang::set_names(scores$score_name) %>% # Set column names to score names
     dplyr::bind_cols(df, .)
 }
 
@@ -60,6 +62,7 @@ score_linear <- function(x, lb, ub) {
       x >= lb & x <= ub ~ (x - lb) / (ub - lb)
     )
   } else {
+    # lb and ub switch roles
     dplyr::case_when(
       x <= ub ~ 1,
       x >= lb ~ 0,
@@ -76,6 +79,7 @@ score_peak <- function(x, lb, ub, centre, inverse) {
       x > centre ~ (ub - x) / (ub - centre)
     )
   } else {
+    # Equivalent to 1 - the last method
     dplyr::case_when(
       x <= lb | x >= ub ~ 1,
       x <= centre ~ (centre - x) / (centre - lb),
@@ -85,20 +89,21 @@ score_peak <- function(x, lb, ub, centre, inverse) {
 }
 
 score_custom <- function(x, coords) {
-  format_coords(coords) %>%
+  format_coords(coords) %>% # Turn into a set of score sections
     purrr::pmap(score_coord_section, column = x) %>%
     combine_score_sections()
 }
 
 format_coords <- function(df) {
-  df_head <- head(df, -1)
-  df_tail <- tail(df, -1) %>%
+  df_head <- head(df, -1) # All except the last row
+  df_tail <- tail(df, -1) %>% # All except the first row
     rlang::set_names("next_x", "next_y")
   dplyr::bind_cols(df_head, df_tail)
 }
 
 score_coord_section <- function(column, x, y, next_x, next_y) {
   dplyr::case_when(
+    # Only concerned with values within the range of the coord section
     column < x | column > next_x ~ NA_real_,
     x == next_x ~ as.double(next_y),
     y <= next_y ~ as.double((column - x) / (next_x - x) * (next_y - y) + y),
@@ -107,7 +112,7 @@ score_coord_section <- function(column, x, y, next_x, next_y) {
 }
 
 combine_score_sections <- function(x) {
-  x[length(x):1] %>%
+  rev(x) %>% # Later value is prioritized in matches
     dplyr::coalesce(!!!.)
 }
 
@@ -123,6 +128,6 @@ transform_exponential <- function(x, exponential, logarithmic, magnitude) {
     x == 1 ~ 1,
     base == 0 ~ 1,
     is.infinite(base) ~ 0,
-    T ~ (base^x - 1) / (base - 1)
+    TRUE ~ (base^x - 1) / (base - 1) # Will run in the event of no other case
   )
 }

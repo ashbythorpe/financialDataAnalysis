@@ -23,6 +23,7 @@ favourite_stock <- function(df, x) {
   } else if (is.null(x) || x > nrow(df)) {
     return(df)
   }
+  # Toggle the 'favourite' value of the specified row
   df[x, "favourite"] <- !df[x, ]$favourite
   df
 }

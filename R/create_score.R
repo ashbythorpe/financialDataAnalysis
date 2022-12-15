@@ -131,9 +131,13 @@ create_score <- function(scores,
     centre, inverse, exponential, logarithmic,
     magnitude, custom_args
   )
+  
+  # Don't modify the scores table if the score is invalid
   if (is.null(row_to_add)) {
     return(scores)
   }
+  
+  # Either create or edit a score
   .f <- get_score_function(editing)
   .f(scores, row_to_add) %>%
     replace_score_names()
@@ -154,6 +158,8 @@ validate_score <- function(score_type, colname, score_name, weight, lb, ub,
   } else if (validated_score_type == "Custom coordinates") {
     score_row <- validate_custom_score(custom_args)
   }
+  
+  # Combine the validated columns together; return NULL if any are invalid
   bind_validated_columns(
     validated_score_type, universal_row,
     score_row, exponential_row
@@ -161,6 +167,7 @@ validate_score <- function(score_type, colname, score_name, weight, lb, ub,
 }
 
 validate_score_type <- function(x) {
+  # Values that the score type can be
   opts <- c("Linear", "Peak", "Custom coordinates")
   if (is.character(x) && x %in% opts) {
     x
@@ -195,8 +202,10 @@ validate_exponential_transformation <- function(exponential, logarithmic, magnit
   if (!is.logical(exponential) ||
     (exponential &&
       (!is.logical(logarithmic) || !is.numeric(magnitude)))) {
+    # If any required arguments are invalid
     NULL
   } else if (!exponential) {
+    # Don't need other arguments
     tibble::tibble_row(exponential = exponential)
   } else {
     tibble::tibble_row(exponential = exponential, logarithmic = logarithmic, magnitude = magnitude)
@@ -215,7 +224,7 @@ validate_peak_score <- function(lb, ub, centre, inverse) {
   if (!is.numeric(lb) || !is.numeric(ub) || !is.logical(inverse)) {
     return(NULL)
   } else if (lb > ub) {
-    # swap ub and lb
+    # Swap ub and lb
     ub <- lb + ub
     lb <- ub - lb
     ub <- ub - lb
@@ -244,6 +253,7 @@ validate_custom_score <- function(x) {
 bind_validated_columns <- function(score_type, ...) {
   dfs <- rlang::list2(...)
   if (purrr::some(dfs, is.null)) {
+    # All arguments must be valid to return a valid row
     NULL
   } else {
     dplyr::bind_cols(score_type = score_type, ...)
@@ -260,6 +270,7 @@ get_score_function <- function(editing) {
       if (is.null(editing) || editing > nrow(df)) {
         return(df)
       }
+      # Remove then re-add row
       df %>%
         dplyr::slice(-editing) %>%
         tibble::add_row(row, .before = editing)
@@ -282,6 +293,7 @@ replace_score_names <- function(df) {
     df,
     score_name = dplyr::coalesce(
       score_name,
+      # Replace NA with default
       glue::glue("Score {dplyr::row_number()}: {colname}")
     )
   )

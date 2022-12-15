@@ -26,15 +26,24 @@
 #'
 #' @export
 input_data <- function(files, default_data = default_stock_data, combine = FALSE) {
+  # Return NULL if the user has not inputted anything
   if (is.null(files) || is.null(combine)) {
     return(default_data)
   }
+  
+  # Turn the files into a list of data frames
   dfs <- read_files(files)
+  
+  # Combine and transform into required format
   transformed_df <- combine_if_multiple(dfs) %>%
     combine_if_specified(default_data, combine) %>%
     transform_df(default_data)
+  
+  # Figure out if any errors have occurred
   error <- get_error(files, dfs, transformed_df)
   output_error(error)
+  
+  # Make sure a valid data frame is returned
   validate_df(transformed_df, default_data, error$fatal)
 }
 
@@ -110,6 +119,8 @@ combine_if_multiple <- function(dfs) {
   if (is.null(dfs)) {
     return(dfs)
   }
+  
+  # Combine data frames two at a time
   purrr::reduce(dfs, combine_two_dfs, .init = NULL)
 }
 
@@ -166,11 +177,16 @@ transform_df <- function(df, default) {
   if (is.null(df)) {
     return(NULL)
   } else if (identical(df, default)) {
+    # No need to transform the default data
     return(df)
   }
+  
+  # Remove duplicate rows and make sure all columns are numeric or character
   res <- df %>%
     dplyr::distinct() %>%
     purrr::modify(transform_col)
+  
+  # Make sure there are scorable columns
   if (all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))) {
     return(NULL)
   }
@@ -179,10 +195,13 @@ transform_df <- function(df, default) {
 
 transform_col <- function(x) {
   if (!is.numeric(x) && mean(!is.na(suppressWarnings(as.numeric(x)))) >= 0.5) {
+    # Columns that can be converted to numeric are
     suppressWarnings(as.numeric(x))
   } else if (is.numeric(x)) {
+    # Numeric columns are kept as is
     x
   } else {
+    # Non numeric columns are converted to string columns
     as.character(x)
   }
 }
@@ -190,21 +209,28 @@ transform_col <- function(x) {
 get_error <- function(files, dfs, current_df) {
   fatal <- ""
   nonfatal <- ""
+  
   if (!is.null(dfs) && length(files) > length(dfs)) {
+    # Less data frames than files, meaning that at least one has failed
     nonfatal <- "Not all files were converted correctly."
   }
   if (is.null(dfs)) {
+    # All file conversions failed
     fatal <- "Files were not converted correctly."
   } else if (is.null(current_df)) {
+    # Transformation failed
     fatal <- "The data does not contain any scorable columns."
   } else if (any(dim(current_df) < 2)) {
+    # Data must have at least 2 rows/columns
     fatal <- "The inputted data frame is not valid."
   }
+  
   list(fatal = fatal, nonfatal = nonfatal)
 }
 
 validate_df <- function(df, default, error) {
   if (is.null(df) || error != "") {
+    # If the current data frame is not valid, use the default instead
     default
   } else {
     df

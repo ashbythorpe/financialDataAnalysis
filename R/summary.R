@@ -58,6 +58,7 @@ score_summary <- function(x, ...) {
   if (is.null(score_spec)) {
     return(NULL)
   }
+  # Plot the column (x) against the score
   tibble::tibble(column_value = x, score = rlang::inject(score_column(x, !!!score_spec))) %>%
     ggplot2::ggplot(ggplot2::aes(x = column_value, y = score)) +
     ggplot2::geom_line() +

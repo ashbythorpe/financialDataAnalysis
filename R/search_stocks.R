@@ -17,6 +17,7 @@ search_stocks <- function(x, pattern) {
   if (is.null(pattern) || pattern == "") {
     return(x)
   }
+  
   final_data <-
     stringr::str_split_1(pattern, " ") %>%
     purrr::map(search_pattern, x = x) %>%
@@ -24,6 +25,7 @@ search_stocks <- function(x, pattern) {
     {
       x[., ]
     }
+  
   if (nrow(final_data) == 0) {
     return(NULL)
   }

@@ -30,12 +30,16 @@ apply_filters <- function(df, filters) {
   if (nrow(filters) == 0) {
     return(df)
   }
+  
+  # Apply each filter to its column
   filtered <- purrr::pmap(filters, ~ filter_column(df[[..2]], ...)) %>%
-    purrr::reduce(`&`, .init = T) %>%
-    dplyr::filter(.data = df)
+    purrr::reduce(`&`, .init = T) %>% # Combine the filters together
+    dplyr::filter(.data = df) # Use the logical vector to filter the table
+  
   if (nrow(filtered) == 0) {
     return(NULL)
   }
+  
   filtered
 }
 

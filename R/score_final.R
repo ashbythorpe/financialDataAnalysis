@@ -40,6 +40,8 @@ score_final <- function(df, scores) {
     return(df)
   }
   actual_scores <- get_scores(df, scores, final_score = F)
+  
+  # Calculate a weighted mean of all the other scores
   purrr::pmap_dbl(actual_scores, ~ {
     stats::weighted.mean(c(...), w = scores$weight, na.rm = T)
   }) %>%

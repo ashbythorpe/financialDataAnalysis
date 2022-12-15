@@ -37,8 +37,10 @@ add_filter <- function(filters, colname, data) {
   }
   column <- data[[colname]]
   if (is.character(column)) {
+    # Add a character filter
     filter <- tibble::tibble_row(type = "character", colname = colname, pattern = "")
   } else {
+    # Add a numeric filter
     filter <- tibble::tibble_row(
       type = "numeric", colname = colname,
       min = min(column, na.rm = T),
@@ -83,6 +85,8 @@ edit_filter <- function(filters, x, pattern = NULL, min = NULL, max = NULL) {
   if (x > nrow(filters)) {
     return(filters)
   }
+  
+  # Get the type of the current filter
   type <- filters[x, ]$type
   if (type == "character") {
     edit_character_filter(filters, x, pattern)
