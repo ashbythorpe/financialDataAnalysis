@@ -8,8 +8,8 @@
 <meta name="description" content="financialDataAnalysis">
 <title>Review of prototype 2 • financialDataAnalysis</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Review of prototype 2">
 <meta property="og:description" content="financialDataAnalysis">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">financialDataAnalysis</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,99 +151,123 @@ problem.</p>
 <p>It is currently able to convert CSV and Excel files.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="va">file_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 2</span></span></span>
-<span><span class="co">#&gt;        x     y</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1</span></span>
+<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 100</span></span></span>
+<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="va">file_2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 100 × 2</span></span></span>
-<span><span class="co">#&gt;        x z    </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 a    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2 b    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 c    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4 d    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5 e    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6 f    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7 g    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8 h    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9 i    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10 j    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 90 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 100</span></span></span>
+<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span></span></code></pre></div>
 <p>If more than one files are given, the data frames are combined
 together. This is done in a way such that all data is preserved and the
 function never errors.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 100 × 3</span></span></span>
-<span><span class="co">#&gt;        x     y z    </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 a    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 b    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 c    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 d    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 e    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 f    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 g    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 h    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 i    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 j    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 90 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 100</span></span></span>
+<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span></span></code></pre></div>
 <p>The function also has a <code>combine</code> argument, which allows
 you to combine your data with the default stock data. This is useful if
 you want to add more rows or columns to the data.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="va">file_1</span>, combine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 507 × 102</span></span></span>
-<span><span class="co">#&gt;        x     y symbol company_name excha…¹ indus…² website descr…³ ceo   secur…⁴</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 497 more rows, 92 more variables: sector &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   primary_sic_code &lt;dbl&gt;, employees &lt;dbl&gt;, address &lt;chr&gt;, state &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 100</span></span></span>
+<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;, …</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span></span>
 <span><span class="fu"><a href="../reference/input_data.html">input_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">file_1</span>, <span class="va">file_2</span><span class="op">)</span>, combine <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 597 × 103</span></span></span>
-<span><span class="co">#&gt;        x     y z     symbol company_name exchange industry website descr…¹ ceo  </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    10 a     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     2     9 b     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3     8 c     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     4     7 d     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     5     6 e     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6     5 f     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     7     4 g     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     8     3 h     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     9     2 i     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    10     1 j     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 587 more rows, 93 more variables: security_name &lt;chr&gt;, sector &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   primary_sic_code &lt;dbl&gt;, employees &lt;dbl&gt;, address &lt;chr&gt;, state &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; [1] "The data does not contain any scorable columns."</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 497 × 100</span></span></span>
+<span><span class="co">#&gt;    symbol company…¹ excha…² indus…³ website descr…⁴ ceo   secur…⁵ sector prima…⁶</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> MMM    3M Co.    NEW YO… <span style="color: #949494;">"</span>Offic… www.3m… <span style="color: #949494;">"</span>3M Co… Mich… 3M Co.  Manag…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AOS    A.O. Smi… NEW YO… <span style="color: #949494;">"</span>Heati… www.ao… <span style="color: #949494;">"</span>A. O.… Kevi… A.O. S… Manuf…    <span style="text-decoration: underline;">3</span>630</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ABT    Abbott L… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>Abbot… Robe… Abbott… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ABBV   Abbvie I… NEW YO… <span style="color: #949494;">"</span>Pharm… www.ab… <span style="color: #949494;">"</span>AbbVi… Rich… Abbvie… Manuf…    <span style="text-decoration: underline;">2</span>834</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ABMD   Abiomed … NASDAQ  <span style="color: #949494;">"</span>Surgi… www.ab… <span style="color: #949494;">"</span>Abiom… Mich… Abiome… Manuf…    <span style="text-decoration: underline;">3</span>841</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ACN    Accentur… NEW YO… <span style="color: #949494;">"</span>Data … www.ac… <span style="color: #949494;">"</span>Accen… <span style="color: #BB0000;">NA</span>    Accent… Infor…    <span style="text-decoration: underline;">7</span>389</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ATVI   Activisi… NASDAQ  <span style="color: #949494;">"</span>Softw… www.ac… <span style="color: #949494;">"</span>Activ… Robe… Activi… Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ADM    Archer D… NEW YO… <span style="color: #949494;">"</span>Flour… www.ad… <span style="color: #949494;">"</span>ADM u… Juan… Archer… Manuf…    <span style="text-decoration: underline;">2</span>041</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ADBE   Adobe Inc NASDAQ  <span style="color: #949494;">"</span>Softw… www.ad… <span style="color: #949494;">"</span>Adobe… Shan… Adobe … Infor…    <span style="text-decoration: underline;">7</span>372</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ADP    Automati… NASDAQ  <span style="color: #949494;">"</span>Data … www.ad… <span style="color: #949494;">"</span>ADP i… Carl… Automa… Infor…    <span style="text-decoration: underline;">7</span>374</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 487 more rows, 90 more variables: employees &lt;dbl&gt;, address &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   state &lt;chr&gt;, city &lt;chr&gt;, ZIP &lt;chr&gt;, country &lt;chr&gt;, phone &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   capital_expenditures &lt;dbl&gt;, cash_change &lt;dbl&gt;, cash_flow &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   cash_flow_financing &lt;dbl&gt;, changes_in_inventories &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   changes_in_receivables &lt;dbl&gt;, currency &lt;chr&gt;, depreciation &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   filing_type &lt;chr&gt;, fiscal_date &lt;dbl&gt;, net_borrowings &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   net_income &lt;dbl&gt;, report_date &lt;dbl&gt;, total_investing_cash_flows &lt;dbl&gt;, …</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="scoring-data">Scoring data<a class="anchor" aria-label="anchor" href="#scoring-data"></a>
@@ -624,42 +648,39 @@ argument.</p>
 <span>  start_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  end_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, freq <span class="op">=</span> <span class="st">"monthly"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = "ref_date"</span></span>
-<span><span class="co">#&gt; Warning in preds$yhat + residuals: longer object length is not a multiple of</span></span>
-<span><span class="co">#&gt; shorter object length</span></span>
 <span></span>
 <span><span class="va">predictions_daily</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 63 × 4</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 60 × 4</span></span></span>
 <span><span class="co">#&gt;     yhat yhat_lower yhat_upper ref_date  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  98.9       96.4      104.  2022-12-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 100.        96.6      104.  2022-12-16</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  87.5       83.1       90.7 2022-12-17</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  86.5       83.4       90.8 2022-12-18</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 100.        97.0      105.  2022-12-19</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 102.        96.6      105.  2022-12-20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 101.        96.8      106.  2022-12-21</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 101.        97.3      106.  2022-12-22</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 101.        97.1      106.  2022-12-23</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  88.5       83.5       92.8 2022-12-24</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 53 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  97.6       67.3       136. 2023-02-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 114.        78.0       160. 2023-02-20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 114.        77.4       159. 2023-02-21</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 114.        76.7       162. 2023-02-22</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 115.        75.5       163. 2023-02-23</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 115.        75.3       164. 2023-02-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  99.2       64.3       143. 2023-02-25</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  99.1       63.0       144. 2023-02-26</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 115.        74.0       168. 2023-02-27</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 115.        72.6       167. 2023-02-28</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 50 more rows</span></span></span>
 <span><span class="va">predictions_monthly</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 4</span></span></span>
 <span><span class="co">#&gt;     yhat yhat_lower yhat_upper ref_date  </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  92.8       92.8       92.8 2022-12-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 108.       110.       137.  2023-01-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 137.       130.       160.  2023-02-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 135.       130.       160.  2023-03-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 133.       120.       149.  2023-04-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 116.       105.       133.  2023-05-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 139.       126.       154.  2023-06-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 149.       132.       160.  2023-07-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 132.       121.       148.  2023-08-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 126.       119.       147.  2023-09-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 161.       155.       183.  2023-10-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 131.       124.       152.  2023-11-15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 123.       124.       150.  2023-12-15</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  137.       131.       158. 2023-02-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  125.       121.       149. 2023-03-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  116.       105.       132. 2023-04-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  137.       125.       154. 2023-05-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  145.       132.       160. 2023-06-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  138.       121.       149. 2023-07-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  129.       118.       146. 2023-08-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  162.       155.       183. 2023-09-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  130.       124.       151. 2023-10-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  129.       123.       151. 2023-11-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  142.       123.       151. 2023-12-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>  165.       144.       172. 2024-01-19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>  161.       141.       168. 2024-02-19</span></span></code></pre></div>
 <p>Make a graph of these predictions using the
 <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
