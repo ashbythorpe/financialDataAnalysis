@@ -1,3 +1,5 @@
+# financialDataAnalysis 1.0.1
+
 # financialDataAnalysis 1.0.0
 
 * Uploaded the project to shinyapps.io
