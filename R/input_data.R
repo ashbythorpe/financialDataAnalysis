@@ -191,7 +191,7 @@ transform_df <- function(df, default) {
     purrr::modify(transform_col)
   
   # Make sure there are scorable columns
-  if (!all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))) {
+  if (all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))) {
     return(NULL)
   }
   res

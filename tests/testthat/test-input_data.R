@@ -19,7 +19,7 @@ test_that("input_data works", {
   withr::local_file(example_valid_data_path)
   example_valid_data <- tibble::tibble(x = c(1, 2), y = c(2, 1))
   vroom::vroom_write(example_valid_data, example_valid_data_path, ",")
-
+  
   example_excel_path <- tempfile("valid_excel", fileext = ".xlsx")
   withr::local_file(example_excel_path)
   example_excel <- tibble::tibble(x = c(1, 2), y = c(2, 1))
@@ -32,7 +32,9 @@ test_that("input_data works", {
   result_1 <- quietly_input_data("aaa", default_data = default_data, combine = FALSE)
   expect_equal(result_1$result, default_data)
   expect_match(result_1$output, "Files were not converted correctly\\.")
-
+  
+  example_valid_data_path
+  
   result_2 <- quietly_input_data(c("aaa", example_valid_data_path),
     default_data = default_data, combine = FALSE
   )
