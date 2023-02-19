@@ -80,7 +80,8 @@ data_input_server <- function(id) {
           combine_if_specified(default_stock_data, input$combine) %>%
           transform_df(default_stock_data)
       }
-    })
+    }) %>%
+      bindEvent(dfs(), ignoreNULL = FALSE)
 
     # Detect if any errors have occurred in the process
     error <- reactive({
@@ -104,10 +105,12 @@ data_input_server <- function(id) {
     # If it is invalid, use the default data instead
     final_df <- reactive({
       if (is.null(transformed_df())) {
-        default_stock_data
+        res <- default_stock_data
       } else {
-        validate_df(transformed_df(), default_stock_data, error()$fatal)
+        res <- validate_df(transformed_df(), default_stock_data, error()$fatal)
       }
+      print(res)
+      res
     })
 
     output$summary <- reactive({

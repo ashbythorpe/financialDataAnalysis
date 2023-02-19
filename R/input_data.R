@@ -69,7 +69,7 @@ read_file <- function(file) {
     return(NULL)
   }
   format <- file_format(file)
-  tryCatch(
+  res <- tryCatch(
     {
       if (format == "Excel") {
         readxl::read_excel(file, progress = F)
@@ -89,6 +89,10 @@ read_file <- function(file) {
       NULL
     }
   )
+  if(!is.null(res) && 0 %in% dim(res)) {
+    res <- NULL
+  }
+  res
 }
 
 file_format <- function(file) {
@@ -187,7 +191,7 @@ transform_df <- function(df, default) {
     purrr::modify(transform_col)
   
   # Make sure there are scorable columns
-  if (all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))) {
+  if (!all(!purrr::map_lgl(res, is.numeric) | purrr::map_lgl(res, purrr::every, is.na))) {
     return(NULL)
   }
   res
