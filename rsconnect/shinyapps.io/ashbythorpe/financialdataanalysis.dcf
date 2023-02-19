@@ -5,7 +5,7 @@ account: ashbythorpe
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7743856
-bundleId: 6641239
+bundleId: 6863482
 url: https://ashbythorpe.shinyapps.io/financialdataanalysis/
-when: 1671126948.39667
-lastSyncTime: 1671126948.39676
+when: 1676822331.69903
+lastSyncTime: 1676822331.69908
